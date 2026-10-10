@@ -1,0 +1,646 @@
+<Activity mc:Ignorable="sap sap2010" x:Class="_20_a_Extraction" xmlns="http://schemas.microsoft.com/netfx/2009/xaml/activities" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:njl="clr-namespace:Newtonsoft.Json.Linq;assembly=Newtonsoft.Json" xmlns:s="clr-namespace:System;assembly=System.Private.CoreLib" xmlns:sap="http://schemas.microsoft.com/netfx/2009/xaml/activities/presentation" xmlns:sap2010="http://schemas.microsoft.com/netfx/2010/xaml/activities/presentation" xmlns:scg="clr-namespace:System.Collections.Generic;assembly=System.Private.CoreLib" xmlns:sco="clr-namespace:System.Collections.ObjectModel;assembly=System.Private.CoreLib" xmlns:sd="clr-namespace:System.Data;assembly=System.Data.Common" xmlns:this="clr-namespace:" xmlns:ui="http://schemas.uipath.com/workflow/activities" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+  <x:Members>
+    <x:Property Name="istrRegex" Type="InArgument(x:String)" />
+    <x:Property Name="odtRoomGrid" Type="OutArgument(sd:DataTable)" />
+    <x:Property Name="idtPropertyCodeMapping" Type="InArgument(sd:DataTable)" />
+    <x:Property Name="iodictBlockDetails" Type="InOutArgument(scg:Dictionary(x:String, x:String))" />
+    <x:Property Name="istrInputText" Type="InArgument(x:String)" />
+    <x:Property Name="idtRoomTypeMapping" Type="InArgument(sd:DataTable)" />
+    <x:Property Name="istrToken" Type="InArgument(x:String)" />
+    <x:Property Name="idictAssetsData" Type="InArgument(scg:Dictionary(x:String, x:Object))" />
+    <x:Property Name="olststrRoomTypes" Type="OutArgument(scg:List(x:String))" />
+  </x:Members>
+  <this:_20_a_Extraction.istrRegex>
+    <InArgument x:TypeArguments="x:String" />
+  </this:_20_a_Extraction.istrRegex>
+  <this:_20_a_Extraction.istrToken>
+    <InArgument x:TypeArguments="x:String" />
+  </this:_20_a_Extraction.istrToken>
+  <VisualBasic.Settings>
+    <x:Null />
+  </VisualBasic.Settings>
+  <sap2010:WorkflowViewState.IdRef>_20_a_Extraction_1</sap2010:WorkflowViewState.IdRef>
+  <TextExpression.NamespacesForImplementation>
+    <sco:Collection x:TypeArguments="x:String">
+      <x:String>System.Activities</x:String>
+      <x:String>System.Activities.Statements</x:String>
+      <x:String>System.Activities.Expressions</x:String>
+      <x:String>System.Activities.Validation</x:String>
+      <x:String>System.Activities.XamlIntegration</x:String>
+      <x:String>Microsoft.VisualBasic</x:String>
+      <x:String>Microsoft.VisualBasic.Activities</x:String>
+      <x:String>System</x:String>
+      <x:String>System.Collections</x:String>
+      <x:String>System.Collections.Generic</x:String>
+      <x:String>System.Collections.ObjectModel</x:String>
+      <x:String>System.Data</x:String>
+      <x:String>System.Diagnostics</x:String>
+      <x:String>System.Drawing</x:String>
+      <x:String>System.IO</x:String>
+      <x:String>System.Linq</x:String>
+      <x:String>System.Net.Mail</x:String>
+      <x:String>System.Xml</x:String>
+      <x:String>System.Xml.Linq</x:String>
+      <x:String>UiPath.Core</x:String>
+      <x:String>UiPath.Core.Activities</x:String>
+      <x:String>System.Windows.Markup</x:String>
+      <x:String>GlobalVariablesNamespace</x:String>
+      <x:String>GlobalConstantsNamespace</x:String>
+      <x:String>UiPath.Web.Activities.JSON.Models</x:String>
+      <x:String>Newtonsoft.Json.Linq</x:String>
+      <x:String>Newtonsoft.Json</x:String>
+      <x:String>System.Dynamic</x:String>
+      <x:String>System.ComponentModel</x:String>
+      <x:String>System.Collections.Specialized</x:String>
+      <x:String>System.Reflection</x:String>
+      <x:String>UiPath.Web.Activities</x:String>
+      <x:String>System.Runtime.Serialization</x:String>
+      <x:String>UiPath.MicrosoftOffice365.Models</x:String>
+      <x:String>UiPath.Shared.Services.Graph.Mail.Models</x:String>
+      <x:String>System.Linq.Expressions</x:String>
+      <x:String>System.Text.RegularExpressions</x:String>
+      <x:String>System.Xml.Serialization</x:String>
+      <x:String>System.Globalization</x:String>
+      <x:String>System.Activities.Runtime.Collections</x:String>
+      <x:String>System.Numerics</x:String>
+      <x:String>UiPath.Excel</x:String>
+      <x:String>UiPath.Platform.ResourceHandling</x:String>
+      <x:String>UiPath.Excel.Activities</x:String>
+    </sco:Collection>
+  </TextExpression.NamespacesForImplementation>
+  <TextExpression.ReferencesForImplementation>
+    <sco:Collection x:TypeArguments="AssemblyReference">
+      <AssemblyReference>Microsoft.VisualBasic</AssemblyReference>
+      <AssemblyReference>mscorlib</AssemblyReference>
+      <AssemblyReference>System</AssemblyReference>
+      <AssemblyReference>System.Activities</AssemblyReference>
+      <AssemblyReference>System.ComponentModel.TypeConverter</AssemblyReference>
+      <AssemblyReference>System.Core</AssemblyReference>
+      <AssemblyReference>System.Data</AssemblyReference>
+      <AssemblyReference>System.Data.Common</AssemblyReference>
+      <AssemblyReference>System.Data.DataSetExtensions</AssemblyReference>
+      <AssemblyReference>System.Drawing</AssemblyReference>
+      <AssemblyReference>System.Drawing.Common</AssemblyReference>
+      <AssemblyReference>System.Drawing.Primitives</AssemblyReference>
+      <AssemblyReference>System.Linq</AssemblyReference>
+      <AssemblyReference>System.Net.Mail</AssemblyReference>
+      <AssemblyReference>System.ObjectModel</AssemblyReference>
+      <AssemblyReference>System.Private.CoreLib</AssemblyReference>
+      <AssemblyReference>System.Xaml</AssemblyReference>
+      <AssemblyReference>System.Xml</AssemblyReference>
+      <AssemblyReference>System.Xml.Linq</AssemblyReference>
+      <AssemblyReference>UiPath.System.Activities</AssemblyReference>
+      <AssemblyReference>UiPath.UiAutomation.Activities</AssemblyReference>
+      <AssemblyReference>UiPath.Studio.Constants</AssemblyReference>
+      <AssemblyReference>netstandard</AssemblyReference>
+      <AssemblyReference>UiPath.Web.Activities</AssemblyReference>
+      <AssemblyReference>Newtonsoft.Json</AssemblyReference>
+      <AssemblyReference>System.Linq.Expressions</AssemblyReference>
+      <AssemblyReference>System.ComponentModel.EventBasedAsync</AssemblyReference>
+      <AssemblyReference>PresentationFramework</AssemblyReference>
+      <AssemblyReference>WindowsBase</AssemblyReference>
+      <AssemblyReference>System.ComponentModel</AssemblyReference>
+      <AssemblyReference>System.ComponentModel.Primitives</AssemblyReference>
+      <AssemblyReference>System.Collections.Specialized</AssemblyReference>
+      <AssemblyReference>System.Collections.NonGeneric</AssemblyReference>
+      <AssemblyReference>System.Reflection.DispatchProxy</AssemblyReference>
+      <AssemblyReference>System.Reflection.TypeExtensions</AssemblyReference>
+      <AssemblyReference>System.Reflection.Metadata</AssemblyReference>
+      <AssemblyReference>System.Private.ServiceModel</AssemblyReference>
+      <AssemblyReference>System.Private.DataContractSerialization</AssemblyReference>
+      <AssemblyReference>System.Runtime.Serialization.Formatters</AssemblyReference>
+      <AssemblyReference>System.Runtime.Serialization.Primitives</AssemblyReference>
+      <AssemblyReference>UiPath.MicrosoftOffice365</AssemblyReference>
+      <AssemblyReference>UiPath.Mail</AssemblyReference>
+      <AssemblyReference>System.Memory.Data</AssemblyReference>
+      <AssemblyReference>UiPath.Excel.Activities.Design</AssemblyReference>
+      <AssemblyReference>System.Console</AssemblyReference>
+      <AssemblyReference>System.Security.Permissions</AssemblyReference>
+      <AssemblyReference>System.Configuration.ConfigurationManager</AssemblyReference>
+      <AssemblyReference>System.Memory</AssemblyReference>
+      <AssemblyReference>System.Private.Uri</AssemblyReference>
+      <AssemblyReference>System.Linq.Async</AssemblyReference>
+      <AssemblyReference>System.Collections</AssemblyReference>
+      <AssemblyReference>System.Text.RegularExpressions</AssemblyReference>
+      <AssemblyReference>System.Data.SqlClient</AssemblyReference>
+      <AssemblyReference>System.Private.Xml</AssemblyReference>
+      <AssemblyReference>System.Linq.Async.Queryable</AssemblyReference>
+      <AssemblyReference>System.Linq.Parallel</AssemblyReference>
+      <AssemblyReference>System.Collections.Immutable</AssemblyReference>
+      <AssemblyReference>System.Linq.Queryable</AssemblyReference>
+      <AssemblyReference>System.CodeDom</AssemblyReference>
+      <AssemblyReference>Microsoft.VisualBasic.Forms</AssemblyReference>
+      <AssemblyReference>Microsoft.VisualBasic.Core</AssemblyReference>
+      <AssemblyReference>UiPath.System.Activities.Design</AssemblyReference>
+      <AssemblyReference>UiPath.UIAutomationNext</AssemblyReference>
+      <AssemblyReference>UiPath.System.Activities.ViewModels</AssemblyReference>
+      <AssemblyReference>System.Runtime.Numerics</AssemblyReference>
+      <AssemblyReference>UiPath.Excel</AssemblyReference>
+      <AssemblyReference>UiPath.Excel.Activities</AssemblyReference>
+      <AssemblyReference>UiPath.Platform</AssemblyReference>
+    </sco:Collection>
+  </TextExpression.ReferencesForImplementation>
+  <sap:WorkflowViewStateService.ViewState>
+    <scg:Dictionary x:TypeArguments="x:String, x:Object">
+      <x:Boolean x:Key="ShouldExpandAll">True</x:Boolean>
+    </scg:Dictionary>
+  </sap:WorkflowViewStateService.ViewState>
+  <Sequence DisplayName="_20_a_Extraction" sap:VirtualizedContainerService.HintSize="1156,5253.6" sap2010:WorkflowViewState.IdRef="Sequence_1">
+    <Sequence.Variables>
+      <Variable x:TypeArguments="njl:JObject" Name="jobjRegex" />
+      <Variable x:TypeArguments="x:String" Name="strExceptionMessage" />
+    </Sequence.Variables>
+    <sap:WorkflowViewStateService.ViewState>
+      <scg:Dictionary x:TypeArguments="x:String, x:Object">
+        <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+      </scg:Dictionary>
+    </sap:WorkflowViewStateService.ViewState>
+    <ui:LogMessage DisplayName="20.b Trace log - extraction started" sap:VirtualizedContainerService.HintSize="523.2,174.4" sap2010:WorkflowViewState.IdRef="LogMessage_1" Level="Trace" Message="[&quot;Extraction started&quot;]" />
+    <ui:DeserializeJson x:TypeArguments="njl:JObject" JsonSample="{x:Null}" Settings="{x:Null}" DisplayName="20.b Deserialize regex json" sap:VirtualizedContainerService.HintSize="523.2,173.6" sap2010:WorkflowViewState.IdRef="DeserializeJson`1_1" JsonObject="[jobjRegex]" JsonString="[istrRegex]">
+      <sap:WorkflowViewStateService.ViewState>
+        <scg:Dictionary x:TypeArguments="x:String, x:Object">
+          <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+          <x:Boolean x:Key="IsPinned">False</x:Boolean>
+        </scg:Dictionary>
+      </sap:WorkflowViewStateService.ViewState>
+    </ui:DeserializeJson>
+    <ui:CommentOut DisplayName="Comment Out" sap:VirtualizedContainerService.HintSize="523.2,56.8" sap2010:WorkflowViewState.IdRef="CommentOut_1">
+      <ui:CommentOut.Body>
+        <Sequence DisplayName="Ignored Activities" sap:VirtualizedContainerService.HintSize="467.2,166.4" sap2010:WorkflowViewState.IdRef="Sequence_6">
+          <sap:WorkflowViewStateService.ViewState>
+            <scg:Dictionary x:TypeArguments="x:String, x:Object">
+              <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+            </scg:Dictionary>
+          </sap:WorkflowViewStateService.ViewState>
+          <Assign DisplayName="20.b Initialize block details dictionary with empty strings" sap:VirtualizedContainerService.HintSize="433.6,106.4" sap2010:WorkflowViewState.IdRef="Assign_4">
+            <Assign.To>
+              <OutArgument x:TypeArguments="scg:Dictionary(x:String, x:String)">[iodictBlockDetails]</OutArgument>
+            </Assign.To>
+            <Assign.Value>
+              <InArgument x:TypeArguments="scg:Dictionary(x:String, x:String)" xml:space="preserve">[New Dictionary(Of String, String) From {
+    {"strPropertyCode", String.Empty},
+    {"strBlockId", String.Empty},
+	{"strBlockCode", String.Empty},
+	{"strBlockName", String.Empty},
+	{"strArrivalDate", String.Empty},
+	{"strDepartureDate", String.Empty},
+	{"strFollowupDate", String.Empty},
+	{"strDecisionDate", String.Empty},
+	{"strProfileType", String.Empty},
+	{"strAgentProfileId", String.Empty},
+	{"strContactProfileId", String.Empty},
+	{"strAgentName", String.Empty},
+	{"strContactFirstName", String.Empty},
+	{"strContactLastName", String.Empty},
+	{"TransactionStartTime",now.ToString},
+	{"FailureReason", String.Empty},
+	{"Status", String.Empty},
+	{"ExceptionType", String.Empty}
+}]</InArgument>
+            </Assign.Value>
+            <sap:WorkflowViewStateService.ViewState>
+              <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                <x:Boolean x:Key="IsPinned">False</x:Boolean>
+              </scg:Dictionary>
+            </sap:WorkflowViewStateService.ViewState>
+          </Assign>
+        </Sequence>
+      </ui:CommentOut.Body>
+      <sap:WorkflowViewStateService.ViewState>
+        <scg:Dictionary x:TypeArguments="x:String, x:Object">
+          <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+          <x:Boolean x:Key="IsPinned">True</x:Boolean>
+        </scg:Dictionary>
+      </sap:WorkflowViewStateService.ViewState>
+    </ui:CommentOut>
+    <Switch x:TypeArguments="x:String" DisplayName="Switch- to check the provider" Expression="[If(istrInputText.ToLower.Contains(&quot;thetourcompany&quot;),&#xA;    &quot;TheTourCompany&quot;,&#xA;    If(istrInputText.ToLower.Contains(&quot;vendor.roadrebel.com&quot;),&#xA;        &quot;RoadRebel&quot;,&#xA;        If(istrInputText.ToLower.Contains(&quot;equinoxxxx&quot;),&#xA;            &quot;Equinoxxxx&quot;,&#xA;            &quot;Default&quot;&#xA;        )&#xA;    )&#xA;)]" sap:VirtualizedContainerService.HintSize="523.2,1262.4" sap2010:WorkflowViewState.IdRef="Switch`1_2">
+      <Switch.Default>
+        <Sequence sap:VirtualizedContainerService.HintSize="416,676" sap2010:WorkflowViewState.IdRef="Sequence_11">
+          <sap:WorkflowViewStateService.ViewState>
+            <scg:Dictionary x:TypeArguments="x:String, x:Object">
+              <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+            </scg:Dictionary>
+          </sap:WorkflowViewStateService.ViewState>
+          <ui:CommentOut DisplayName="Old Code" sap:VirtualizedContainerService.HintSize="382.4,56.8" sap2010:WorkflowViewState.IdRef="CommentOut_4">
+            <ui:CommentOut.Body>
+              <Sequence DisplayName="Ignored Activities" sap:VirtualizedContainerService.HintSize="416,248" sap2010:WorkflowViewState.IdRef="Sequence_13">
+                <sap:WorkflowViewStateService.ViewState>
+                  <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                    <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                  </scg:Dictionary>
+                </sap:WorkflowViewStateService.ViewState>
+                <ui:InvokeCode ContinueOnError="{x:Null}" Code="Dim match As Match&#xA;Dim matchNew As Match&#xA;&#xA;ostrSearchMessages = &quot;&quot;&#xA; &#xA;dtRoomGrid = New DataTable(&quot;RoomGrid&quot;)&#xA;dtRoomGrid.Columns.Add(&quot;strDate&quot;, GetType(String))&#xA;dtRoomGrid.Columns.Add(&quot;strRoomType&quot;, GetType(String))&#xA;dtRoomGrid.Columns.Add(&quot;strRoomsPerNight&quot;, GetType(String))&#xA;dtRoomGrid.Columns.Add(&quot;strRatePerRoom&quot;, GetType(String))&#xA; &#xA;For Each varName As JProperty In ijObjRegex.Item(&quot;EntertainmentHub&quot;)&#xA;    Dim varObjects As JToken = varName.Value&#xA; &#xA;    For Each i As JProperty In varObjects&#xA; &#xA;        Dim varRegexList As JToken = i.Value&#xA;        Dim intCount As Integer = 1&#xA; &#xA;        For Each regex As JToken In varRegexList.Children()&#xA;   'console.WriteLine(varName.Name.ToString)&#xA; &#xA;            Dim regexvar As New Regex(regex.ToString())&#xA; &#xA;            '=============================&#xA;            ' GRID HANDLING (RoomGrid)&#xA;            '=============================&#xA;   'Console.WriteLine(&quot;grid&quot;)&#xA;            If varName.Name.ToString = &quot;RoomGrid&quot; Then&#xA;     console.WriteLine(&quot;room grid found&quot;)&#xA;                Dim matches As MatchCollection =&#xA;                    regexvar.Matches(istrText.Replace(Environment.NewLine, &quot; &quot;))&#xA;      console.WriteLine(&quot; match collection &quot; + matches.ToString)&#xA;                For Each m As Match In matches&#xA;                    If m.Success Then&#xA;      console.WriteLine(m.ToString)&#xA;                        Dim row As DataRow = dtRoomGrid.NewRow()&#xA;                        row(&quot;strDate&quot;) = m.Groups(&quot;strDate&quot;).Value.Trim()&#xA;      'console.WriteLine(m.Groups(&quot;strRoomType&quot;).Value.Trim())&#xA;                        row(&quot;strRoomType&quot;) = m.Groups(&quot;strRoomType&quot;).Value.Trim()&#xA;                        row(&quot;strRoomsPerNight&quot;) = m.Groups(&quot;strRoomsPerNight&quot;).Value.Trim()&#xA;                        row(&quot;strRatePerRoom&quot;) = m.Groups(&quot;strRatePerRoom&quot;).Value.Trim()&#xA; &#xA;                        dtRoomGrid.Rows.Add(row)&#xA;                    End If&#xA;                Next&#xA; &#xA;                Exit For&#xA;            End If&#xA; &#xA;            '=============================&#xA;            ' SINGLE VALUE HANDLING&#xA;            '=============================&#xA;   If Not(varName.Name.ToString = &quot;strBlockStatus&quot; Or varName.Name.ToString = &quot;strFollowupDate&quot; Or varName.Name.ToString = &quot;strTraceMessage&quot; ) Then&#xA;    &#xA;             match = regexvar.Match(istrText)&#xA;             matchNew = regexvar.Match(istrText.Replace(Environment.NewLine, &quot; &quot;))&#xA;  &#xA;             If match.Success Then&#xA;                 iodictTest(varName.Name.ToString) = match.Groups(&quot;group&quot;).Value.Trim()&#xA;                 Exit For&#xA;  &#xA;             ElseIf matchNew.Success Then&#xA;                 iodictTest(varName.Name.ToString) = matchNew.Groups(&quot;group&quot;).Value.Trim()&#xA;                 Exit For&#xA;  &#xA;             Else&#xA;                 If intCount = varRegexList.Count Then&#xA;  &#xA;                     If ijObjRegex.Item(&quot;EntertainmentHub&quot;)(varName.Name.ToString)(&quot;Mandatory&quot;).ToString = &quot;X&quot; Then&#xA;                         iodictTest(varName.Name.ToString) =  varName.Name &amp; &quot; Not Found&quot;&#xA;                         ostrSearchMessages &amp;= &quot;Error: &quot; &amp; varName.Name &amp; &quot; Not Found&quot; &amp; Environment.NewLine&#xA;                     Else&#xA;                         iodictTest(varName.Name.ToString) = varName.Name &amp; &quot; Not Found&quot;&#xA;                         ostrSearchMessages &amp;= &quot;Warn: &quot; &amp; varName.Name &amp; &quot; Not Found&quot; &amp; Environment.NewLine&#xA;                     End If&#xA;  &#xA;                 End If&#xA;             End If&#xA;   End If&#xA; &#xA;            intCount += 1&#xA;        Next&#xA;    Next&#xA;Next&#xA;&#xA;If Not ostrSearchMessages.ToString.ToLower.Contains(&quot;not found&quot;) Then&#xA;  &#xA; 'iodictTest(&quot;strArrivalDate&quot;) = iodictTest(&quot;strArrivalDate&quot;)&#xA; iodictTest(&quot;strBlockName&quot;) = iodictTest(&quot;strTravelAgent&quot;)&#xA; &#xA; Dim dateParsedArrival As DateTime = DateTime.ParseExact(System.Text.RegularExpressions.Regex.Replace(iodictTest(&quot;strArrivalDate&quot;).ToString().Trim(), &quot;(\d+)(st|nd|rd|th)&quot;, &quot;$1&quot;, System.Text.RegularExpressions.RegexOptions.IgnoreCase), New String() {&quot;dd/MM/yyyy&quot;, &quot;dd/MM//yy&quot;, &quot;dd MMMM yy&quot;, &quot;d MMMM yyyy&quot;,  &quot;dd MMMM yyyy&quot; , &quot;d MMMM&quot; , &quot;dd MMMM&quot; }, System.Globalization.CultureInfo.InvariantCulture, System.Globalization.DateTimeStyles.None)&#xA; Dim namePart As String = &quot;EH&quot; +  iodictTest(&quot;strBlockName&quot;).replace(&quot; &quot;,&quot;&quot;).Replace(&quot;-&quot;, &quot;&quot;).ToUpper().PadRight(6).Substring(0, 4)&#xA; Dim datePart As String = dateParsedArrival.ToString(&quot;ddMMyy&quot;)&#xA; &#xA; ' Combine to get block code&#xA; iodictTest(&quot;strBlockCode&quot;) = namePart &amp; datePart&#xA; &#xA; iodictTest(&quot;strDecisionDate&quot;)=dateParsedArrival.AddDays(-28).ToString(&quot;yyyy-MM-dd&quot;)&#xA; &#xA; iodictTest(&quot;strDepartureDate&quot;) = dateParsedArrival.AddDays(CInt(iodictTest(&quot;strNights&quot;))).ToString(&quot;yyyy-MM-dd&quot;)&#xA; iodictTest(&quot;strArrivalDate&quot;) = dateParsedArrival.ToString(&quot;yyyy-MM-dd&quot;)&#xA; 'iodictTest(&quot;strBlockName&quot;) = iodictTest(&quot;strBlockName&quot;).Split(&quot;ARRIVAL DATE&quot;)(0).Trim&#xA; 'iodictTest(&quot;strBlockName&quot;) = iodictTest(&quot;strBlockName&quot;)+ If (String.IsNullOrEmpty(iodictTest(&quot;strCompanyReferenceNumber&quot;)) Or  iodictTest(&quot;strCompanyReferenceNumber&quot;).tolower().Contains(&quot;not found&quot;), &quot;&quot; , &quot; - &quot; + iodictTest(&quot;strCompanyReferenceNumber&quot;))&#xA;End If" DisplayName="20.b Invoke code for extraction" sap:VirtualizedContainerService.HintSize="382.4,188" sap2010:WorkflowViewState.IdRef="InvokeCode_3">
+                  <ui:InvokeCode.Arguments>
+                    <InArgument x:TypeArguments="x:String" x:Key="istrText">[istrInputText]</InArgument>
+                    <InOutArgument x:TypeArguments="scg:Dictionary(x:String, x:String)" x:Key="iodictTest">[iodictBlockDetails]</InOutArgument>
+                    <InArgument x:TypeArguments="njl:JObject" x:Key="ijObjRegex">[jobjRegex]</InArgument>
+                    <OutArgument x:TypeArguments="sd:DataTable" x:Key="dtRoomGrid">[odtRoomGrid]</OutArgument>
+                    <OutArgument x:TypeArguments="x:String" x:Key="ostrSearchMessages">[strExceptionMessage]</OutArgument>
+                  </ui:InvokeCode.Arguments>
+                  <sap:WorkflowViewStateService.ViewState>
+                    <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                      <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                      <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                    </scg:Dictionary>
+                  </sap:WorkflowViewStateService.ViewState>
+                </ui:InvokeCode>
+              </Sequence>
+            </ui:CommentOut.Body>
+            <sap:WorkflowViewStateService.ViewState>
+              <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+                <x:Boolean x:Key="IsPinned">True</x:Boolean>
+              </scg:Dictionary>
+            </sap:WorkflowViewStateService.ViewState>
+          </ui:CommentOut>
+          <ui:InvokeCode ContinueOnError="{x:Null}" Code="Dim match As Match&#xA;Dim matchNew As Match&#xA;&#xA;ostrSearchMessages = &quot;&quot;&#xA; &#xA;dtRoomGrid = New DataTable(&quot;RoomGrid&quot;)&#xA;dtRoomGrid.Columns.Add(&quot;strDate&quot;, GetType(String))&#xA;dtRoomGrid.Columns.Add(&quot;strDeparture&quot;, GetType(String))&#xA;dtRoomGrid.Columns.Add(&quot;strRoomType&quot;, GetType(String))&#xA;dtRoomGrid.Columns.Add(&quot;strRoomsPerNight&quot;, GetType(String))&#xA;dtRoomGrid.Columns.Add(&quot;strRatePerRoom&quot;, GetType(String))&#xA; &#xA;For Each varName As JProperty In ijObjRegex.Item(&quot;NewEntertainmentHub&quot;)&#xA;    Dim varObjects As JToken = varName.Value&#xA; &#xA;    For Each i As JProperty In varObjects&#xA; &#xA;        Dim varRegexList As JToken = i.Value&#xA;        Dim intCount As Integer = 1&#xA; &#xA;        For Each regex As JToken In varRegexList.Children()&#xA;   'console.WriteLine(varName.Name.ToString)&#xA; &#xA;            Dim regexvar As New Regex(regex.ToString())&#xA; &#xA;            '=============================&#xA;            ' GRID HANDLING (RoomGrid)&#xA;            '=============================&#xA;   'Console.WriteLine(&quot;grid&quot;)&#xA;            If varName.Name.ToString = &quot;RoomGrid&quot; Then&#xA;     'console.WriteLine(&quot;room grid found&quot;)&#xA;                Dim matches As MatchCollection =regexvar.Matches(istrText)&#xA;                    'regexvar.Matches(istrText.Replace(Environment.NewLine, &quot; &quot;))&#xA;     &#xA;      'console.WriteLine(&quot; match collection &quot; + matches.ToString)&#xA;     &#xA;    Dim currentDate As String = &quot;&quot;&#xA;    Dim currentDeparture As String = &quot;&quot;&#xA;&#xA;                For Each m As Match In matches&#xA;                    If m.Success Then&#xA;      'console.WriteLine(m.ToString)&#xA;      &#xA;      If m.Groups(&quot;strDate&quot;).Success AndAlso&#xA;           Not String.IsNullOrWhiteSpace(m.Groups(&quot;strDate&quot;).Value) Then&#xA;&#xA;            currentDate = m.Groups(&quot;strDate&quot;).Value.Trim()&#xA;            currentDeparture = m.Groups(&quot;strDeparture&quot;).Value.Trim()&#xA;&#xA;        End If&#xA;      &#xA;                        Dim row As DataRow = dtRoomGrid.NewRow()&#xA;                        row(&quot;strDate&quot;) = currentDate&#xA;      'console.WriteLine(m.Groups(&quot;strRoomType&quot;).Value.Trim())&#xA;                        row(&quot;strDeparture&quot;) = currentDeparture&#xA;                        row(&quot;strRoomType&quot;) = m.Groups(&quot;strRoomType&quot;).Value.Trim()&#xA;                        row(&quot;strRoomsPerNight&quot;) = m.Groups(&quot;strRoomsPerNight&quot;).Value.Trim()&#xA;                        row(&quot;strRatePerRoom&quot;) = m.Groups(&quot;strRatePerRoom&quot;).Value.Trim()&#xA; &#xA;                        dtRoomGrid.Rows.Add(row)&#xA;                    End If&#xA;                Next&#xA; &#xA;                Exit For&#xA;            End If&#xA;  &#xA; &#xA;            '=============================&#xA;            ' SINGLE VALUE HANDLING&#xA;            '=============================&#xA;   If Not(varName.Name.ToString = &quot;strBlockStatus&quot; Or varName.Name.ToString = &quot;strFollowupDate&quot; Or varName.Name.ToString = &quot;strTraceMessage&quot; ) Then&#xA;   'If Not( varName.Name.ToString = &quot;strFollowupDate&quot; ) Then&#xA;   &#xA;             match = regexvar.Match(istrText)&#xA;             matchNew = regexvar.Match(istrText.Replace(Environment.NewLine, &quot; &quot;))&#xA;  &#xA;             If match.Success Then&#xA;                 iodictTest(varName.Name.ToString) = match.Groups(&quot;group&quot;).Value.Trim()&#xA;                 Exit For&#xA;  &#xA;             ElseIf matchNew.Success Then&#xA;                 iodictTest(varName.Name.ToString) = matchNew.Groups(&quot;group&quot;).Value.Trim()&#xA;                 Exit For&#xA;  &#xA;             Else&#xA;                 If intCount = varRegexList.Count Then&#xA;  &#xA;                     If ijObjRegex.Item(&quot;NewEntertainmentHub&quot;)(varName.Name.ToString)(&quot;Mandatory&quot;).ToString = &quot;X&quot; Then&#xA;                         iodictTest(varName.Name.ToString) =  varName.Name &amp; &quot; Not Found&quot;&#xA;                         ostrSearchMessages &amp;= &quot;Error: &quot; &amp; varName.Name &amp; &quot; Not Found&quot; &amp; Environment.NewLine&#xA;                     Else&#xA;                         iodictTest(varName.Name.ToString) = varName.Name &amp; &quot; Not Found&quot;&#xA;                         'ostrSearchMessages &amp;= &quot;Warn: &quot; &amp; varName.Name &amp; &quot; Not Found&quot; &amp; Environment.NewLine&#xA;                     End If&#xA;  &#xA;                 End If&#xA;             End If&#xA;   End If&#xA; &#xA;            intCount += 1&#xA;        Next&#xA;    Next&#xA;Next&#xA;&#xA;If Not ostrSearchMessages.ToString.ToLower.Contains(&quot;not found&quot;) Then&#xA;&#xA; 'iodictTest(&quot;strBlockName&quot;) = iodictTest(&quot;strTravelAgent&quot;)&#xA; iodictTest(&quot;strBlockName&quot;) = iodictTest(&quot;strTravelAgent&quot;)+&quot;-&quot;+iodictTest(&quot;strBlockName&quot;)&#xA; &#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;  &#xA; 'iodictTest(&quot;strBlockNotes&quot;)=&quot;NewEntertainment Hub Notes&quot;&#xA; iodictTest(&quot;strBlockStatus&quot;) = &quot;HOL&quot;&#xA; iodictTest(&quot;strTraceMessage&quot;) = &quot;EH to follow up&quot;&#xA; &#xA; Dim dateParsedArrival As DateTime = DateTime.ParseExact(System.Text.RegularExpressions.Regex.Replace(iodictTest(&quot;strArrivalDate&quot;).ToString().Trim(), &quot;(\d+)(st|nd|rd|th)&quot;, &quot;$1&quot;, System.Text.RegularExpressions.RegexOptions.IgnoreCase), New String() {&quot;dd/MM/yyyy&quot;, &quot;dd/MM/yy&quot;, &quot;dd MMMM yy&quot;, &quot;d MMMM yyyy&quot;,  &quot;dd MMMM yyyy&quot; , &quot;d MMMM&quot; , &quot;dd MMMM&quot; }, System.Globalization.CultureInfo.InvariantCulture, System.Globalization.DateTimeStyles.None)&#xA; 'console.WriteLine(dateParsedArrival)&#xA; Dim dateParsedDeparture As DateTime = DateTime.ParseExact(System.Text.RegularExpressions.Regex.Replace(iodictTest(&quot;strDeparture&quot;).ToString().Trim(), &quot;(\d+)(st|nd|rd|th)&quot;, &quot;$1&quot;, System.Text.RegularExpressions.RegexOptions.IgnoreCase), New String() {&quot;dd/MM/yyyy&quot;, &quot;dd/MM/yy&quot;, &quot;dd MMMM yy&quot;, &quot;d MMMM yyyy&quot;,  &quot;dd MMMM yyyy&quot; , &quot;d MMMM&quot; , &quot;dd MMMM&quot;, &quot;dd-MMM-yy&quot; }, System.Globalization.CultureInfo.InvariantCulture, System.Globalization.DateTimeStyles.None)&#xA; 'console.WriteLine(dateParsedDeparture)&#xA;Dim namePart As String = &quot;EH&quot; + If(iodictTest(&quot;strTravelAgent&quot;).ToString.Trim.ToUpper = &quot;TAG&quot;,&quot;TAGG&quot;,iodictTest(&quot;strTravelAgent&quot;).ToString).replace(&quot; &quot;,&quot;&quot;).Replace(&quot;-&quot;, &quot;&quot;).ToUpper().PadRight(6).Substring(0, 4)&#xA; 'Dim namePart As String = &quot;EH&quot; +  iodictTest(&quot;strTravelAgent&quot;).replace(&quot; &quot;,&quot;&quot;).Replace(&quot;-&quot;, &quot;&quot;).ToUpper().PadRight(6).Substring(0, 4)&#xA; 'console.WriteLine(&quot;NamePart-&quot;+namePart)&#xA; Dim datePart As String = dateParsedArrival.ToString(&quot;ddMMyy&quot;)&#xA; 'console.WriteLine(&quot;DatePart-&quot;+datePart)&#xA; &#xA; ' Combine to get block code&#xA; iodictTest(&quot;strBlockCode&quot;) = namePart &amp; datePart&#xA; iodictTest(&quot;strDecisionDate&quot;)=dateParsedArrival.AddDays(-28).ToString(&quot;yyyy-MM-dd&quot;)&#xA; &#xA; iodictTest(&quot;strArrivalDate&quot;) = dateParsedArrival.ToString(&quot;yyyy-MM-dd&quot;)&#xA; iodictTest(&quot;strDepartureDate&quot;) = dateParsedDeparture.ToString(&quot;yyyy-MM-dd&quot;)&#xA; 'iodictTest(&quot;strBlockName&quot;) = iodictTest(&quot;strBlockName&quot;).Split(&quot;ARRIVAL DATE&quot;)(0).Trim&#xA; 'iodictTest(&quot;strBlockName&quot;) = iodictTest(&quot;strBlockName&quot;)+ If (String.IsNullOrEmpty(iodictTest(&quot;strCompanyReferenceNumber&quot;)) Or  iodictTest(&quot;strCompanyReferenceNumber&quot;).tolower().Contains(&quot;not found&quot;), &quot;&quot; , &quot; - &quot; + iodictTest(&quot;strCompanyReferenceNumber&quot;))&#xA;End If&#xA;" DisplayName="20.b Invoke code for extraction" sap:VirtualizedContainerService.HintSize="382.4,196.8" sap2010:WorkflowViewState.IdRef="InvokeCode_10">
+            <ui:InvokeCode.Arguments>
+              <InArgument x:TypeArguments="x:String" x:Key="istrText">[istrInputText]</InArgument>
+              <InOutArgument x:TypeArguments="scg:Dictionary(x:String, x:String)" x:Key="iodictTest">[iodictBlockDetails]</InOutArgument>
+              <InArgument x:TypeArguments="njl:JObject" x:Key="ijObjRegex">[jobjRegex]</InArgument>
+              <OutArgument x:TypeArguments="sd:DataTable" x:Key="dtRoomGrid">[odtRoomGrid]</OutArgument>
+              <OutArgument x:TypeArguments="x:String" x:Key="ostrSearchMessages">[strExceptionMessage]</OutArgument>
+            </ui:InvokeCode.Arguments>
+            <sap:WorkflowViewStateService.ViewState>
+              <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                <x:Boolean x:Key="IsPinned">False</x:Boolean>
+              </scg:Dictionary>
+            </sap:WorkflowViewStateService.ViewState>
+          </ui:InvokeCode>
+          <ui:InvokeCode ContinueOnError="{x:Null}" Code="Dim dtTemp As DataTable = iodtRoomGrid.Clone()&#xA;&#xA;For Each row As DataRow In iodtRoomGrid.Rows&#xA;&#xA;    Dim dateFormats As String() = {&quot;dd/MM/yyyy&quot;, &quot;d/MM/yyyy&quot;, &quot;dd/M/yyyy&quot;, &quot;d/M/yyyy&quot;, &quot;yyyy-MM-dd&quot;, &quot;yyyy-MM-ddTHH:mm:ss&quot;, &quot;yyyy-MM-ddTHH:mm:ss.fff&quot;, &quot;yyyy-MM-dd HH:mm:ss&quot;, &quot;dd-MMM-yy&quot;, &quot;d-MMM-yy&quot;, &quot;dd-MMM-yyyy&quot;, &quot;d-MMM-yyyy&quot;, &quot;dd MMM yy&quot;, &quot;d MMM yy&quot;, &quot;dd MMM yyyy&quot;, &quot;d MMM yyyy&quot;, &quot;dd MMMM yy&quot;, &quot;d MMMM yy&quot;, &quot;dd MMMM yyyy&quot;, &quot;d MMMM yyyy&quot;, &quot;dd/MM/yy&quot;, &quot;d/M/yy&quot;}&#xA;&#xA;    Dim inDate As DateTime = DateTime.ParseExact(row(&quot;strDate&quot;).ToString().Trim(), dateFormats, Globalization.CultureInfo.InvariantCulture, Globalization.DateTimeStyles.None)&#xA;    Dim outDate As DateTime = DateTime.ParseExact(row(&quot;strDeparture&quot;).ToString().Trim(), dateFormats, Globalization.CultureInfo.InvariantCulture, Globalization.DateTimeStyles.None)&#xA;&#xA;    Dim currentDate As DateTime = inDate&#xA;&#xA;    While currentDate &lt; outDate&#xA;&#xA;        Dim newRow As DataRow = dtTemp.NewRow()&#xA;&#xA;        'Copy all existing values&#xA;        For i As Integer = 0 To iodtRoomGrid.Columns.Count - 1&#xA;            newRow(i) = row(i)&#xA;        Next&#xA;&#xA;        'Update dates for each night&#xA;        newRow(&quot;strDate&quot;) = currentDate.ToString(&quot;yyyy-MM-dd&quot;)&#xA;        newRow(&quot;strDeparture&quot;) = currentDate.AddDays(1).ToString(&quot;yyyy-MM-dd&quot;)&#xA;&#xA;        dtTemp.Rows.Add(newRow)&#xA;        currentDate = currentDate.AddDays(1)&#xA;&#xA;    End While&#xA;&#xA;Next&#xA;&#xA;'Update original DataTable&#xA;iodtRoomGrid.Clear()&#xA;&#xA;For Each row As DataRow In dtTemp.Rows&#xA;    iodtRoomGrid.ImportRow(row)&#xA;Next&#xA;&#xA;iodtRoomGrid.Columns.Remove(&quot;strDeparture&quot;)" DisplayName="Invoke Code- For table modification(entry for each night)" sap:VirtualizedContainerService.HintSize="382.4,196.8" sap2010:WorkflowViewState.IdRef="InvokeCode_11">
+            <ui:InvokeCode.Arguments>
+              <InOutArgument x:TypeArguments="sd:DataTable" x:Key="iodtRoomGrid">[odtRoomGrid]</InOutArgument>
+            </ui:InvokeCode.Arguments>
+          </ui:InvokeCode>
+          <ui:LogMessage DisplayName="Log Message- Block Code" sap:VirtualizedContainerService.HintSize="382.4,165.6" sap2010:WorkflowViewState.IdRef="LogMessage_6" Level="Trace" Message="[&quot;Block Code is: &quot; + iodictBlockDetails(&quot;strBlockCode&quot;)]" />
+        </Sequence>
+      </Switch.Default>
+      <sap:WorkflowViewStateService.ViewState>
+        <scg:Dictionary x:TypeArguments="x:String, x:Object">
+          <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+          <x:Boolean x:Key="IsPinned">False</x:Boolean>
+        </scg:Dictionary>
+      </sap:WorkflowViewStateService.ViewState>
+      <Sequence x:Key="TheTourCompany" DisplayName="Sequence- For the tour company" sap:VirtualizedContainerService.HintSize="416,24.8" sap2010:WorkflowViewState.IdRef="Sequence_9">
+        <sap:WorkflowViewStateService.ViewState>
+          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+            <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+            <x:Boolean x:Key="IsPinned">True</x:Boolean>
+          </scg:Dictionary>
+        </sap:WorkflowViewStateService.ViewState>
+        <ui:CommentOut sap:VirtualizedContainerService.HintSize="382.4,56.8" sap2010:WorkflowViewState.IdRef="CommentOut_3">
+          <ui:CommentOut.Body>
+            <Sequence DisplayName="Ignored Activities" sap:VirtualizedContainerService.HintSize="416,248" sap2010:WorkflowViewState.IdRef="Sequence_8">
+              <sap:WorkflowViewStateService.ViewState>
+                <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                  <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                </scg:Dictionary>
+              </sap:WorkflowViewStateService.ViewState>
+              <ui:InvokeCode ContinueOnError="{x:Null}" Code="Dim match As Match&#xA;Console.WriteLine(&quot;Invoke Code Started&quot;)&#xA;Dim matchNew As Match&#xA;&#xA;ostrSearchMessages = &quot;&quot;&#xA; &#xA;dtRoomGrid = New DataTable(&quot;RoomGrid&quot;)&#xA;dtRoomGrid.Columns.Add(&quot;strDate&quot;, GetType(String))&#xA;dtRoomGrid.Columns.Add(&quot;strDeparture&quot;, GetType(String))&#xA;dtRoomGrid.Columns.Add(&quot;strRoomType&quot;, GetType(String))&#xA;dtRoomGrid.Columns.Add(&quot;strRoomsPerNight&quot;, GetType(String))&#xA;dtRoomGrid.Columns.Add(&quot;strRatePerRoom&quot;, GetType(String))&#xA; &#xA;For Each varName As JProperty In ijObjRegex.Item(&quot;TheTourCompany&quot;)&#xA;    Dim varObjects As JToken = varName.Value&#xA; &#xA;    For Each i As JProperty In varObjects&#xA; &#xA;        Dim varRegexList As JToken = i.Value&#xA;  console.WriteLine(i.Value)&#xA;        Dim intCount As Integer = 1&#xA; &#xA;        For Each regex As JToken In varRegexList.Children()&#xA;   console.WriteLine(varName.Name.ToString)&#xA; &#xA;            Dim regexvar As New Regex(regex.ToString())&#xA; &#xA;            '=============================&#xA;            ' GRID HANDLING (RoomGrid)&#xA;            '=============================&#xA;   Console.WriteLine(&quot;grid&quot;)&#xA;            If varName.Name.ToString = &quot;RoomGrid&quot; Then&#xA;     console.WriteLine(&quot;room grid found&quot;)&#xA;                Dim matches As MatchCollection =&#xA;                    regexvar.Matches(istrText.Replace(Environment.NewLine, &quot; &quot;))&#xA;      console.WriteLine(&quot; match collection &quot; + matches.ToString)&#xA;     Dim index As Int32 = 0&#xA;                For Each m As Match In matches&#xA;                    If m.Success Then&#xA;      console.WriteLine(m.ToString)&#xA;      If index = 0 AndAlso m.Groups(&quot;strGroupName&quot;) IsNot Nothing Then&#xA;           iodictTest(&quot;strGroupName&quot;) = m.Groups(&quot;strGroupName&quot;).Value.Trim()&#xA;      End If&#xA;                        Dim row As DataRow = dtRoomGrid.NewRow()&#xA;                        row(&quot;strDate&quot;) = m.Groups(&quot;strDate&quot;).Value.Trim()&#xA;      row(&quot;strDeparture&quot;) = m.Groups(&quot;strDeparture&quot;).Value.Trim()&#xA;      &#xA;      console.WriteLine(m.Groups(&quot;strGroupName&quot;).Value.Trim())&#xA;      &#xA;                        row(&quot;strRoomType&quot;) = m.Groups(&quot;strRoomType&quot;).Value.Trim()&#xA;                        row(&quot;strRoomsPerNight&quot;) = m.Groups(&quot;strRoomsPerNight&quot;).Value.Trim()&#xA;                        row(&quot;strRatePerRoom&quot;) = m.Groups(&quot;strRatePerRoom&quot;).Value.Trim()&#xA;      index = index + 1&#xA; &#xA;                        dtRoomGrid.Rows.Add(row)&#xA;                    End If&#xA;                Next&#xA; &#xA;                Exit For&#xA;            End If&#xA; &#xA;            '=============================&#xA;            ' SINGLE VALUE HANDLING&#xA;            '=============================&#xA;   If Not(varName.Name.ToString = &quot;strBlockStatus&quot; Or varName.Name.ToString = &quot;strFollowupDate&quot; Or varName.Name.ToString = &quot;strTraceMessage&quot; ) Then&#xA;    &#xA;             match = regexvar.Match(istrText)&#xA;             matchNew = regexvar.Match(istrText.Replace(Environment.NewLine, &quot; &quot;))&#xA;  &#xA;             If match.Success Then&#xA;                 iodictTest(varName.Name.ToString) = match.Groups(&quot;group&quot;).Value.Trim()&#xA;                 Exit For&#xA;  &#xA;             ElseIf matchNew.Success Then&#xA;                 iodictTest(varName.Name.ToString) = matchNew.Groups(&quot;group&quot;).Value.Trim()&#xA;                 Exit For&#xA;  &#xA;             Else&#xA;                 If intCount = varRegexList.Count Then&#xA;  &#xA;                     If ijObjRegex.Item(&quot;TheTourCompany&quot;)(varName.Name.ToString)(&quot;Mandatory&quot;).ToString = &quot;X&quot; Then&#xA;                         iodictTest(varName.Name.ToString) =  varName.Name &amp; &quot; Not Found&quot;&#xA;                         ostrSearchMessages &amp;= &quot;Error: &quot; &amp; varName.Name &amp; &quot; Not Found&quot; &amp; Environment.NewLine&#xA;                     Else&#xA;                         iodictTest(varName.Name.ToString) = varName.Name &amp; &quot; Not Found&quot;&#xA;                         ostrSearchMessages &amp;= &quot;Warn: &quot; &amp; varName.Name &amp; &quot; Not Found&quot; &amp; Environment.NewLine&#xA;                     End If&#xA;  &#xA;                 End If&#xA;             End If&#xA;   End If&#xA; &#xA;            intCount += 1&#xA;        Next&#xA;    Next&#xA;Next&#xA;&#xA;If Not ostrSearchMessages.ToString.ToLower.Contains(&quot;not found&quot;) Then&#xA;  &#xA; 'iodictTest(&quot;strArrivalDate&quot;) = iodictTest(&quot;strArrivalDate&quot;)&#xA; iodictTest(&quot;strBlockName&quot;) = iodictTest(&quot;strGroupName&quot;)&#xA; iodictTest(&quot;strBreakfastDetails&quot;) = &quot;Bed &amp; Breakfast&quot; &#xA; iodictTest(&quot;strTravelAgent&quot;) = &quot;The Tour Company&quot;&#xA; iodictTest(&quot;strBreakfastDetails&quot;) = &quot;Bed &amp; Breakfast&quot;&#xA;&#xA; Dim dateParsedArrival As DateTime = DateTime.ParseExact(System.Text.RegularExpressions.Regex.Replace(iodictTest(&quot;strArrivalDate&quot;).ToString().Trim(), &quot;(\d+)(st|nd|rd|th)&quot;, &quot;$1&quot;, System.Text.RegularExpressions.RegexOptions.IgnoreCase), New String() {&quot;dd/MM/yyyy&quot;, &quot;dd/MM//yy&quot;, &quot;dd MMMM yy&quot;, &quot;d MMMM yyyy&quot;,  &quot;dd MMMM yyyy&quot; , &quot;d MMMM&quot; , &quot;dd MMMM&quot; }, System.Globalization.CultureInfo.InvariantCulture, System.Globalization.DateTimeStyles.None)&#xA; Dim namePart As String = &quot;EH&quot; +  iodictTest(&quot;strBlockName&quot;).replace(&quot; &quot;,&quot;&quot;).Replace(&quot;-&quot;, &quot;&quot;).ToUpper().PadRight(6).Substring(0, 4)&#xA; Dim datePart As String = dateParsedArrival.ToString(&quot;ddMMyy&quot;)&#xA; &#xA; ' Combine to get block code&#xA; iodictTest(&quot;strBlockCode&quot;) = namePart &amp; datePart&#xA; &#xA; iodictTest(&quot;strDecisionDate&quot;)=dateParsedArrival.AddDays(-28).ToString(&quot;yyyy-MM-dd&quot;)&#xA; &#xA; iodictTest(&quot;strDepartureDate&quot;) = dateParsedArrival.AddDays(CInt(iodictTest(&quot;strNights&quot;))).ToString(&quot;yyyy-MM-dd&quot;)&#xA; iodictTest(&quot;strArrivalDate&quot;) = dateParsedArrival.ToString(&quot;yyyy-MM-dd&quot;)&#xA; 'iodictTest(&quot;strBlockName&quot;) = iodictTest(&quot;strBlockName&quot;).Split(&quot;ARRIVAL DATE&quot;)(0).Trim&#xA; 'iodictTest(&quot;strBlockName&quot;) = iodictTest(&quot;strBlockName&quot;)+ If (String.IsNullOrEmpty(iodictTest(&quot;strCompanyReferenceNumber&quot;)) Or  iodictTest(&quot;strCompanyReferenceNumber&quot;).tolower().Contains(&quot;not found&quot;), &quot;&quot; , &quot; - &quot; + iodictTest(&quot;strCompanyReferenceNumber&quot;))&#xA;End If" DisplayName="20.b Invoke code for extraction" sap:VirtualizedContainerService.HintSize="382.4,188" sap2010:WorkflowViewState.IdRef="InvokeCode_5">
+                <ui:InvokeCode.Arguments>
+                  <InArgument x:TypeArguments="x:String" x:Key="istrText">[istrInputText]</InArgument>
+                  <InOutArgument x:TypeArguments="scg:Dictionary(x:String, x:String)" x:Key="iodictTest">[iodictBlockDetails]</InOutArgument>
+                  <InArgument x:TypeArguments="njl:JObject" x:Key="ijObjRegex">[jobjRegex]</InArgument>
+                  <OutArgument x:TypeArguments="sd:DataTable" x:Key="dtRoomGrid">[odtRoomGrid]</OutArgument>
+                  <OutArgument x:TypeArguments="x:String" x:Key="ostrSearchMessages">[strExceptionMessage]</OutArgument>
+                </ui:InvokeCode.Arguments>
+                <sap:WorkflowViewStateService.ViewState>
+                  <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                    <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                    <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                  </scg:Dictionary>
+                </sap:WorkflowViewStateService.ViewState>
+              </ui:InvokeCode>
+            </Sequence>
+          </ui:CommentOut.Body>
+          <sap:WorkflowViewStateService.ViewState>
+            <scg:Dictionary x:TypeArguments="x:String, x:Object">
+              <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+              <x:Boolean x:Key="IsPinned">True</x:Boolean>
+            </scg:Dictionary>
+          </sap:WorkflowViewStateService.ViewState>
+        </ui:CommentOut>
+        <ui:InvokeCode ContinueOnError="{x:Null}" Code="Try&#xA;Dim match As Match&#xA;Console.WriteLine(&quot;Invoke Code Started&quot;)&#xA;Dim matchNew As Match&#xA;&#xA;ostrSearchMessages = &quot;&quot;&#xA; &#xA;dtRoomGrid = New DataTable(&quot;RoomGrid&quot;)&#xA;dtRoomGrid.Columns.Add(&quot;strDate&quot;, GetType(String))&#xA;dtRoomGrid.Columns.Add(&quot;strDeparture&quot;, GetType(String))&#xA;dtRoomGrid.Columns.Add(&quot;strRoomType&quot;, GetType(String))&#xA;dtRoomGrid.Columns.Add(&quot;strRoomsPerNight&quot;, GetType(String))&#xA;dtRoomGrid.Columns.Add(&quot;strRatePerRoom&quot;, GetType(String))&#xA; &#xA;For Each varName As JProperty In ijObjRegex.Item(&quot;TheTourCompany&quot;)&#xA;    Dim varObjects As JToken = varName.Value&#xA; &#xA;    For Each i As JProperty In varObjects&#xA; &#xA;        Dim varRegexList As JToken = i.Value&#xA;  'console.WriteLine(i.Value)&#xA;        Dim intCount As Integer = 1&#xA; &#xA;        For Each regex As JToken In varRegexList.Children()&#xA;   console.WriteLine(varName.Name.ToString)&#xA; &#xA;            Dim regexvar As New Regex(regex.ToString())&#xA; &#xA;            '=============================&#xA;            ' GRID HANDLING (RoomGrid)&#xA;            '=============================&#xA;   'Console.WriteLine(&quot;grid&quot;)&#xA;            If varName.Name.ToString = &quot;RoomGrid&quot; Then&#xA;     console.WriteLine(&quot;room grid found&quot;)&#xA;                Dim matches As MatchCollection =&#xA;                    regexvar.Matches(istrText.Replace(Environment.NewLine, &quot; &quot;))&#xA;      console.WriteLine(&quot; match collection &quot; + matches.ToString)&#xA;     Dim index As Int32 = 0&#xA;                For Each m As Match In matches&#xA;                    If m.Success Then&#xA;      console.WriteLine(m.ToString)&#xA;      If index = 0 AndAlso m.Groups(&quot;strGroupName&quot;) IsNot Nothing Then&#xA;           iodictTest(&quot;strGroupName&quot;) = m.Groups(&quot;strGroupName&quot;).Value.Trim()&#xA;       console.WriteLine(&quot;Group Name- &quot;+iodictTest(&quot;strGroupName&quot;))&#xA;      End If&#xA;      &#xA;                        Dim row As DataRow = dtRoomGrid.NewRow()&#xA;                        row(&quot;strDate&quot;) = m.Groups(&quot;strDate&quot;).Value.Trim()&#xA;      row(&quot;strDeparture&quot;) = m.Groups(&quot;strDeparture&quot;).Value.Trim()&#xA;      &#xA;      &#xA;      &#xA;                        row(&quot;strRoomType&quot;) = m.Groups(&quot;strRoomType&quot;).Value.Trim()&#xA;                        row(&quot;strRoomsPerNight&quot;) = m.Groups(&quot;strRoomsPerNight&quot;).Value.Trim()&#xA;                        row(&quot;strRatePerRoom&quot;) = m.Groups(&quot;strRatePerRoom&quot;).Value.Trim()&#xA;      index = index + 1&#xA; &#xA;                        dtRoomGrid.Rows.Add(row)&#xA;                    End If&#xA;                Next&#xA; &#xA;                Exit For&#xA;            End If&#xA; &#xA;            '=============================&#xA;            ' SINGLE VALUE HANDLING&#xA;            '=============================&#xA;   If Not(varName.Name.ToString = &quot;strBlockStatus&quot; Or varName.Name.ToString = &quot;strFollowupDate&quot; Or varName.Name.ToString = &quot;strTraceMessage&quot; ) Then&#xA;    &#xA;             match = regexvar.Match(istrText)&#xA;             matchNew = regexvar.Match(istrText.Replace(Environment.NewLine, &quot; &quot;))&#xA;  &#xA;             If match.Success Then&#xA;                 iodictTest(varName.Name.ToString) = match.Groups(&quot;group&quot;).Value.Trim()&#xA;     console.WriteLine(iodictTest(varName.Name.ToString))&#xA;                 Exit For&#xA;  &#xA;             ElseIf matchNew.Success Then&#xA;                 iodictTest(varName.Name.ToString) = matchNew.Groups(&quot;group&quot;).Value.Trim()&#xA;     console.WriteLine(iodictTest(varName.Name.ToString))&#xA;                 Exit For&#xA;  &#xA;             Else&#xA;                 If intCount = varRegexList.Count Then&#xA;  &#xA;                     If ijObjRegex.Item(&quot;TheTourCompany&quot;)(varName.Name.ToString)(&quot;Mandatory&quot;).ToString = &quot;X&quot; Then&#xA;                         iodictTest(varName.Name.ToString) =  varName.Name &amp; &quot; Not Found&quot;&#xA;                         ostrSearchMessages &amp;= &quot;Error: &quot; &amp; varName.Name &amp; &quot; Not Found&quot; &amp; Environment.NewLine&#xA;                     Else&#xA;                         iodictTest(varName.Name.ToString) = varName.Name &amp; &quot; Not Found&quot;&#xA;                         ostrSearchMessages &amp;= &quot;Warn: &quot; &amp; varName.Name &amp; &quot; Not Found&quot; &amp; Environment.NewLine&#xA;                     End If&#xA;  &#xA;                 End If&#xA;             End If&#xA;   End If&#xA; &#xA;            intCount += 1&#xA;        Next&#xA;    Next&#xA;Next&#xA;console.WriteLine(&quot;Regex part done&quot;)&#xA;If Not ostrSearchMessages.ToString.ToLower.Contains(&quot;not found&quot;) Then&#xA;  &#xA; 'iodictTest(&quot;strArrivalDate&quot;) = iodictTest(&quot;strArrivalDate&quot;)&#xA; iodictTest(&quot;strBlockName&quot;) = iodictTest(&quot;strGroupName&quot;)&#xA; iodictTest(&quot;strBreakfastDetails&quot;) = &quot;Bed &amp; Breakfast&quot; &#xA; iodictTest(&quot;strTravelAgent&quot;) = &quot;The Tour Company&quot;&#xA; iodictTest(&quot;strBreakfastDetails&quot;) = &quot;Bed &amp; Breakfast&quot;&#xA; iodictTest(&quot;strBlockNotes&quot;)=&quot;The Tour Company Notes&quot;&#xA; console.WriteLine(dtRoomGrid(0)(&quot;strDate&quot;).tostring)&#xA; Dim dateParsedArrival As DateTime = DateTime.ParseExact(System.Text.RegularExpressions.Regex.Replace(dtRoomGrid(0)(&quot;strDate&quot;).tostring.Trim(), &quot;(\d+)(st|nd|rd|th)&quot;, &quot;$1&quot;, System.Text.RegularExpressions.RegexOptions.IgnoreCase), New String() {&quot;dd/MM/yyyy&quot;, &quot;dd/MM//yy&quot;, &quot;dd MMMM yy&quot;, &quot;d MMMM yyyy&quot;,  &quot;dd MMMM yyyy&quot; , &quot;d MMMM&quot; , &quot;dd MMMM&quot;, &quot;dd-MMM-yy&quot; }, System.Globalization.CultureInfo.InvariantCulture, System.Globalization.DateTimeStyles.None)&#xA; &#xA; Dim dateParsedDeparture As DateTime = DateTime.ParseExact(System.Text.RegularExpressions.Regex.Replace(dtRoomGrid(0)(&quot;strDeparture&quot;).tostring.Trim(), &quot;(\d+)(st|nd|rd|th)&quot;, &quot;$1&quot;, System.Text.RegularExpressions.RegexOptions.IgnoreCase), New String() {&quot;dd/MM/yyyy&quot;, &quot;dd/MM//yy&quot;, &quot;dd MMMM yy&quot;, &quot;d MMMM yyyy&quot;,  &quot;dd MMMM yyyy&quot; , &quot;d MMMM&quot; , &quot;dd MMMM&quot;, &quot;dd-MMM-yy&quot; }, System.Globalization.CultureInfo.InvariantCulture, System.Globalization.DateTimeStyles.None)&#xA; &#xA; Dim namePart As String = &quot;EH&quot; +  iodictTest(&quot;strBlockName&quot;).replace(&quot; &quot;,&quot;&quot;).Replace(&quot;-&quot;, &quot;&quot;).ToUpper().PadRight(6).Substring(0, 4)&#xA; Dim datePart As String = dateParsedArrival.ToString(&quot;ddMMyy&quot;)&#xA; &#xA; ' Combine to get block code&#xA; iodictTest(&quot;strBlockCode&quot;) = namePart &amp; datePart&#xA; &#xA; iodictTest(&quot;strDecisionDate&quot;)=dateParsedArrival.AddDays(-28).ToString(&quot;yyyy-MM-dd&quot;)&#xA; &#xA; &#xA; iodictTest(&quot;strArrivalDate&quot;) = dateParsedArrival.ToString(&quot;yyyy-MM-dd&quot;)&#xA; iodictTest(&quot;strDepartureDate&quot;) = dateParsedDeparture.ToString(&quot;yyyy-MM-dd&quot;)&#xA; 'iodictTest(&quot;strBlockName&quot;) = iodictTest(&quot;strBlockName&quot;).Split(&quot;ARRIVAL DATE&quot;)(0).Trim&#xA; 'iodictTest(&quot;strBlockName&quot;) = iodictTest(&quot;strBlockName&quot;)+ If (String.IsNullOrEmpty(iodictTest(&quot;strCompanyReferenceNumber&quot;)) Or  iodictTest(&quot;strCompanyReferenceNumber&quot;).tolower().Contains(&quot;not found&quot;), &quot;&quot; , &quot; - &quot; + iodictTest(&quot;strCompanyReferenceNumber&quot;))&#xA;End If&#xA;&#xA;Catch exp As Exception&#xA; console.WriteLine(exp.Message)&#xA; throw (new SystemException(exp.Message))&#xA;End try" DisplayName="Invoke Code-Data Extraction" sap:VirtualizedContainerService.HintSize="382.4,196.8" sap2010:WorkflowViewState.IdRef="InvokeCode_6">
+          <ui:InvokeCode.Arguments>
+            <InArgument x:TypeArguments="x:String" x:Key="istrText">[istrInputText]</InArgument>
+            <InOutArgument x:TypeArguments="scg:Dictionary(x:String, x:String)" x:Key="iodictTest">[iodictBlockDetails]</InOutArgument>
+            <InArgument x:TypeArguments="njl:JObject" x:Key="ijObjRegex">[jobjRegex]</InArgument>
+            <OutArgument x:TypeArguments="sd:DataTable" x:Key="dtRoomGrid">[odtRoomGrid]</OutArgument>
+            <OutArgument x:TypeArguments="x:String" x:Key="ostrSearchMessages">[strExceptionMessage]</OutArgument>
+          </ui:InvokeCode.Arguments>
+        </ui:InvokeCode>
+        <ui:InvokeCode ContinueOnError="{x:Null}" Code="Dim dtTemp As DataTable = iodtRoomGrid.Clone()&#xA;&#xA;For Each row As DataRow In iodtRoomGrid.Rows&#xA;&#xA;    Dim dateFormats As String() = {&quot;dd/MM/yyyy&quot;, &quot;d/MM/yyyy&quot;, &quot;dd/M/yyyy&quot;, &quot;d/M/yyyy&quot;, &quot;yyyy-MM-dd&quot;, &quot;yyyy-MM-ddTHH:mm:ss&quot;, &quot;yyyy-MM-ddTHH:mm:ss.fff&quot;, &quot;yyyy-MM-dd HH:mm:ss&quot;, &quot;dd-MMM-yy&quot;, &quot;d-MMM-yy&quot;, &quot;dd-MMM-yyyy&quot;, &quot;d-MMM-yyyy&quot;, &quot;dd MMM yy&quot;, &quot;d MMM yy&quot;, &quot;dd MMM yyyy&quot;, &quot;d MMM yyyy&quot;, &quot;dd MMMM yy&quot;, &quot;d MMMM yy&quot;, &quot;dd MMMM yyyy&quot;, &quot;d MMMM yyyy&quot;, &quot;dd/MM/yy&quot;, &quot;d/M/yy&quot;}&#xA;&#xA;    Dim inDate As DateTime = DateTime.ParseExact(row(&quot;strDate&quot;).ToString().Trim(), dateFormats, Globalization.CultureInfo.InvariantCulture, Globalization.DateTimeStyles.None)&#xA;    Dim outDate As DateTime = DateTime.ParseExact(row(&quot;strDeparture&quot;).ToString().Trim(), dateFormats, Globalization.CultureInfo.InvariantCulture, Globalization.DateTimeStyles.None)&#xA;&#xA;    Dim currentDate As DateTime = inDate&#xA;&#xA;    While currentDate &lt; outDate&#xA;&#xA;        Dim newRow As DataRow = dtTemp.NewRow()&#xA;&#xA;        'Copy all existing values&#xA;        For i As Integer = 0 To iodtRoomGrid.Columns.Count - 1&#xA;            newRow(i) = row(i)&#xA;        Next&#xA;&#xA;        'Update dates for each night&#xA;        newRow(&quot;strDate&quot;) = currentDate.ToString(&quot;yyyy-MM-dd&quot;)&#xA;        newRow(&quot;strDeparture&quot;) = currentDate.AddDays(1).ToString(&quot;yyyy-MM-dd&quot;)&#xA;&#xA;        dtTemp.Rows.Add(newRow)&#xA;        currentDate = currentDate.AddDays(1)&#xA;&#xA;    End While&#xA;&#xA;Next&#xA;&#xA;'Update original DataTable&#xA;iodtRoomGrid.Clear()&#xA;&#xA;For Each row As DataRow In dtTemp.Rows&#xA;    iodtRoomGrid.ImportRow(row)&#xA;Next&#xA;&#xA;iodtRoomGrid.Columns.Remove(&quot;strDeparture&quot;)" DisplayName="Invoke Code- For table modification(entry for each night)" sap:VirtualizedContainerService.HintSize="382.4,196.8" sap2010:WorkflowViewState.IdRef="InvokeCode_7">
+          <ui:InvokeCode.Arguments>
+            <InOutArgument x:TypeArguments="sd:DataTable" x:Key="iodtRoomGrid">[odtRoomGrid]</InOutArgument>
+          </ui:InvokeCode.Arguments>
+        </ui:InvokeCode>
+        <ui:LogMessage DisplayName="Log Message- Block Code" sap:VirtualizedContainerService.HintSize="382.4,165.6" sap2010:WorkflowViewState.IdRef="LogMessage_4" Level="Trace" Message="[&quot;Block Code is: &quot; + iodictBlockDetails(&quot;strBlockCode&quot;)]" />
+      </Sequence>
+      <Sequence x:Key="RoadRebel" DisplayName="Sequence-For Road Rebel" sap:VirtualizedContainerService.HintSize="416,24.8" sap2010:WorkflowViewState.IdRef="Sequence_10">
+        <sap:WorkflowViewStateService.ViewState>
+          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+            <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+            <x:Boolean x:Key="IsPinned">True</x:Boolean>
+          </scg:Dictionary>
+        </sap:WorkflowViewStateService.ViewState>
+        <ui:InvokeWorkflowFile ArgumentsVariable="{x:Null}" ContinueOnError="{x:Null}" DisplayName="20.f RoadRebel Data Extraction - Invoke Workflow File (20 Processing\20.f RoadRebel Data Extraction.xaml)" sap:VirtualizedContainerService.HintSize="382.4,176" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_1" UnSafe="False" WorkflowFileName="20 Processing\20.f RoadRebel Data Extraction.xaml">
+          <ui:InvokeWorkflowFile.Arguments>
+            <InOutArgument x:TypeArguments="scg:Dictionary(x:String, x:String)" x:Key="iodictBlockDetails">[iodictBlockDetails]</InOutArgument>
+            <OutArgument x:TypeArguments="sd:DataTable" x:Key="odtRoomGrid">[odtRoomGrid]</OutArgument>
+            <InArgument x:TypeArguments="x:String" x:Key="istrInputText">[istrInputText]</InArgument>
+            <OutArgument x:TypeArguments="x:String" x:Key="ostrSearchMessages">[strExceptionMessage]</OutArgument>
+          </ui:InvokeWorkflowFile.Arguments>
+        </ui:InvokeWorkflowFile>
+        <ui:InvokeCode ContinueOnError="{x:Null}" Code="Dim dtTemp As DataTable = iodtRoomGrid.Clone()&#xA;&#xA;For Each row As DataRow In iodtRoomGrid.Rows&#xA;&#xA;    Dim inDate As DateTime = DateTime.Parse(row(&quot;strDate&quot;).ToString())&#xA;    Dim outDate As DateTime = DateTime.Parse(row(&quot;strDeparture&quot;).ToString())&#xA;&#xA;    Dim currentDate As DateTime = inDate&#xA;&#xA;    While currentDate &lt; outDate&#xA;&#xA;        Dim newRow As DataRow = dtTemp.NewRow()&#xA;&#xA;        'Copy all existing values&#xA;        For i As Integer = 0 To iodtRoomGrid.Columns.Count - 1&#xA;            newRow(i) = row(i)&#xA;        Next&#xA;&#xA;        'Update dates for each night&#xA;        newRow(&quot;strDate&quot;) = currentDate.ToString(&quot;yyyy-MM-dd&quot;)&#xA;        newRow(&quot;strDeparture&quot;) = currentDate.AddDays(1).ToString(&quot;yyyy-MM-dd&quot;)&#xA;&#xA;        dtTemp.Rows.Add(newRow)&#xA;&#xA;        currentDate = currentDate.AddDays(1)&#xA;&#xA;    End While&#xA;&#xA;Next&#xA;&#xA;'Update original DataTable&#xA;iodtRoomGrid.Clear()&#xA;&#xA;For Each row As DataRow In dtTemp.Rows&#xA;    iodtRoomGrid.ImportRow(row)&#xA;Next&#xA;iodtRoomGrid.Columns.Remove(&quot;strDeparture&quot;)" DisplayName="Invoke Code- For table modification(entry for each night)" sap:VirtualizedContainerService.HintSize="382.4,196.8" sap2010:WorkflowViewState.IdRef="InvokeCode_9">
+          <ui:InvokeCode.Arguments>
+            <InOutArgument x:TypeArguments="sd:DataTable" x:Key="iodtRoomGrid">[odtRoomGrid]</InOutArgument>
+          </ui:InvokeCode.Arguments>
+        </ui:InvokeCode>
+        <ui:LogMessage DisplayName="Log Message- Block Code" sap:VirtualizedContainerService.HintSize="382.4,165.6" sap2010:WorkflowViewState.IdRef="LogMessage_5" Level="Trace" Message="[&quot;Block Code is: &quot; + iodictBlockDetails(&quot;strBlockCode&quot;)]" />
+      </Sequence>
+      <x:Null x:Key="Equinoxxxx" />
+    </Switch>
+    <ui:CommentOut DisplayName="Comment Out-Old Code" sap:VirtualizedContainerService.HintSize="523.2,358.4" sap2010:WorkflowViewState.IdRef="CommentOut_2">
+      <ui:CommentOut.Body>
+        <Sequence DisplayName="Ignored Activities" sap:VirtualizedContainerService.HintSize="416,248" sap2010:WorkflowViewState.IdRef="Sequence_7">
+          <sap:WorkflowViewStateService.ViewState>
+            <scg:Dictionary x:TypeArguments="x:String, x:Object">
+              <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+            </scg:Dictionary>
+          </sap:WorkflowViewStateService.ViewState>
+          <ui:InvokeCode ContinueOnError="{x:Null}" Code="Dim match As Match&#xA;Dim matchNew As Match&#xA;&#xA;ostrSearchMessages = &quot;&quot;&#xA; &#xA;dtRoomGrid = New DataTable(&quot;RoomGrid&quot;)&#xA;dtRoomGrid.Columns.Add(&quot;strDate&quot;, GetType(String))&#xA;dtRoomGrid.Columns.Add(&quot;strRoomType&quot;, GetType(String))&#xA;dtRoomGrid.Columns.Add(&quot;strRoomsPerNight&quot;, GetType(String))&#xA;dtRoomGrid.Columns.Add(&quot;strRatePerRoom&quot;, GetType(String))&#xA; &#xA;For Each varName As JProperty In ijObjRegex.Item(&quot;EntertainmentHub&quot;)&#xA;    Dim varObjects As JToken = varName.Value&#xA; &#xA;    For Each i As JProperty In varObjects&#xA; &#xA;        Dim varRegexList As JToken = i.Value&#xA;        Dim intCount As Integer = 1&#xA; &#xA;        For Each regex As JToken In varRegexList.Children()&#xA;   'console.WriteLine(varName.Name.ToString)&#xA; &#xA;            Dim regexvar As New Regex(regex.ToString())&#xA; &#xA;            '=============================&#xA;            ' GRID HANDLING (RoomGrid)&#xA;            '=============================&#xA;   'Console.WriteLine(&quot;grid&quot;)&#xA;            If varName.Name.ToString = &quot;RoomGrid&quot; Then&#xA;     console.WriteLine(&quot;room grid found&quot;)&#xA;                Dim matches As MatchCollection =&#xA;                    regexvar.Matches(istrText.Replace(Environment.NewLine, &quot; &quot;))&#xA;      console.WriteLine(&quot; match collection &quot; + matches.ToString)&#xA;                For Each m As Match In matches&#xA;                    If m.Success Then&#xA;      console.WriteLine(m.ToString)&#xA;                        Dim row As DataRow = dtRoomGrid.NewRow()&#xA;                        row(&quot;strDate&quot;) = m.Groups(&quot;strDate&quot;).Value.Trim()&#xA;      'console.WriteLine(m.Groups(&quot;strRoomType&quot;).Value.Trim())&#xA;                        row(&quot;strRoomType&quot;) = m.Groups(&quot;strRoomType&quot;).Value.Trim()&#xA;                        row(&quot;strRoomsPerNight&quot;) = m.Groups(&quot;strRoomsPerNight&quot;).Value.Trim()&#xA;                        row(&quot;strRatePerRoom&quot;) = m.Groups(&quot;strRatePerRoom&quot;).Value.Trim()&#xA; &#xA;                        dtRoomGrid.Rows.Add(row)&#xA;                    End If&#xA;                Next&#xA; &#xA;                Exit For&#xA;            End If&#xA; &#xA;            '=============================&#xA;            ' SINGLE VALUE HANDLING&#xA;            '=============================&#xA;   If Not(varName.Name.ToString = &quot;strBlockStatus&quot; Or varName.Name.ToString = &quot;strFollowupDate&quot; Or varName.Name.ToString = &quot;strTraceMessage&quot; ) Then&#xA;    &#xA;             match = regexvar.Match(istrText)&#xA;             matchNew = regexvar.Match(istrText.Replace(Environment.NewLine, &quot; &quot;))&#xA;  &#xA;             If match.Success Then&#xA;                 iodictTest(varName.Name.ToString) = match.Groups(&quot;group&quot;).Value.Trim()&#xA;                 Exit For&#xA;  &#xA;             ElseIf matchNew.Success Then&#xA;                 iodictTest(varName.Name.ToString) = matchNew.Groups(&quot;group&quot;).Value.Trim()&#xA;                 Exit For&#xA;  &#xA;             Else&#xA;                 If intCount = varRegexList.Count Then&#xA;  &#xA;                     If ijObjRegex.Item(&quot;EntertainmentHub&quot;)(varName.Name.ToString)(&quot;Mandatory&quot;).ToString = &quot;X&quot; Then&#xA;                         iodictTest(varName.Name.ToString) =  varName.Name &amp; &quot; Not Found&quot;&#xA;                         ostrSearchMessages &amp;= &quot;Error: &quot; &amp; varName.Name &amp; &quot; Not Found&quot; &amp; Environment.NewLine&#xA;                     Else&#xA;                         iodictTest(varName.Name.ToString) = varName.Name &amp; &quot; Not Found&quot;&#xA;                         ostrSearchMessages &amp;= &quot;Warn: &quot; &amp; varName.Name &amp; &quot; Not Found&quot; &amp; Environment.NewLine&#xA;                     End If&#xA;  &#xA;                 End If&#xA;             End If&#xA;   End If&#xA; &#xA;            intCount += 1&#xA;        Next&#xA;    Next&#xA;Next&#xA;&#xA;If Not ostrSearchMessages.ToString.ToLower.Contains(&quot;not found&quot;) Then&#xA;  &#xA; 'iodictTest(&quot;strArrivalDate&quot;) = iodictTest(&quot;strArrivalDate&quot;)&#xA; iodictTest(&quot;strBlockName&quot;) = iodictTest(&quot;strTravelAgent&quot;)&#xA; &#xA; Dim dateParsedArrival As DateTime = DateTime.ParseExact(System.Text.RegularExpressions.Regex.Replace(iodictTest(&quot;strArrivalDate&quot;).ToString().Trim(), &quot;(\d+)(st|nd|rd|th)&quot;, &quot;$1&quot;, System.Text.RegularExpressions.RegexOptions.IgnoreCase), New String() {&quot;dd/MM/yyyy&quot;, &quot;dd/MM//yy&quot;, &quot;dd MMMM yy&quot;, &quot;d MMMM yyyy&quot;,  &quot;dd MMMM yyyy&quot; , &quot;d MMMM&quot; , &quot;dd MMMM&quot; }, System.Globalization.CultureInfo.InvariantCulture, System.Globalization.DateTimeStyles.None)&#xA; Dim namePart As String = &quot;EH&quot; +  iodictTest(&quot;strBlockName&quot;).replace(&quot; &quot;,&quot;&quot;).Replace(&quot;-&quot;, &quot;&quot;).ToUpper().PadRight(6).Substring(0, 4)&#xA; Dim datePart As String = dateParsedArrival.ToString(&quot;ddMMyy&quot;)&#xA; &#xA; ' Combine to get block code&#xA; iodictTest(&quot;strBlockCode&quot;) = namePart &amp; datePart&#xA; &#xA; iodictTest(&quot;strDecisionDate&quot;)=dateParsedArrival.AddDays(-28).ToString(&quot;yyyy-MM-dd&quot;)&#xA; &#xA; iodictTest(&quot;strDepartureDate&quot;) = dateParsedArrival.AddDays(CInt(iodictTest(&quot;strNights&quot;))).ToString(&quot;yyyy-MM-dd&quot;)&#xA; iodictTest(&quot;strArrivalDate&quot;) = dateParsedArrival.ToString(&quot;yyyy-MM-dd&quot;)&#xA; 'iodictTest(&quot;strBlockName&quot;) = iodictTest(&quot;strBlockName&quot;).Split(&quot;ARRIVAL DATE&quot;)(0).Trim&#xA; 'iodictTest(&quot;strBlockName&quot;) = iodictTest(&quot;strBlockName&quot;)+ If (String.IsNullOrEmpty(iodictTest(&quot;strCompanyReferenceNumber&quot;)) Or  iodictTest(&quot;strCompanyReferenceNumber&quot;).tolower().Contains(&quot;not found&quot;), &quot;&quot; , &quot; - &quot; + iodictTest(&quot;strCompanyReferenceNumber&quot;))&#xA;End If" DisplayName="20.b Invoke code for extraction" sap:VirtualizedContainerService.HintSize="382.4,188" sap2010:WorkflowViewState.IdRef="InvokeCode_1">
+            <ui:InvokeCode.Arguments>
+              <InArgument x:TypeArguments="x:String" x:Key="istrText">[istrInputText]</InArgument>
+              <InOutArgument x:TypeArguments="scg:Dictionary(x:String, x:String)" x:Key="iodictTest">[iodictBlockDetails]</InOutArgument>
+              <InArgument x:TypeArguments="njl:JObject" x:Key="ijObjRegex">[jobjRegex]</InArgument>
+              <OutArgument x:TypeArguments="sd:DataTable" x:Key="dtRoomGrid">[odtRoomGrid]</OutArgument>
+              <OutArgument x:TypeArguments="x:String" x:Key="ostrSearchMessages">[strExceptionMessage]</OutArgument>
+            </ui:InvokeCode.Arguments>
+            <sap:WorkflowViewStateService.ViewState>
+              <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                <x:Boolean x:Key="IsPinned">False</x:Boolean>
+              </scg:Dictionary>
+            </sap:WorkflowViewStateService.ViewState>
+          </ui:InvokeCode>
+        </Sequence>
+      </ui:CommentOut.Body>
+      <sap:WorkflowViewStateService.ViewState>
+        <scg:Dictionary x:TypeArguments="x:String, x:Object">
+          <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+          <x:Boolean x:Key="IsPinned">False</x:Boolean>
+        </scg:Dictionary>
+      </sap:WorkflowViewStateService.ViewState>
+    </ui:CommentOut>
+    <If Condition="[strExceptionMessage.ToString.ToLower.Contains(&quot;not found&quot;)]" DisplayName="20.b If - exception occured in extraction" sap:VirtualizedContainerService.HintSize="523.2,433.6" sap2010:WorkflowViewState.IdRef="If_1">
+      <sap:WorkflowViewStateService.ViewState>
+        <scg:Dictionary x:TypeArguments="x:String, x:Object">
+          <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+          <x:Boolean x:Key="IsPinned">False</x:Boolean>
+        </scg:Dictionary>
+      </sap:WorkflowViewStateService.ViewState>
+      <If.Then>
+        <Sequence DisplayName="Then" sap:VirtualizedContainerService.HintSize="416,173.6" sap2010:WorkflowViewState.IdRef="Sequence_2">
+          <sap:WorkflowViewStateService.ViewState>
+            <scg:Dictionary x:TypeArguments="x:String, x:Object">
+              <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+            </scg:Dictionary>
+          </sap:WorkflowViewStateService.ViewState>
+          <Throw DisplayName="20.b Throw BRE - Missing Details" Exception="[new BusinessRuleException(&quot;Missing Details&quot;)]" sap:VirtualizedContainerService.HintSize="382.4,113.6" sap2010:WorkflowViewState.IdRef="Throw_2" />
+        </Sequence>
+      </If.Then>
+      <If.Else>
+        <Sequence DisplayName="Else" sap:VirtualizedContainerService.HintSize="416,89.6" sap2010:WorkflowViewState.IdRef="Sequence_3">
+          <sap:WorkflowViewStateService.ViewState>
+            <scg:Dictionary x:TypeArguments="x:String, x:Object">
+              <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+            </scg:Dictionary>
+          </sap:WorkflowViewStateService.ViewState>
+        </Sequence>
+      </If.Else>
+    </If>
+    <TryCatch DisplayName="20.b Try Catch - for property code" sap:VirtualizedContainerService.HintSize="523.2,587.2" sap2010:WorkflowViewState.IdRef="TryCatch_1">
+      <sap:WorkflowViewStateService.ViewState>
+        <scg:Dictionary x:TypeArguments="x:String, x:Object">
+          <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+          <x:Boolean x:Key="IsPinned">False</x:Boolean>
+        </scg:Dictionary>
+      </sap:WorkflowViewStateService.ViewState>
+      <TryCatch.Try>
+        <Assign DisplayName="20.b Assign - Property Code" sap:VirtualizedContainerService.HintSize="433.6,81.6" sap2010:WorkflowViewState.IdRef="Assign_3">
+          <Assign.To>
+            <OutArgument x:TypeArguments="x:String">[iodictBlockDetails("strPropertyCode")]</OutArgument>
+          </Assign.To>
+          <Assign.Value>
+            <InArgument x:TypeArguments="x:String" xml:space="preserve">[(From r As System.Data.DataRow In idtPropertyCodeMapping.AsEnumerable() Where r.Field(Of String)("Property Name").tolower.Equals(iodictBlockDetails("strHotelName").ToLower)   Select r.Field(Of String)("Property Code")   ).FirstOrDefault()]</InArgument>
+          </Assign.Value>
+          <sap:WorkflowViewStateService.ViewState>
+            <scg:Dictionary x:TypeArguments="x:String, x:Object">
+              <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+              <x:Boolean x:Key="IsPinned">False</x:Boolean>
+            </scg:Dictionary>
+          </sap:WorkflowViewStateService.ViewState>
+        </Assign>
+      </TryCatch.Try>
+      <TryCatch.Catches>
+        <Catch x:TypeArguments="s:Exception" sap:VirtualizedContainerService.HintSize="436.8,161.6" sap2010:WorkflowViewState.IdRef="Catch`1_1">
+          <sap:WorkflowViewStateService.ViewState>
+            <scg:Dictionary x:TypeArguments="x:String, x:Object">
+              <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+              <x:Boolean x:Key="IsPinned">False</x:Boolean>
+            </scg:Dictionary>
+          </sap:WorkflowViewStateService.ViewState>
+          <ActivityAction x:TypeArguments="s:Exception">
+            <ActivityAction.Argument>
+              <DelegateInArgument x:TypeArguments="s:Exception" Name="exception" />
+            </ActivityAction.Argument>
+            <Throw DisplayName="20.b Throw property code not found in mapping file" Exception="[new SystemException(&quot;Property name - &quot;+iodictBlockDetails(&quot;strHotelName&quot;)+&quot; not found in mapping file&quot;)]" sap:VirtualizedContainerService.HintSize="334.4,90.4" sap2010:WorkflowViewState.IdRef="Throw_1" />
+          </ActivityAction>
+        </Catch>
+      </TryCatch.Catches>
+    </TryCatch>
+    <If Condition="[odtRoomGrid.RowCount = 0]" DisplayName="20.b If - room grid not extracted" sap:VirtualizedContainerService.HintSize="523.2,2018.4" sap2010:WorkflowViewState.IdRef="If_3">
+      <sap:WorkflowViewStateService.ViewState>
+        <scg:Dictionary x:TypeArguments="x:String, x:Object">
+          <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+          <x:Boolean x:Key="IsPinned">False</x:Boolean>
+        </scg:Dictionary>
+      </sap:WorkflowViewStateService.ViewState>
+      <If.Then>
+        <Sequence DisplayName="Then" sap:VirtualizedContainerService.HintSize="416,173.6" sap2010:WorkflowViewState.IdRef="Sequence_4">
+          <sap:WorkflowViewStateService.ViewState>
+            <scg:Dictionary x:TypeArguments="x:String, x:Object">
+              <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+            </scg:Dictionary>
+          </sap:WorkflowViewStateService.ViewState>
+          <Throw DisplayName="20.b Throw - room rate mismatch" Exception="[new BusinessRuleException(&quot;Room &amp; Rate Mismatch&quot;)]" sap:VirtualizedContainerService.HintSize="382.4,113.6" sap2010:WorkflowViewState.IdRef="Throw_5" />
+        </Sequence>
+      </If.Then>
+      <If.Else>
+        <Sequence DisplayName="Else" sap:VirtualizedContainerService.HintSize="489.6,1674.4" sap2010:WorkflowViewState.IdRef="Sequence_5">
+          <sap:WorkflowViewStateService.ViewState>
+            <scg:Dictionary x:TypeArguments="x:String, x:Object">
+              <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+            </scg:Dictionary>
+          </sap:WorkflowViewStateService.ViewState>
+          <TryCatch DisplayName="20.b Try Catch for finding details in room type mapping file" sap:VirtualizedContainerService.HintSize="456,1404.8" sap2010:WorkflowViewState.IdRef="TryCatch_2">
+            <sap:WorkflowViewStateService.ViewState>
+              <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                <x:Boolean x:Key="IsPinned">False</x:Boolean>
+              </scg:Dictionary>
+            </sap:WorkflowViewStateService.ViewState>
+            <TryCatch.Try>
+              <Sequence sap2010:Annotation.AnnotationText="Fetch the available room types/codes for the specific hotel through the API.&#xA;Compare the room types from the Room Grid (table extracted from the form) with the Room Type Mapping.&#xA;Check the mapped room codes one by one against the room codes returned by the API.&#xA;Use the first matching room code.&#xA;If no matching code is found, the process stops with an exception" sap:VirtualizedContainerService.HintSize="416,641.6" sap2010:WorkflowViewState.IdRef="Sequence_15">
+                <sap:WorkflowViewStateService.ViewState>
+                  <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                    <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                    <x:Boolean x:Key="IsAnnotationDocked">True</x:Boolean>
+                  </scg:Dictionary>
+                </sap:WorkflowViewStateService.ViewState>
+                <ui:InvokeCode ContinueOnError="{x:Null}" Code="Dim htpcClient As New System.Net.Http.HttpClient()&#xA;&#xA;' Add headers&#xA;htpcClient.DefaultRequestHeaders.Add(&quot;x-hotelId&quot;, istrHotelID)&#xA;htpcClient.DefaultRequestHeaders.Add(&quot;x-app-key&quot;, istrAppKey)&#xA;htpcClient.DefaultRequestHeaders.Add(&quot;Authorization&quot;, istrToken)&#xA;&#xA;' Build URL&#xA;Dim strUrl As String = istrHostName &amp; &quot;/lov/v1/listOfValues/hotels/&quot; &amp; istrHotelID &amp; &quot;/roomTypes&quot;&#xA;&#xA;' Send GET request&#xA;Dim respResponse As System.Net.Http.HttpResponseMessage =&#xA;    htpcClient.GetAsync(strUrl).Result&#xA;&#xA;respResponse.EnsureSuccessStatusCode()&#xA;&#xA;' Read response&#xA;Dim strResponseBody As String =&#xA;    respResponse.Content.ReadAsStringAsync().Result&#xA;&#xA;' Parse JSON&#xA;Dim jobjResponse As Newtonsoft.Json.Linq.JToken =&#xA;    Newtonsoft.Json.Linq.JObject.Parse(strResponseBody)(&quot;listOfValues&quot;)(&quot;items&quot;)&#xA;&#xA;Dim lststrRoomTypes As New List(Of String)&#xA;&#xA;For Each jtknCurrentRoomType As Newtonsoft.Json.Linq.JToken In jobjResponse&#xA;    lststrRoomTypes.Add(&#xA;        jtknCurrentRoomType(&quot;name&quot;).ToString() &amp; &quot;|&quot; &amp;&#xA;        jtknCurrentRoomType(&quot;code&quot;).ToString()&#xA;    )&#xA;Next&#xA;&#xA;olststrRoomTypes = lststrRoomTypes" DisplayName="30.b Get all room types" sap:VirtualizedContainerService.HintSize="382.4,196.8" sap2010:WorkflowViewState.IdRef="InvokeCode_13">
+                  <ui:InvokeCode.Arguments>
+                    <InArgument x:TypeArguments="x:String" x:Key="istrHostName">[idictAssetsData("Opera OHIP URL").ToString]</InArgument>
+                    <InArgument x:TypeArguments="x:String" x:Key="istrHotelID">[iodictBlockDetails("strPropertyCode")]</InArgument>
+                    <InArgument x:TypeArguments="x:String" x:Key="istrExternalRef" />
+                    <InArgument x:TypeArguments="x:String" x:Key="istrAppKey">[idictAssetsData("Opera OHIP AppKey").ToString]</InArgument>
+                    <InArgument x:TypeArguments="x:String" x:Key="istrToken">[istrToken]</InArgument>
+                    <OutArgument x:TypeArguments="scg:List(x:String)" x:Key="olststrRoomTypes">[olststrRoomTypes]</OutArgument>
+                  </ui:InvokeCode.Arguments>
+                  <sap:WorkflowViewStateService.ViewState>
+                    <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                      <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                      <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                    </scg:Dictionary>
+                  </sap:WorkflowViewStateService.ViewState>
+                </ui:InvokeCode>
+                <ui:InvokeCode ContinueOnError="{x:Null}" Code="If idtRoomGrid Is Nothing OrElse idtRoomGrid.Rows.Count = 0 Then&#xA;    Throw New System.SystemException(&quot;Room grid is empty or not found&quot;)&#xA;End If&#xA;&#xA;If idtRoomTypeMapping Is Nothing OrElse idtRoomTypeMapping.Rows.Count = 0 Then&#xA;    Throw New System.SystemException(&quot;Room type mapping file is empty or not found&quot;)&#xA;End If&#xA;&#xA;If ilstRoomTypes Is Nothing OrElse ilstRoomTypes.Count = 0 Then&#xA;    Throw New System.SystemException(&quot;Room type code list is empty&quot;)&#xA;End If&#xA;&#xA;&#xA;'Check every room type in Room Grid&#xA;For Each row As System.Data.DataRow In idtRoomGrid.Rows&#xA;&#xA;    Dim strRoomType As String = row(&quot;strRoomType&quot;).ToString().Trim()&#xA;&#xA;    If String.IsNullOrWhiteSpace(strRoomType) Then&#xA;        Continue For&#xA;    End If&#xA;&#xA;    Dim boolRoomTypeFound As Boolean = False&#xA;&#xA;&#xA;    'Find the room type in mapping file&#xA;    For Each mappingRow As System.Data.DataRow In idtRoomTypeMapping.Rows&#xA;&#xA;        Dim strMappedRoomType As String =&#xA;            mappingRow(&quot;Room Type&quot;).ToString().Trim()&#xA;&#xA;        If String.Equals(&#xA;            strMappedRoomType,&#xA;            strRoomType,&#xA;            StringComparison.OrdinalIgnoreCase&#xA;        ) Then&#xA;&#xA;&#xA;            'Check Code 1, Code 2, Code 3... in order&#xA;            For Each col As System.Data.DataColumn In idtRoomTypeMapping.Columns&#xA;&#xA;                'Skip Room Type column&#xA;                If String.Equals(&#xA;                    col.ColumnName.Trim(),&#xA;                    &quot;Room Type&quot;,&#xA;                    StringComparison.OrdinalIgnoreCase&#xA;                ) Then&#xA;                    Continue For&#xA;                End If&#xA;&#xA;&#xA;                Dim strMappingCode As String =&#xA;                    mappingRow(col).ToString().Trim()&#xA;&#xA;                If String.IsNullOrWhiteSpace(strMappingCode) Then&#xA;                    Continue For&#xA;                End If&#xA;&#xA;&#xA;                'Check mapping code against available room type list&#xA;                For Each strAvailableRoomType As String In ilstRoomTypes&#xA;&#xA;                    'List contains:&#xA;                    'Room Name|Room Code&#xA;                    Dim arrRoomType() As String =&#xA;                        strAvailableRoomType.Split(&quot;|&quot;c)&#xA;&#xA;                    If arrRoomType.Length &lt; 2 Then&#xA;                        Continue For&#xA;                    End If&#xA;&#xA;                    Dim strAvailableCode As String =&#xA;                        arrRoomType(arrRoomType.Length - 1).Trim()&#xA;&#xA;&#xA;                    'Compare mapping code with available code&#xA;                    If String.Equals(&#xA;                        strMappingCode,&#xA;                        strAvailableCode,&#xA;                        StringComparison.OrdinalIgnoreCase&#xA;                    ) Then&#xA;&#xA;                        'Room type is available&#xA;                        boolRoomTypeFound = True&#xA;&#xA;                        Console.WriteLine(&#xA;                            &quot;Room Type '&quot; &amp;&#xA;                            strRoomType &amp;&#xA;                            &quot;' found with code '&quot; &amp;&#xA;                            strMappingCode &amp;&#xA;                            &quot;'&quot;&#xA;                        )&#xA;&#xA;                        'First matching code found&#xA;                        Exit For&#xA;&#xA;                    End If&#xA;&#xA;                Next&#xA;&#xA;&#xA;                'Do not check Code 2, Code 3, etc.&#xA;                'after the first matching code&#xA;                If boolRoomTypeFound Then&#xA;                    Exit For&#xA;                End If&#xA;&#xA;            Next&#xA;&#xA;            'Room Type found in mapping, stop searching mapping rows&#xA;            Exit For&#xA;&#xA;        End If&#xA;&#xA;    Next&#xA;&#xA;&#xA;    'If even ONE room type has no matching code, throw exception&#xA;    If Not boolRoomTypeFound Then&#xA;&#xA;        Console.WriteLine(&#xA;            &quot;Room Type '&quot; &amp;&#xA;            strRoomType &amp;&#xA;            &quot;' not found in available room types&quot;&#xA;        )&#xA;&#xA;        Throw New System.SystemException(&#xA;            &quot;Room Type '&quot; &amp;&#xA;            strRoomType &amp;&#xA;            &quot;' not found in available room types&quot;&#xA;        )&#xA;&#xA;    End If&#xA;&#xA;Next&#xA;&#xA;&#xA;Console.WriteLine(&#xA;    &quot;All room types are available in the room type list.&quot;&#xA;)" DisplayName="To find the room type from all available rooms of the hotel" sap:VirtualizedContainerService.HintSize="382.4,196.8" sap2010:WorkflowViewState.IdRef="InvokeCode_15">
+                  <ui:InvokeCode.Arguments>
+                    <InArgument x:TypeArguments="sd:DataTable" x:Key="idtRoomGrid">
+                      <VisualBasicValue x:TypeArguments="sd:DataTable" ExpressionText="odtRoomGrid" />
+                    </InArgument>
+                    <InArgument x:TypeArguments="sd:DataTable" x:Key="idtRoomTypeMapping">
+                      <VisualBasicValue x:TypeArguments="sd:DataTable" ExpressionText="idtRoomTypeMapping" />
+                    </InArgument>
+                    <InArgument x:TypeArguments="scg:List(x:String)" x:Key="ilstRoomTypes">
+                      <VisualBasicValue x:TypeArguments="scg:List(x:String)" ExpressionText="olststrRoomTypes" />
+                    </InArgument>
+                  </ui:InvokeCode.Arguments>
+                </ui:InvokeCode>
+                <ui:CommentOut DisplayName="Comment Out" sap:VirtualizedContainerService.HintSize="382.4,48" sap2010:WorkflowViewState.IdRef="CommentOut_7">
+                  <ui:CommentOut.Body>
+                    <Sequence DisplayName="Ignored Activities" sap:VirtualizedContainerService.HintSize="416,248" sap2010:WorkflowViewState.IdRef="Sequence_17">
+                      <sap:WorkflowViewStateService.ViewState>
+                        <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                          <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                        </scg:Dictionary>
+                      </sap:WorkflowViewStateService.ViewState>
+                      <ui:InvokeCode ContinueOnError="{x:Null}" Code="For Each row As System.Data.DataRow In idtRoomGrid.Rows&#xA;'console.WriteLine(&quot;0&quot;)&#xA;console.WriteLine(row(0))&#xA; Dim rateAmount As Decimal =  CDec(row(&quot;strRatePerRoom&quot;).ToString())&#xA; console.WriteLine (idictBlockDetails(&quot;strPropertyCode&quot;))&#xA; Dim strPropertyCode  = idictBlockDetails(&quot;strPropertyCode&quot;).Substring(idictBlockDetails(&quot;strPropertyCode&quot;).Count - 3)&#xA;   &#xA; 'console.WriteLine(idtPropertyCodeMapping)&#xA; 'console.WriteLine(&quot;1&quot;)&#xA; Dim strHotelType As String = (From r As System.Data.DataRow In idtPropertyCodeMapping.AsEnumerable()&#xA;      Where r.Field(Of String)(&quot;Property Code&quot;).Substring(2).Equals(strPropertyCode)&#xA;      Select r.Field(Of String)(&quot;Hotel Type&quot;)&#xA;     ).FirstOrDefault()&#xA; console.WriteLine(&quot;Hotel type is &quot;  &amp; strHotelType)&#xA; 'console.WriteLine(&quot;2&quot;)&#xA; Dim roomTypeCode As String =&#xA;     (From r As System.Data.DataRow In idtRoomTypeMapping.AsEnumerable()&#xA;      Where (r.Field(Of String)(&quot;Room Type&quot;).ToLower.Equals( row(&quot;strRoomType&quot;).ToString().ToLower ))&#xA;      Select r.Field(Of String)(&quot;Room Type Code&quot;)&#xA;     ).FirstOrDefault()&#xA;  'Console.WriteLine(&quot;10-&quot;)&#xA;  &#xA;  If String.IsNullOrEmpty(roomTypeCode) Then&#xA;   console.WriteLine(&quot;Room type code- '&quot;+row(&quot;strRoomType&quot;).ToString()+&quot;' not found in mapping file&quot;)&#xA;   Throw New SystemException(&quot;Room type code not found in mapping file&quot;)&#xA;  End If&#xA; console.WriteLine(&quot;Room Type code is &quot;  &amp; roomTypeCode)&#xA;  &#xA; Dim strOccupancy As String = (From r As System.Data.DataRow In idtRoomTypeMapping.AsEnumerable()&#xA;      Where  ( r.Field(Of String)(&quot;Room Type&quot;).ToLower.Equals( row(&quot;strRoomType&quot;).ToString().ToLower ))&#xA;      Select r.Field(Of String)(&quot;Occupancy&quot;)&#xA;     ).FirstOrDefault()&#xA; console.WriteLine(&quot;Occupancy of room is &quot;  &amp; strOccupancy)&#xA;   &#xA;   If (idictBlockDetails(&quot;strBreakfastDetails&quot;).tostring.ToUpper.Contains(&quot;BREAKFAST&quot;)) Then&#xA;        Dim breakfastCostPerPerson As Decimal&#xA;        breakfastCostPerPerson = If (strHotelType.ToUpper() = &quot;LON&quot; ,7.8D ,If (strHotelType.ToUpper() = &quot;IRE&quot; ,9.75D , If (strHotelType.ToUpper() = &quot;LGG&quot; , 13.0D , 7.2D ) ) )&#xA;        Dim occupancy As Integer = CInt(strOccupancy)&#xA;        rateAmount = rateAmount - (breakfastCostPerPerson * occupancy)&#xA;    End If&#xA; &#xA; If (idictBlockDetails(&quot;strBreakfastDetails&quot;).tostring.ToUpper.Contains(&quot;DINNER&quot;) AndAlso strHotelType.ToUpper() = &quot;IRE&quot;) Then&#xA;        Dim breakfastCostPerPerson As Decimal&#xA;        breakfastCostPerPerson = 23.75D&#xA;        Dim occupancy As Integer = CInt(strOccupancy)&#xA;        rateAmount = rateAmount - (breakfastCostPerPerson * occupancy)&#xA;    End If&#xA;Next" DisplayName="20.b Check if all room details present in mapping file" sap:VirtualizedContainerService.HintSize="382.4,188" sap2010:WorkflowViewState.IdRef="InvokeCode_14">
+                        <ui:InvokeCode.Arguments>
+                          <InArgument x:TypeArguments="sd:DataTable" x:Key="idtRoomGrid">[odtRoomGrid]</InArgument>
+                          <InArgument x:TypeArguments="scg:Dictionary(x:String, x:String)" x:Key="idictBlockDetails">[iodictBlockDetails]</InArgument>
+                          <InArgument x:TypeArguments="sd:DataTable" x:Key="idtRoomTypeMapping">[idtRoomTypeMapping]</InArgument>
+                          <InArgument x:TypeArguments="sd:DataTable" x:Key="idtPropertyCodeMapping">[idtPropertyCodeMapping]</InArgument>
+                        </ui:InvokeCode.Arguments>
+                        <sap:WorkflowViewStateService.ViewState>
+                          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                            <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                            <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                          </scg:Dictionary>
+                        </sap:WorkflowViewStateService.ViewState>
+                      </ui:InvokeCode>
+                    </Sequence>
+                  </ui:CommentOut.Body>
+                  <sap:WorkflowViewStateService.ViewState>
+                    <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                      <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+                      <x:Boolean x:Key="IsPinned">True</x:Boolean>
+                    </scg:Dictionary>
+                  </sap:WorkflowViewStateService.ViewState>
+                </ui:CommentOut>
+              </Sequence>
+            </TryCatch.Try>
+            <TryCatch.Catches>
+              <Catch x:TypeArguments="s:Exception" sap:VirtualizedContainerService.HintSize="422.4,419.2" sap2010:WorkflowViewState.IdRef="Catch`1_2">
+                <sap:WorkflowViewStateService.ViewState>
+                  <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                    <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+                    <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                  </scg:Dictionary>
+                </sap:WorkflowViewStateService.ViewState>
+                <ActivityAction x:TypeArguments="s:Exception">
+                  <ActivityAction.Argument>
+                    <DelegateInArgument x:TypeArguments="s:Exception" Name="exception" />
+                  </ActivityAction.Argument>
+                  <Sequence sap:VirtualizedContainerService.HintSize="416,348" sap2010:WorkflowViewState.IdRef="Sequence_18">
+                    <sap:WorkflowViewStateService.ViewState>
+                      <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                        <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                      </scg:Dictionary>
+                    </sap:WorkflowViewStateService.ViewState>
+                    <ui:LogMessage DisplayName="Warn Log Message-exception.message" sap:VirtualizedContainerService.HintSize="382.4,174.4" sap2010:WorkflowViewState.IdRef="LogMessage_8" Level="Warn" Message="[exception.Message]" />
+                    <Throw DisplayName="20.b Details not found in room type mapping" Exception="[new SystemException(&quot;Details not found in room type mapping file.&quot;)]" sap:VirtualizedContainerService.HintSize="382.4,113.6" sap2010:WorkflowViewState.IdRef="Throw_6" />
+                  </Sequence>
+                </ActivityAction>
+              </Catch>
+            </TryCatch.Catches>
+          </TryCatch>
+          <ui:CommentOut DisplayName="Comment Out-Old Code" sap:VirtualizedContainerService.HintSize="456,209.6" sap2010:WorkflowViewState.IdRef="CommentOut_5">
+            <ui:CommentOut.Body>
+              <Sequence DisplayName="Ignored Activities" sap:VirtualizedContainerService.HintSize="416,108" sap2010:WorkflowViewState.IdRef="Sequence_14">
+                <sap:WorkflowViewStateService.ViewState>
+                  <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                    <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                  </scg:Dictionary>
+                </sap:WorkflowViewStateService.ViewState>
+                <TryCatch DisplayName="20.b Try Catch for finding details in room type mapping file" sap:VirtualizedContainerService.HintSize="382.4,48" sap2010:WorkflowViewState.IdRef="TryCatch_3">
+                  <sap:WorkflowViewStateService.ViewState>
+                    <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                      <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+                      <x:Boolean x:Key="IsPinned">True</x:Boolean>
+                    </scg:Dictionary>
+                  </sap:WorkflowViewStateService.ViewState>
+                  <TryCatch.Try>
+                    <ui:InvokeCode ContinueOnError="{x:Null}" Code="For Each row As System.Data.DataRow In idtRoomGrid.Rows&#xA;'console.WriteLine(&quot;0&quot;)&#xA;console.WriteLine(row(0))&#xA; Dim rateAmount As Decimal =  CDec(row(&quot;strRatePerRoom&quot;).ToString())&#xA; console.WriteLine (idictBlockDetails(&quot;strPropertyCode&quot;))&#xA; Dim strPropertyCode  = idictBlockDetails(&quot;strPropertyCode&quot;).Substring(idictBlockDetails(&quot;strPropertyCode&quot;).Count - 3)&#xA;   &#xA; 'console.WriteLine(idtPropertyCodeMapping)&#xA; 'console.WriteLine(&quot;1&quot;)&#xA; Dim strHotelType As String = (From r As System.Data.DataRow In idtPropertyCodeMapping.AsEnumerable()&#xA;      Where r.Field(Of String)(&quot;Property Code&quot;).Substring(2).Equals(strPropertyCode)&#xA;      Select r.Field(Of String)(&quot;Hotel Type&quot;)&#xA;     ).FirstOrDefault()&#xA; console.WriteLine(&quot;Hotel type is &quot;  &amp; strHotelType)&#xA; 'console.WriteLine(&quot;2&quot;)&#xA; Dim roomTypeCode As String =&#xA;     (From r As System.Data.DataRow In idtRoomTypeMapping.AsEnumerable()&#xA;      Where (r.Field(Of String)(&quot;Room Type&quot;).ToLower.Equals( row(&quot;strRoomType&quot;).ToString().ToLower ))&#xA;      Select r.Field(Of String)(&quot;Room Type Code&quot;)&#xA;     ).FirstOrDefault()&#xA;  'Console.WriteLine(&quot;10-&quot;)&#xA;  &#xA;  If String.IsNullOrEmpty(roomTypeCode) Then&#xA;   console.WriteLine(&quot;Room type code- '&quot;+row(&quot;strRoomType&quot;).ToString()+&quot;' not found in mapping file&quot;)&#xA;   Throw New SystemException(&quot;Room type code not found in mapping file&quot;)&#xA;  End If&#xA; console.WriteLine(&quot;Room Type code is &quot;  &amp; roomTypeCode)&#xA;  &#xA; Dim strOccupancy As String = (From r As System.Data.DataRow In idtRoomTypeMapping.AsEnumerable()&#xA;      Where  ( r.Field(Of String)(&quot;Room Type&quot;).ToLower.Equals( row(&quot;strRoomType&quot;).ToString().ToLower ))&#xA;      Select r.Field(Of String)(&quot;Occupancy&quot;)&#xA;     ).FirstOrDefault()&#xA; console.WriteLine(&quot;Occupancy of room is &quot;  &amp; strOccupancy)&#xA;   &#xA;   If (idictBlockDetails(&quot;strBreakfastDetails&quot;).tostring.ToUpper.Contains(&quot;BREAKFAST&quot;)) Then&#xA;        Dim breakfastCostPerPerson As Decimal&#xA;        breakfastCostPerPerson = If (strHotelType.ToUpper() = &quot;LON&quot; ,7.8D ,If (strHotelType.ToUpper() = &quot;IRE&quot; ,9.75D , If (strHotelType.ToUpper() = &quot;LGG&quot; , 13.0D , 7.2D ) ) )&#xA;        Dim occupancy As Integer = CInt(strOccupancy)&#xA;        rateAmount = rateAmount - (breakfastCostPerPerson * occupancy)&#xA;    End If&#xA; &#xA; If (idictBlockDetails(&quot;strBreakfastDetails&quot;).tostring.ToUpper.Contains(&quot;DINNER&quot;) AndAlso strHotelType.ToUpper() = &quot;IRE&quot;) Then&#xA;        Dim breakfastCostPerPerson As Decimal&#xA;        breakfastCostPerPerson = 23.75D&#xA;        Dim occupancy As Integer = CInt(strOccupancy)&#xA;        rateAmount = rateAmount - (breakfastCostPerPerson * occupancy)&#xA;    End If&#xA;Next" DisplayName="20.b Check if all room details present in mapping file" sap:VirtualizedContainerService.HintSize="334.4,164.8" sap2010:WorkflowViewState.IdRef="InvokeCode_12">
+                      <ui:InvokeCode.Arguments>
+                        <InArgument x:TypeArguments="sd:DataTable" x:Key="idtRoomGrid">[odtRoomGrid]</InArgument>
+                        <InArgument x:TypeArguments="scg:Dictionary(x:String, x:String)" x:Key="idictBlockDetails">[iodictBlockDetails]</InArgument>
+                        <InArgument x:TypeArguments="sd:DataTable" x:Key="idtRoomTypeMapping">[idtRoomTypeMapping]</InArgument>
+                        <InArgument x:TypeArguments="sd:DataTable" x:Key="idtPropertyCodeMapping">[idtPropertyCodeMapping]</InArgument>
+                      </ui:InvokeCode.Arguments>
+                      <sap:WorkflowViewStateService.ViewState>
+                        <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                          <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                          <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                        </scg:Dictionary>
+                      </sap:WorkflowViewStateService.ViewState>
+                    </ui:InvokeCode>
+                  </TryCatch.Try>
+                  <TryCatch.Catches>
+                    <Catch x:TypeArguments="s:Exception" sap:VirtualizedContainerService.HintSize="403.2,161.6" sap2010:WorkflowViewState.IdRef="Catch`1_3">
+                      <sap:WorkflowViewStateService.ViewState>
+                        <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                          <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+                          <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                        </scg:Dictionary>
+                      </sap:WorkflowViewStateService.ViewState>
+                      <ActivityAction x:TypeArguments="s:Exception">
+                        <ActivityAction.Argument>
+                          <DelegateInArgument x:TypeArguments="s:Exception" Name="exception" />
+                        </ActivityAction.Argument>
+                        <Throw DisplayName="20.b Details not found in room type mapping" Exception="[new SystemException(&quot;Details not found in room type mapping file.&quot;)]" sap:VirtualizedContainerService.HintSize="336.8,90.4" sap2010:WorkflowViewState.IdRef="Throw_7" />
+                      </ActivityAction>
+                    </Catch>
+                  </TryCatch.Catches>
+                </TryCatch>
+              </Sequence>
+            </ui:CommentOut.Body>
+          </ui:CommentOut>
+        </Sequence>
+      </If.Else>
+    </If>
+    <ui:LogMessage DisplayName="20.b Trace log - extraction done" sap:VirtualizedContainerService.HintSize="523.2,165.6" sap2010:WorkflowViewState.IdRef="LogMessage_2" Level="Trace" Message="[&quot;Extraction done for block name : &quot; + iodictBlockDetails(&quot;strBlockName&quot;)]" />
+  </Sequence>
+</Activity>

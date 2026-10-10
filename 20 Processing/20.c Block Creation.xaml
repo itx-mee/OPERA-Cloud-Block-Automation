@@ -1,0 +1,1036 @@
+<Activity mc:Ignorable="sap sap2010" x:Class="_20_c_Block_Creation" xmlns="http://schemas.microsoft.com/netfx/2009/xaml/activities" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:s="clr-namespace:System;assembly=System.Private.CoreLib" xmlns:sap="http://schemas.microsoft.com/netfx/2009/xaml/activities/presentation" xmlns:sap2010="http://schemas.microsoft.com/netfx/2010/xaml/activities/presentation" xmlns:scg="clr-namespace:System.Collections.Generic;assembly=System.Private.CoreLib" xmlns:sco="clr-namespace:System.Collections.ObjectModel;assembly=System.Private.CoreLib" xmlns:this="clr-namespace:" xmlns:ui="http://schemas.uipath.com/workflow/activities" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+  <x:Members>
+    <x:Property Name="iodictBlockDetails" Type="InOutArgument(scg:Dictionary(x:String, x:String))" />
+    <x:Property Name="idictAssetsData" Type="InArgument(scg:Dictionary(x:String, x:Object))" />
+    <x:Property Name="istrToken" Type="InArgument(x:String)" />
+    <x:Property Name="oboolProfileMissing" Type="OutArgument(x:Boolean)" />
+  </x:Members>
+  <this:_20_c_Block_Creation.idictAssetsData>
+    <InArgument x:TypeArguments="scg:Dictionary(x:String, x:Object)" />
+  </this:_20_c_Block_Creation.idictAssetsData>
+  <this:_20_c_Block_Creation.istrToken>
+    <InArgument x:TypeArguments="x:String" />
+  </this:_20_c_Block_Creation.istrToken>
+  <VisualBasic.Settings>
+    <x:Null />
+  </VisualBasic.Settings>
+  <sap2010:WorkflowViewState.IdRef>_20_c_Block_Creation_1</sap2010:WorkflowViewState.IdRef>
+  <TextExpression.NamespacesForImplementation>
+    <sco:Collection x:TypeArguments="x:String">
+      <x:String>System.Activities</x:String>
+      <x:String>System.Activities.Statements</x:String>
+      <x:String>System.Activities.Expressions</x:String>
+      <x:String>System.Activities.Validation</x:String>
+      <x:String>System.Activities.XamlIntegration</x:String>
+      <x:String>Microsoft.VisualBasic</x:String>
+      <x:String>Microsoft.VisualBasic.Activities</x:String>
+      <x:String>System</x:String>
+      <x:String>System.Collections</x:String>
+      <x:String>System.Collections.Generic</x:String>
+      <x:String>System.Collections.ObjectModel</x:String>
+      <x:String>System.Data</x:String>
+      <x:String>System.Diagnostics</x:String>
+      <x:String>System.Drawing</x:String>
+      <x:String>System.IO</x:String>
+      <x:String>System.Linq</x:String>
+      <x:String>System.Net.Mail</x:String>
+      <x:String>System.Xml</x:String>
+      <x:String>System.Xml.Linq</x:String>
+      <x:String>UiPath.Core</x:String>
+      <x:String>UiPath.Core.Activities</x:String>
+      <x:String>System.Windows.Markup</x:String>
+      <x:String>GlobalVariablesNamespace</x:String>
+      <x:String>GlobalConstantsNamespace</x:String>
+      <x:String>System.Reflection</x:String>
+      <x:String>System.Runtime.Serialization</x:String>
+      <x:String>System.Text</x:String>
+      <x:String>System.Text.Json</x:String>
+      <x:String>System.Net.Http</x:String>
+      <x:String>System.Net</x:String>
+      <x:String>Newtonsoft.Json</x:String>
+      <x:String>Newtonsoft.Json.Linq</x:String>
+      <x:String>System.Linq.Expressions</x:String>
+      <x:String>System.Activities.Runtime.Collections</x:String>
+    </sco:Collection>
+  </TextExpression.NamespacesForImplementation>
+  <TextExpression.ReferencesForImplementation>
+    <sco:Collection x:TypeArguments="AssemblyReference">
+      <AssemblyReference>Microsoft.VisualBasic</AssemblyReference>
+      <AssemblyReference>mscorlib</AssemblyReference>
+      <AssemblyReference>System</AssemblyReference>
+      <AssemblyReference>System.Activities</AssemblyReference>
+      <AssemblyReference>System.ComponentModel.TypeConverter</AssemblyReference>
+      <AssemblyReference>System.Core</AssemblyReference>
+      <AssemblyReference>System.Data</AssemblyReference>
+      <AssemblyReference>System.Data.Common</AssemblyReference>
+      <AssemblyReference>System.Data.DataSetExtensions</AssemblyReference>
+      <AssemblyReference>System.Drawing</AssemblyReference>
+      <AssemblyReference>System.Drawing.Common</AssemblyReference>
+      <AssemblyReference>System.Drawing.Primitives</AssemblyReference>
+      <AssemblyReference>System.Linq</AssemblyReference>
+      <AssemblyReference>System.Net.Mail</AssemblyReference>
+      <AssemblyReference>System.ObjectModel</AssemblyReference>
+      <AssemblyReference>System.Private.CoreLib</AssemblyReference>
+      <AssemblyReference>System.Xaml</AssemblyReference>
+      <AssemblyReference>System.Xml</AssemblyReference>
+      <AssemblyReference>System.Xml.Linq</AssemblyReference>
+      <AssemblyReference>UiPath.System.Activities</AssemblyReference>
+      <AssemblyReference>UiPath.UiAutomation.Activities</AssemblyReference>
+      <AssemblyReference>UiPath.Studio.Constants</AssemblyReference>
+      <AssemblyReference>System.Reflection.DispatchProxy</AssemblyReference>
+      <AssemblyReference>System.Reflection.TypeExtensions</AssemblyReference>
+      <AssemblyReference>System.Reflection.Metadata</AssemblyReference>
+      <AssemblyReference>System.Private.ServiceModel</AssemblyReference>
+      <AssemblyReference>System.Private.DataContractSerialization</AssemblyReference>
+      <AssemblyReference>System.Runtime.Serialization.Formatters</AssemblyReference>
+      <AssemblyReference>System.Runtime.Serialization.Primitives</AssemblyReference>
+      <AssemblyReference>System.Linq.Async</AssemblyReference>
+      <AssemblyReference>System.Collections</AssemblyReference>
+      <AssemblyReference>System.Memory</AssemblyReference>
+      <AssemblyReference>System.Text.Encoding.CodePages</AssemblyReference>
+      <AssemblyReference>System.Text.Json</AssemblyReference>
+      <AssemblyReference>System.Net.Http.WinHttpHandler</AssemblyReference>
+      <AssemblyReference>System.Net.Http</AssemblyReference>
+      <AssemblyReference>System.Net.Primitives</AssemblyReference>
+      <AssemblyReference>System.Net.HttpListener</AssemblyReference>
+      <AssemblyReference>System.Net.WebProxy</AssemblyReference>
+      <AssemblyReference>System.Net.NameResolution</AssemblyReference>
+      <AssemblyReference>System.Net.WebClient</AssemblyReference>
+      <AssemblyReference>System.Security.Permissions</AssemblyReference>
+      <AssemblyReference>System.Net.Requests</AssemblyReference>
+      <AssemblyReference>System.Net.ServicePoint</AssemblyReference>
+      <AssemblyReference>System.Net.WebHeaderCollection</AssemblyReference>
+      <AssemblyReference>Newtonsoft.Json</AssemblyReference>
+      <AssemblyReference>System.Memory.Data</AssemblyReference>
+      <AssemblyReference>UiPath.Excel.Activities.Design</AssemblyReference>
+      <AssemblyReference>System.Console</AssemblyReference>
+      <AssemblyReference>System.Configuration.ConfigurationManager</AssemblyReference>
+      <AssemblyReference>System.ComponentModel</AssemblyReference>
+      <AssemblyReference>System.Private.Uri</AssemblyReference>
+      <AssemblyReference>System.Collections.NonGeneric</AssemblyReference>
+      <AssemblyReference>System.Linq.Expressions</AssemblyReference>
+    </sco:Collection>
+  </TextExpression.ReferencesForImplementation>
+  <Sequence DisplayName="_20_c_Block_Creation" sap:VirtualizedContainerService.HintSize="1156,1125.6" sap2010:WorkflowViewState.IdRef="Sequence_1">
+    <Sequence.Variables>
+      <Variable x:TypeArguments="x:String" Name="strBlockCreationBody" />
+    </Sequence.Variables>
+    <sap:WorkflowViewStateService.ViewState>
+      <scg:Dictionary x:TypeArguments="x:String, x:Object">
+        <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+      </scg:Dictionary>
+    </sap:WorkflowViewStateService.ViewState>
+    <ui:LogMessage DisplayName="20.c Info log - Block creation started" sap:VirtualizedContainerService.HintSize="580.8,174.4" sap2010:WorkflowViewState.IdRef="LogMessage_1" Level="Info" Message="[&quot;Block creation started&quot;]" />
+    <TryCatch DisplayName="20.c Try catch for block already created" sap:VirtualizedContainerService.HintSize="580.8,56.8" sap2010:WorkflowViewState.IdRef="TryCatch_1">
+      <sap:WorkflowViewStateService.ViewState>
+        <scg:Dictionary x:TypeArguments="x:String, x:Object">
+          <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+          <x:Boolean x:Key="IsPinned">False</x:Boolean>
+        </scg:Dictionary>
+      </sap:WorkflowViewStateService.ViewState>
+      <TryCatch.Try>
+        <ui:InvokeCode ContinueOnError="{x:Null}" Code="Dim client As New system.net.http.HttpClient()&#xA;Dim request As New HttpRequestMessage(HttpMethod.Get, istrHostName + &quot;/blk/v1/blocks/?fetchInstructions=Block&amp;blockCode=&quot;+istrBlockCode)&#xA;&#xA;request.Headers.Add(&quot;x-hotelId&quot;, istrHotelID)&#xA;request.Headers.Add(&quot;x-app-key&quot;, istrAppKey)&#xA;request.Headers.Add(&quot;Authorization&quot;, istrToken)&#xA;Dim content As New StringContent(&quot;&quot;, Nothing, &quot;application/json&quot;)&#xA;request.Content = content&#xA;' Send the HTTP request synchronously&#xA;Dim response As HttpResponseMessage = client.Send(request)&#xA;&#xA;&#xA;' Ensure that the request was successful&#xA;response.EnsureSuccessStatusCode()&#xA;' Write the response content to the console&#xA;Dim strResponseBody As String = response.Content.ReadAsStringAsync().Result&#xA;&#xA;Dim jobjBlockSummaries As JToken= JObject.Parse(strResponseBody)(&quot;blockSummaries&quot;)&#xA;If (CInt(jobjBlockSummaries(&quot;totalResults&quot;)) &gt; 0 ) Then&#xA;&#x9;Throw New SystemException(&quot;Block already found with block code- &quot;+istrBlockCode )&#xA;End If&#xA;" DisplayName="20.c Invoke Code to get block id using block name" sap:VirtualizedContainerService.HintSize="333.6,164.8" sap2010:WorkflowViewState.IdRef="InvokeCode_19">
+          <ui:InvokeCode.Arguments>
+            <InArgument x:TypeArguments="x:String" x:Key="istrHostName">[idictAssetsData("Opera OHIP URL").ToString]</InArgument>
+            <InArgument x:TypeArguments="x:String" x:Key="istrAppKey">[idictAssetsData("Opera OHIP AppKey").ToString]</InArgument>
+            <InArgument x:TypeArguments="x:String" x:Key="istrToken">[istrToken]</InArgument>
+            <InArgument x:TypeArguments="x:String" x:Key="istrBlockCode">[iodictBlockDetails("strBlockCode")]</InArgument>
+            <InOutArgument x:TypeArguments="scg:Dictionary(x:String, x:String)" x:Key="idictBlockDetails">[iodictBlockDetails]</InOutArgument>
+            <InArgument x:TypeArguments="x:String" x:Key="istrHotelID">[iodictBlockDetails("strPropertyCode")]</InArgument>
+          </ui:InvokeCode.Arguments>
+          <sap:WorkflowViewStateService.ViewState>
+            <scg:Dictionary x:TypeArguments="x:String, x:Object">
+              <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+              <x:Boolean x:Key="IsPinned">False</x:Boolean>
+            </scg:Dictionary>
+          </sap:WorkflowViewStateService.ViewState>
+        </ui:InvokeCode>
+      </TryCatch.Try>
+      <TryCatch.Catches>
+        <Catch x:TypeArguments="s:Exception" sap:VirtualizedContainerService.HintSize="403.2,23.2" sap2010:WorkflowViewState.IdRef="Catch`1_1">
+          <sap:WorkflowViewStateService.ViewState>
+            <scg:Dictionary x:TypeArguments="x:String, x:Object">
+              <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+              <x:Boolean x:Key="IsPinned">False</x:Boolean>
+            </scg:Dictionary>
+          </sap:WorkflowViewStateService.ViewState>
+          <ActivityAction x:TypeArguments="s:Exception">
+            <ActivityAction.Argument>
+              <DelegateInArgument x:TypeArguments="s:Exception" Name="exception" />
+            </ActivityAction.Argument>
+            <Throw DisplayName="20.c Throw BRE - Block already created" Exception="[New BusinessRuleException(&quot;Block already created&quot;)]" sap:VirtualizedContainerService.HintSize="334.4,90.4" sap2010:WorkflowViewState.IdRef="Throw_1" />
+          </ActivityAction>
+        </Catch>
+      </TryCatch.Catches>
+    </TryCatch>
+    <Assign DisplayName="20.c Assign missing profile as false" sap:VirtualizedContainerService.HintSize="580.8,56.8" sap2010:WorkflowViewState.IdRef="Assign_3">
+      <Assign.To>
+        <OutArgument x:TypeArguments="x:Boolean">[oboolProfileMissing]</OutArgument>
+      </Assign.To>
+      <Assign.Value>
+        <InArgument x:TypeArguments="x:Boolean">False</InArgument>
+      </Assign.Value>
+      <sap:WorkflowViewStateService.ViewState>
+        <scg:Dictionary x:TypeArguments="x:String, x:Object">
+          <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+          <x:Boolean x:Key="IsPinned">False</x:Boolean>
+        </scg:Dictionary>
+      </sap:WorkflowViewStateService.ViewState>
+    </Assign>
+    <Switch x:TypeArguments="x:String" DisplayName="Switch-To check the Travel Agent" Expression="[If(&#xA;    iodictBlockDetails(&quot;strTravelAgent&quot;).ToLower.Contains(&quot;the tour company&quot;),&#xA;    &quot;TheTourCompany&quot;,&#xA;    If(&#xA;        iodictBlockDetails(&quot;strTravelAgent&quot;).ToLower.Contains(&quot;road rebel&quot;),&#xA;        &quot;RoadRebel&quot;,&#xA;        &quot;&quot;&#xA;    )&#xA;)]" sap:VirtualizedContainerService.HintSize="580.8,198.4" sap2010:WorkflowViewState.IdRef="Switch`1_2">
+      <Switch.Default>
+        <Sequence sap:VirtualizedContainerService.HintSize="670.4,2218.4" sap2010:WorkflowViewState.IdRef="Sequence_27">
+          <sap:WorkflowViewStateService.ViewState>
+            <scg:Dictionary x:TypeArguments="x:String, x:Object">
+              <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+            </scg:Dictionary>
+          </sap:WorkflowViewStateService.ViewState>
+          <ui:CommentOut DisplayName="Old scenerio" sap:VirtualizedContainerService.HintSize="636.8,56.8" sap2010:WorkflowViewState.IdRef="CommentOut_2">
+            <ui:CommentOut.Body>
+              <Sequence DisplayName="Ignored Activities" sap:VirtualizedContainerService.HintSize="416,108" sap2010:WorkflowViewState.IdRef="Sequence_29">
+                <sap:WorkflowViewStateService.ViewState>
+                  <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                    <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                  </scg:Dictionary>
+                </sap:WorkflowViewStateService.ViewState>
+                <If Condition="[iodictBlockDetails(&quot;strTravelAgent&quot;).Contains(&quot;-&quot;)]" DisplayName="20.c If extracted travel agent have both agent and contact" sap:VirtualizedContainerService.HintSize="382.4,48" sap2010:WorkflowViewState.IdRef="If_5">
+                  <sap:WorkflowViewStateService.ViewState>
+                    <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                      <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+                      <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                    </scg:Dictionary>
+                  </sap:WorkflowViewStateService.ViewState>
+                  <If.Then>
+                    <Sequence DisplayName="Then" sap:VirtualizedContainerService.HintSize="416,108" sap2010:WorkflowViewState.IdRef="Sequence_23">
+                      <sap:WorkflowViewStateService.ViewState>
+                        <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                          <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                          <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                        </scg:Dictionary>
+                      </sap:WorkflowViewStateService.ViewState>
+                      <ui:ForEach x:TypeArguments="x:String" CurrentIndex="{x:Null}" DisplayName="20.c For Each currentText" sap:VirtualizedContainerService.HintSize="382.4,48" sap2010:WorkflowViewState.IdRef="ForEach`1_2" Values="[iodictBlockDetails(&quot;strTravelAgent&quot;).Split(&quot;-&quot;c)]">
+                        <ui:ForEach.Body>
+                          <ActivityAction x:TypeArguments="x:String">
+                            <ActivityAction.Argument>
+                              <DelegateInArgument x:TypeArguments="x:String" Name="currentText" />
+                            </ActivityAction.Argument>
+                            <Sequence DisplayName="Body" sap:VirtualizedContainerService.HintSize="483.2,1267.2" sap2010:WorkflowViewState.IdRef="Sequence_22">
+                              <sap:WorkflowViewStateService.ViewState>
+                                <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                  <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                                </scg:Dictionary>
+                              </sap:WorkflowViewStateService.ViewState>
+                              <ui:InvokeCode ContinueOnError="{x:Null}" Code="Dim client As New system.net.http.HttpClient()&#xA;Dim request As New HttpRequestMessage(HttpMethod.Get, istrHostName +&quot;/crm/v1/profiles?profileType=company&amp;profileName=&quot;+ istrProfileName)&#xA;&#xA;request.Headers.Add(&quot;x-hotelId&quot;, istrHotelID)&#xA;request.Headers.Add(&quot;x-app-key&quot;, istrAppKey)&#xA;request.Headers.Add(&quot;Authorization&quot;, istrToken)&#xA;&#xA;Dim content As New StringContent(&quot;&quot;, Nothing, &quot;application/json&quot;)&#xA;request.Content = content&#xA;' Send the HTTP request synchronously&#xA;Dim response As HttpResponseMessage = client.Send(request)&#xA;&#xA;&#xA;' Ensure that the request was successful&#xA;response.EnsureSuccessStatusCode()&#xA;' Write the response content to the console&#xA;Dim strResponseBody As String = response.Content.ReadAsStringAsync().Result&#xA;&#xA;Dim jobjReservationInfo As JToken= JObject.Parse(strResponseBody)(&quot;profileSummaries&quot;)&#xA;If CInt(jobjReservationInfo(&quot;totalResults&quot;)) &gt; 0 Then&#xA;&#x9;For Each item As JToken In jobjReservationInfo(&quot;profileInfo&quot;)&#xA;&#x9;&#x9;If (convert.ToString(item(&quot;profile&quot;)(&quot;formerName&quot;)(&quot;name&quot;)).ToLower.Equals(istrProfileName.ToLower) )&#xA;&#x9;&#x9;&#x9;iodictBlockDetails(&quot;strAgentProfileId&quot;) =Convert.ToString(item(&quot;profileIdList&quot;)(0)(&quot;id&quot;))&#xA;&#x9;&#x9;&#x9;iodictBlockDetails(&quot;strAgentName&quot;) = istrProfileName.Trim&#xA;&#x9;&#x9;&#x9;iodictBlockDetails(&quot;strProfileType&quot;) = &quot;Company&quot;&#xA;&#x9;&#x9;End If&#xA;&#x9;Next&#xA;End If" DisplayName="20.c Invoke Code to get company profile id" sap:VirtualizedContainerService.HintSize="449.6,196.8" sap2010:WorkflowViewState.IdRef="InvokeCode_31">
+                                <ui:InvokeCode.Arguments>
+                                  <InArgument x:TypeArguments="x:String" x:Key="istrHostName">[idictAssetsData("Opera OHIP URL").ToString]</InArgument>
+                                  <InArgument x:TypeArguments="x:String" x:Key="istrAppKey">[idictAssetsData("Opera OHIP AppKey").ToString]</InArgument>
+                                  <InArgument x:TypeArguments="x:String" x:Key="istrToken">[istrToken]</InArgument>
+                                  <InArgument x:TypeArguments="x:String" x:Key="istrBlockCode">[iodictBlockDetails("strBlockCode")]</InArgument>
+                                  <InArgument x:TypeArguments="x:String" x:Key="istrHotelID">[iodictBlockDetails("strPropertyCode")]</InArgument>
+                                  <InArgument x:TypeArguments="x:String" x:Key="istrProfileName">[iodictBlockDetails("strTravelAgent")]</InArgument>
+                                  <InOutArgument x:TypeArguments="scg:Dictionary(x:String, x:String)" x:Key="iodictBlockDetails">[iodictBlockDetails]</InOutArgument>
+                                </ui:InvokeCode.Arguments>
+                                <sap:WorkflowViewStateService.ViewState>
+                                  <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                    <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                                    <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                                  </scg:Dictionary>
+                                </sap:WorkflowViewStateService.ViewState>
+                              </ui:InvokeCode>
+                              <ui:InvokeCode ContinueOnError="{x:Null}" Code="Dim client As New system.net.http.HttpClient()&#xA;Dim request As New HttpRequestMessage(HttpMethod.Get, istrHostName +&quot;/crm/v1/profiles?profileType=agent&amp;profileName=&quot;+ istrProfileName)&#xA;&#xA;request.Headers.Add(&quot;x-hotelId&quot;, istrHotelID)&#xA;request.Headers.Add(&quot;x-app-key&quot;, istrAppKey)&#xA;request.Headers.Add(&quot;Authorization&quot;, istrToken)&#xA;&#xA;Dim content As New StringContent(&quot;&quot;, Nothing, &quot;application/json&quot;)&#xA;request.Content = content&#xA;' Send the HTTP request synchronously&#xA;Dim response As HttpResponseMessage = client.Send(request)&#xA;&#xA;&#xA;' Ensure that the request was successful&#xA;response.EnsureSuccessStatusCode()&#xA;' Write the response content to the console&#xA;Dim strResponseBody As String = response.Content.ReadAsStringAsync().Result&#xA;&#xA;Dim jobjReservationInfo As JToken= JObject.Parse(strResponseBody)(&quot;profileSummaries&quot;)&#xA;If CInt(jobjReservationInfo(&quot;totalResults&quot;)) &gt; 0 Then&#xA;&#x9;For Each item As JToken In jobjReservationInfo(&quot;profileInfo&quot;)&#xA;&#x9;&#x9;If (convert.ToString(item(&quot;profile&quot;)(&quot;formerName&quot;)(&quot;name&quot;)).ToLower.Equals(istrProfileName.ToLower) )&#xA;&#x9;&#x9;&#x9;iodictBlockDetails(&quot;strAgentProfileId&quot;) =Convert.ToString(item(&quot;profileIdList&quot;)(0)(&quot;id&quot;))&#xA;&#x9;&#x9;&#x9;iodictBlockDetails(&quot;strAgentName&quot;) = istrProfileName.Trim&#xA;&#x9;&#x9;&#x9;iodictBlockDetails(&quot;strProfileType&quot;) = &quot;Agent&quot;&#xA;&#x9;&#x9;End If&#xA;&#x9;Next&#xA;End If" DisplayName="20.c Invoke Code to get agent profile id" sap:VirtualizedContainerService.HintSize="449.6,196.8" sap2010:WorkflowViewState.IdRef="InvokeCode_32">
+                                <ui:InvokeCode.Arguments>
+                                  <InArgument x:TypeArguments="x:String" x:Key="istrHostName">[idictAssetsData("Opera OHIP URL").ToString]</InArgument>
+                                  <InArgument x:TypeArguments="x:String" x:Key="istrAppKey">[idictAssetsData("Opera OHIP AppKey").ToString]</InArgument>
+                                  <InArgument x:TypeArguments="x:String" x:Key="istrToken">[istrToken]</InArgument>
+                                  <InArgument x:TypeArguments="x:String" x:Key="istrBlockCode">[iodictBlockDetails("strBlockCode")]</InArgument>
+                                  <InArgument x:TypeArguments="x:String" x:Key="istrHotelID">[iodictBlockDetails("strPropertyCode")]</InArgument>
+                                  <InArgument x:TypeArguments="x:String" x:Key="istrProfileName">[currentText.Trim]</InArgument>
+                                  <InOutArgument x:TypeArguments="scg:Dictionary(x:String, x:String)" x:Key="iodictBlockDetails">[iodictBlockDetails]</InOutArgument>
+                                </ui:InvokeCode.Arguments>
+                                <sap:WorkflowViewStateService.ViewState>
+                                  <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                    <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                                    <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                                  </scg:Dictionary>
+                                </sap:WorkflowViewStateService.ViewState>
+                              </ui:InvokeCode>
+                              <ui:InvokeCode ContinueOnError="{x:Null}" Code="Dim client As New system.net.http.HttpClient()&#xA;Dim strFirstName As String = istrProfileName.trim.Split(&quot; &quot;c)(0).Trim&#xA;Dim strLastName As String =  If (istrProfileName.trim.Split(&quot; &quot;c).Length &gt;1 , istrProfileName.trim.Split(&quot; &quot;c)(1) , &quot;&quot;).Trim&#xA;If ( Not istrProfileName.Trim.Contains(&quot; &quot;)) Then &#xA;&#x9;strFirstName = &quot;&quot;&#xA;&#x9;strLastName = istrProfileName&#xA;End If&#xA;Dim request As New HttpRequestMessage(HttpMethod.Get, istrHostName +&quot;/crm/v1/profiles?profileType=contact&amp;givenName=&quot;+ strFirstName +&quot;&amp;profileName=&quot;+ strLastName)&#xA;&#xA;request.Headers.Add(&quot;x-hotelId&quot;, istrHotelID)&#xA;request.Headers.Add(&quot;x-app-key&quot;, istrAppKey)&#xA;request.Headers.Add(&quot;Authorization&quot;, istrToken)&#xA;&#xA;Dim content As New StringContent(&quot;&quot;, Nothing, &quot;application/json&quot;)&#xA;request.Content = content&#xA;' Send the HTTP request synchronously&#xA;Dim response As HttpResponseMessage = client.Send(request)&#xA;&#xA;&#xA;' Ensure that the request was successful&#xA;response.EnsureSuccessStatusCode()&#xA;' Write the response content to the console&#xA;Dim strResponseBody As String = response.Content.ReadAsStringAsync().Result&#xA;&#xA;&#xA;Dim jobjReservationInfo As JToken= JObject.Parse(strResponseBody)(&quot;profileSummaries&quot;)&#xA;If CInt(jobjReservationInfo(&quot;totalResults&quot;)) &gt; 0 Then&#xA;&#x9;For Each item As JToken In jobjReservationInfo(&quot;profileInfo&quot;)&#xA;&#x9;&#x9;If (convert.ToString(item(&quot;profile&quot;)(&quot;formerName&quot;)(&quot;name&quot;)).ToLower.Equals(strLastName.ToLower) AndAlso convert.ToString(item(&quot;profile&quot;)(&quot;formerName&quot;)(&quot;givenName&quot;)).ToLower.Equals(strFirstName.ToLower)  )&#xA;&#x9;&#x9;&#x9;iodictBlockDetails(&quot;strContactProfileId&quot;) =Convert.ToString(item(&quot;profileIdList&quot;)(0)(&quot;id&quot;))&#xA;&#x9;&#x9;&#x9;iodictBlockDetails(&quot;strContactFirstName&quot;) = strFirstName&#xA;&#x9;&#x9;&#x9;iodictBlockDetails(&quot;strContactLastName&quot;) = strLastName&#xA;&#x9;&#x9;End If&#xA;&#x9;Next&#xA;End If" DisplayName="20.c Invoke Code to get contact profile id" sap:VirtualizedContainerService.HintSize="449.6,196.8" sap2010:WorkflowViewState.IdRef="InvokeCode_33">
+                                <ui:InvokeCode.Arguments>
+                                  <InArgument x:TypeArguments="x:String" x:Key="istrHostName">[idictAssetsData("Opera OHIP URL").ToString]</InArgument>
+                                  <InArgument x:TypeArguments="x:String" x:Key="istrAppKey">[idictAssetsData("Opera OHIP AppKey").ToString]</InArgument>
+                                  <InArgument x:TypeArguments="x:String" x:Key="istrToken">[istrToken]</InArgument>
+                                  <InArgument x:TypeArguments="x:String" x:Key="istrBlockCode">[iodictBlockDetails("strBlockCode")]</InArgument>
+                                  <InArgument x:TypeArguments="x:String" x:Key="istrHotelID">[iodictBlockDetails("strPropertyCode")]</InArgument>
+                                  <InArgument x:TypeArguments="x:String" x:Key="istrProfileName">[currentText.Trim]</InArgument>
+                                  <InOutArgument x:TypeArguments="scg:Dictionary(x:String, x:String)" x:Key="iodictBlockDetails">[iodictBlockDetails]</InOutArgument>
+                                </ui:InvokeCode.Arguments>
+                                <sap:WorkflowViewStateService.ViewState>
+                                  <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                    <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                                    <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                                  </scg:Dictionary>
+                                </sap:WorkflowViewStateService.ViewState>
+                              </ui:InvokeCode>
+                              <If Condition="[currentText.Trim.ToUpper.Contains(&quot;TAG&quot;)]" DisplayName="20.c If Profile name is TAG" sap:VirtualizedContainerService.HintSize="449.6,508.8" sap2010:WorkflowViewState.IdRef="If_8">
+                                <sap:WorkflowViewStateService.ViewState>
+                                  <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                    <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                                    <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                                  </scg:Dictionary>
+                                </sap:WorkflowViewStateService.ViewState>
+                                <If.Then>
+                                  <Sequence DisplayName="Then" sap:VirtualizedContainerService.HintSize="416,248" sap2010:WorkflowViewState.IdRef="Sequence_20">
+                                    <sap:WorkflowViewStateService.ViewState>
+                                      <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                        <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                                      </scg:Dictionary>
+                                    </sap:WorkflowViewStateService.ViewState>
+                                    <ui:InvokeCode ContinueOnError="{x:Null}" Code="iodictBlockDetails(&quot;strAgentProfileId&quot;) = &quot;262401&quot;&#xA;iodictBlockDetails(&quot;strAgentName&quot;) = &quot;TAG Global Travel and Event Management C&quot;&#xA;iodictBlockDetails(&quot;strProfileType&quot;) = &quot;Agent&quot;" DisplayName="20.c Invoke Code for TAG profile id" sap:VirtualizedContainerService.HintSize="382.4,188" sap2010:WorkflowViewState.IdRef="InvokeCode_34">
+                                      <ui:InvokeCode.Arguments>
+                                        <InOutArgument x:TypeArguments="scg:Dictionary(x:String, x:String)" x:Key="iodictBlockDetails">[iodictBlockDetails]</InOutArgument>
+                                      </ui:InvokeCode.Arguments>
+                                    </ui:InvokeCode>
+                                  </Sequence>
+                                </If.Then>
+                                <If.Else>
+                                  <Sequence DisplayName="Else" sap:VirtualizedContainerService.HintSize="416,90.66666666666667" sap2010:WorkflowViewState.IdRef="Sequence_21">
+                                    <sap:WorkflowViewStateService.ViewState>
+                                      <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                        <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                                      </scg:Dictionary>
+                                    </sap:WorkflowViewStateService.ViewState>
+                                  </Sequence>
+                                </If.Else>
+                              </If>
+                              <Assign DisplayName="20.c Assign missing profile" sap:VirtualizedContainerService.HintSize="450,108" sap2010:WorkflowViewState.IdRef="Assign_8">
+                                <Assign.To>
+                                  <OutArgument x:TypeArguments="x:Boolean">[oboolProfileMissing]</OutArgument>
+                                </Assign.To>
+                                <Assign.Value>
+                                  <InArgument x:TypeArguments="x:Boolean">[oboolProfileMissing Or (String.IsNullOrEmpty(iodictBlockDetails("strAgentProfileId")) Or String.IsNullOrEmpty(iodictBlockDetails("strContactProfileId")) )]</InArgument>
+                                </Assign.Value>
+                              </Assign>
+                            </Sequence>
+                          </ActivityAction>
+                        </ui:ForEach.Body>
+                        <sap:WorkflowViewStateService.ViewState>
+                          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                            <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+                            <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                          </scg:Dictionary>
+                        </sap:WorkflowViewStateService.ViewState>
+                      </ui:ForEach>
+                    </Sequence>
+                  </If.Then>
+                  <If.Else>
+                    <Sequence DisplayName="Else" sap:VirtualizedContainerService.HintSize="467.2,812" sap2010:WorkflowViewState.IdRef="Sequence_16">
+                      <sap:WorkflowViewStateService.ViewState>
+                        <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                          <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                          <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                        </scg:Dictionary>
+                      </sap:WorkflowViewStateService.ViewState>
+                      <ui:InvokeCode ContinueOnError="{x:Null}" Code="Dim client As New system.net.http.HttpClient()&#xA;Dim request As New HttpRequestMessage(HttpMethod.Get, istrHostName +&quot;/crm/v1/profiles?profileType=company&amp;profileName=&quot;+ istrProfileName)&#xA;&#xA;request.Headers.Add(&quot;x-hotelId&quot;, istrHotelID)&#xA;request.Headers.Add(&quot;x-app-key&quot;, istrAppKey)&#xA;request.Headers.Add(&quot;Authorization&quot;, istrToken)&#xA;&#xA;Dim content As New StringContent(&quot;&quot;, Nothing, &quot;application/json&quot;)&#xA;request.Content = content&#xA;' Send the HTTP request synchronously&#xA;Dim response As HttpResponseMessage = client.Send(request)&#xA;&#xA;&#xA;' Ensure that the request was successful&#xA;response.EnsureSuccessStatusCode()&#xA;' Write the response content to the console&#xA;Dim strResponseBody As String = response.Content.ReadAsStringAsync().Result&#xA;&#xA;&#xA;Dim jobjReservationInfo As JToken= JObject.Parse(strResponseBody)(&quot;profileSummaries&quot;)&#xA;If CInt(jobjReservationInfo(&quot;totalResults&quot;)) &gt; 0 Then&#xA;&#x9;For Each item As JToken In jobjReservationInfo(&quot;profileInfo&quot;)&#xA;&#x9;&#x9;If (convert.ToString(item(&quot;profile&quot;)(&quot;formerName&quot;)(&quot;name&quot;)).ToLower.Equals(istrProfileName.ToLower) )&#xA;&#x9;&#x9;&#x9;iodictBlockDetails(&quot;strAgentProfileId&quot;) =Convert.ToString(item(&quot;profileIdList&quot;)(0)(&quot;id&quot;))&#xA;&#x9;&#x9;&#x9;iodictBlockDetails(&quot;strAgentName&quot;) = istrProfileName.Trim&#xA;&#x9;&#x9;&#x9;iodictBlockDetails(&quot;strProfileType&quot;) = &quot;Company&quot;&#xA;&#x9;&#x9;End If&#xA;&#x9;Next&#xA;End If" DisplayName="20.c Invoke Code to get company profile id" sap:VirtualizedContainerService.HintSize="433.6,196.8" sap2010:WorkflowViewState.IdRef="InvokeCode_35">
+                        <ui:InvokeCode.Arguments>
+                          <InArgument x:TypeArguments="x:String" x:Key="istrHostName">[idictAssetsData("Opera OHIP URL").ToString]</InArgument>
+                          <InArgument x:TypeArguments="x:String" x:Key="istrAppKey">[idictAssetsData("Opera OHIP AppKey").ToString]</InArgument>
+                          <InArgument x:TypeArguments="x:String" x:Key="istrToken">[istrToken]</InArgument>
+                          <InArgument x:TypeArguments="x:String" x:Key="istrBlockCode">[iodictBlockDetails("strBlockCode")]</InArgument>
+                          <InArgument x:TypeArguments="x:String" x:Key="istrHotelID">[iodictBlockDetails("strPropertyCode")]</InArgument>
+                          <InArgument x:TypeArguments="x:String" x:Key="istrProfileName">[iodictBlockDetails("strTravelAgent")]</InArgument>
+                          <InOutArgument x:TypeArguments="scg:Dictionary(x:String, x:String)" x:Key="iodictBlockDetails">[iodictBlockDetails]</InOutArgument>
+                        </ui:InvokeCode.Arguments>
+                        <sap:WorkflowViewStateService.ViewState>
+                          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                            <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                            <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                          </scg:Dictionary>
+                        </sap:WorkflowViewStateService.ViewState>
+                      </ui:InvokeCode>
+                      <ui:InvokeCode ContinueOnError="{x:Null}" Code="Dim client As New system.net.http.HttpClient()&#xA;Dim request As New HttpRequestMessage(HttpMethod.Get, istrHostName +&quot;/crm/v1/profiles?profileType=agent&amp;profileName=&quot;+ istrProfileName)&#xA;&#xA;request.Headers.Add(&quot;x-hotelId&quot;, istrHotelID)&#xA;request.Headers.Add(&quot;x-app-key&quot;, istrAppKey)&#xA;request.Headers.Add(&quot;Authorization&quot;, istrToken)&#xA;&#xA;Dim content As New StringContent(&quot;&quot;, Nothing, &quot;application/json&quot;)&#xA;request.Content = content&#xA;' Send the HTTP request synchronously&#xA;Dim response As HttpResponseMessage = client.Send(request)&#xA;&#xA;&#xA;' Ensure that the request was successful&#xA;response.EnsureSuccessStatusCode()&#xA;' Write the response content to the console&#xA;Dim strResponseBody As String = response.Content.ReadAsStringAsync().Result&#xA;&#xA;&#xA;Dim jobjReservationInfo As JToken= JObject.Parse(strResponseBody)(&quot;profileSummaries&quot;)&#xA;If CInt(jobjReservationInfo(&quot;totalResults&quot;)) &gt; 0 Then&#xA;&#x9;For Each item As JToken In jobjReservationInfo(&quot;profileInfo&quot;)&#xA;&#x9;&#x9;If (convert.ToString(item(&quot;profile&quot;)(&quot;formerName&quot;)(&quot;name&quot;)).ToLower.Equals(istrProfileName.ToLower) )&#xA;&#x9;&#x9;&#x9;iodictBlockDetails(&quot;strAgentProfileId&quot;) =Convert.ToString(item(&quot;profileIdList&quot;)(0)(&quot;id&quot;))&#xA;&#x9;&#x9;&#x9;iodictBlockDetails(&quot;strAgentName&quot;) = istrProfileName.Trim&#xA;&#x9;&#x9;&#x9;iodictBlockDetails(&quot;strProfileType&quot;) = &quot;Agent&quot;&#xA;&#x9;&#x9;End If&#xA;&#x9;Next&#xA;End If" DisplayName="20.c Invoke Code to get agent profile id" sap:VirtualizedContainerService.HintSize="433.6,196.8" sap2010:WorkflowViewState.IdRef="InvokeCode_36">
+                        <ui:InvokeCode.Arguments>
+                          <InArgument x:TypeArguments="x:String" x:Key="istrHostName">[idictAssetsData("Opera OHIP URL").ToString]</InArgument>
+                          <InArgument x:TypeArguments="x:String" x:Key="istrAppKey">[idictAssetsData("Opera OHIP AppKey").ToString]</InArgument>
+                          <InArgument x:TypeArguments="x:String" x:Key="istrToken">[istrToken]</InArgument>
+                          <InArgument x:TypeArguments="x:String" x:Key="istrBlockCode">[iodictBlockDetails("strBlockCode")]</InArgument>
+                          <InArgument x:TypeArguments="x:String" x:Key="istrHotelID">[iodictBlockDetails("strPropertyCode")]</InArgument>
+                          <InArgument x:TypeArguments="x:String" x:Key="istrProfileName">[iodictBlockDetails("strTravelAgent")]</InArgument>
+                          <InOutArgument x:TypeArguments="scg:Dictionary(x:String, x:String)" x:Key="iodictBlockDetails">[iodictBlockDetails]</InOutArgument>
+                        </ui:InvokeCode.Arguments>
+                        <sap:WorkflowViewStateService.ViewState>
+                          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                            <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                            <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                          </scg:Dictionary>
+                        </sap:WorkflowViewStateService.ViewState>
+                      </ui:InvokeCode>
+                      <ui:InvokeCode ContinueOnError="{x:Null}" Code="Dim client As New system.net.http.HttpClient()&#xA;Dim strFirstName As String = istrProfileName.trim.Split(&quot; &quot;c)(0).Trim&#xA;Dim strLastName As String =  If (istrProfileName.trim.Split(&quot; &quot;c).Length &gt;1 , istrProfileName.trim.Split(&quot; &quot;c)(1) , &quot;&quot;).Trim&#xA;If ( Not istrProfileName.Trim.Contains(&quot; &quot;)) Then &#xA;&#x9;strFirstName = &quot;&quot;&#xA;&#x9;strLastName = istrProfileName&#xA;End If&#xA;Dim request As New HttpRequestMessage(HttpMethod.Get, istrHostName +&quot;/crm/v1/profiles?profileType=contact&amp;givenName=&quot;+ strFirstName +&quot;&amp;profileName=&quot;+ strLastName)&#xA;&#xA;request.Headers.Add(&quot;x-hotelId&quot;, istrHotelID)&#xA;request.Headers.Add(&quot;x-app-key&quot;, istrAppKey)&#xA;request.Headers.Add(&quot;Authorization&quot;, istrToken)&#xA;&#xA;Dim content As New StringContent(&quot;&quot;, Nothing, &quot;application/json&quot;)&#xA;request.Content = content&#xA;' Send the HTTP request synchronously&#xA;Dim response As HttpResponseMessage = client.Send(request)&#xA;&#xA;&#xA;' Ensure that the request was successful&#xA;response.EnsureSuccessStatusCode()&#xA;' Write the response content to the console&#xA;Dim strResponseBody As String = response.Content.ReadAsStringAsync().Result&#xA;&#xA;&#xA;Dim jobjReservationInfo As JToken= JObject.Parse(strResponseBody)(&quot;profileSummaries&quot;)&#xA;If CInt(jobjReservationInfo(&quot;totalResults&quot;)) &gt; 0 Then&#xA;&#x9;For Each item As JToken In jobjReservationInfo(&quot;profileInfo&quot;)&#xA;&#x9;&#x9;If (convert.ToString(item(&quot;profile&quot;)(&quot;formerName&quot;)(&quot;name&quot;)).ToLower.Equals(strLastName.ToLower) AndAlso convert.ToString(item(&quot;profile&quot;)(&quot;formerName&quot;)(&quot;givenName&quot;)).ToLower.Equals(strFirstName.ToLower))&#xA;&#x9;&#x9;&#x9;iodictBlockDetails(&quot;strContactProfileId&quot;) =Convert.ToString(item(&quot;profileIdList&quot;)(0)(&quot;id&quot;))&#xA;&#x9;&#x9;&#x9;iodictBlockDetails(&quot;strContactFirstName&quot;) = strFirstName&#xA;&#x9;&#x9;&#x9;iodictBlockDetails(&quot;strContactLastName&quot;) = strLastName&#xA;&#x9;&#x9;End If&#xA;&#x9;Next&#xA;End If" DisplayName="20.c Invoke Code to get contact profile id" sap:VirtualizedContainerService.HintSize="433.6,196.8" sap2010:WorkflowViewState.IdRef="InvokeCode_37">
+                        <ui:InvokeCode.Arguments>
+                          <InArgument x:TypeArguments="x:String" x:Key="istrHostName">[idictAssetsData("Opera OHIP URL").ToString]</InArgument>
+                          <InArgument x:TypeArguments="x:String" x:Key="istrAppKey">[idictAssetsData("Opera OHIP AppKey").ToString]</InArgument>
+                          <InArgument x:TypeArguments="x:String" x:Key="istrToken">[istrToken]</InArgument>
+                          <InArgument x:TypeArguments="x:String" x:Key="istrBlockCode">[iodictBlockDetails("strBlockCode")]</InArgument>
+                          <InArgument x:TypeArguments="x:String" x:Key="istrHotelID">[iodictBlockDetails("strPropertyCode")]</InArgument>
+                          <InArgument x:TypeArguments="x:String" x:Key="istrProfileName">[iodictBlockDetails("strTravelAgent")]</InArgument>
+                          <InOutArgument x:TypeArguments="scg:Dictionary(x:String, x:String)" x:Key="iodictBlockDetails">[iodictBlockDetails]</InOutArgument>
+                        </ui:InvokeCode.Arguments>
+                        <sap:WorkflowViewStateService.ViewState>
+                          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                            <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                            <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                          </scg:Dictionary>
+                        </sap:WorkflowViewStateService.ViewState>
+                      </ui:InvokeCode>
+                      <If Condition="[iodictBlockDetails(&quot;strTravelAgent&quot;).Trim.ToUpper.Contains(&quot;TAG&quot;)]" DisplayName="20.c If profile name is TAG" sap:VirtualizedContainerService.HintSize="433.6,56.8" sap2010:WorkflowViewState.IdRef="If_6">
+                        <sap:WorkflowViewStateService.ViewState>
+                          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                            <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+                            <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                          </scg:Dictionary>
+                        </sap:WorkflowViewStateService.ViewState>
+                        <If.Then>
+                          <Sequence DisplayName="Then" sap:VirtualizedContainerService.HintSize="416,248" sap2010:WorkflowViewState.IdRef="Sequence_24">
+                            <sap:WorkflowViewStateService.ViewState>
+                              <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                              </scg:Dictionary>
+                            </sap:WorkflowViewStateService.ViewState>
+                            <ui:InvokeCode ContinueOnError="{x:Null}" Code="iodictBlockDetails(&quot;strAgentProfileId&quot;) = &quot;262401&quot;&#xA;iodictBlockDetails(&quot;strAgentName&quot;) = &quot;TAG Global Travel and Event Management C&quot;&#xA;iodictBlockDetails(&quot;strProfileType&quot;) = &quot;Agent&quot;" DisplayName="20.c Invoke Code for TAG profile id" sap:VirtualizedContainerService.HintSize="382.4,188" sap2010:WorkflowViewState.IdRef="InvokeCode_38">
+                              <ui:InvokeCode.Arguments>
+                                <InOutArgument x:TypeArguments="scg:Dictionary(x:String, x:String)" x:Key="iodictBlockDetails">[iodictBlockDetails]</InOutArgument>
+                              </ui:InvokeCode.Arguments>
+                            </ui:InvokeCode>
+                          </Sequence>
+                        </If.Then>
+                        <If.Else>
+                          <Sequence DisplayName="Else" sap:VirtualizedContainerService.HintSize="416,89.6" sap2010:WorkflowViewState.IdRef="Sequence_25">
+                            <sap:WorkflowViewStateService.ViewState>
+                              <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                              </scg:Dictionary>
+                            </sap:WorkflowViewStateService.ViewState>
+                          </Sequence>
+                        </If.Else>
+                      </If>
+                      <Assign DisplayName="20.c Assign missing profile" sap:VirtualizedContainerService.HintSize="433.6,104.8" sap2010:WorkflowViewState.IdRef="Assign_6">
+                        <Assign.To>
+                          <OutArgument x:TypeArguments="x:Boolean">[oboolProfileMissing]</OutArgument>
+                        </Assign.To>
+                        <Assign.Value>
+                          <InArgument x:TypeArguments="x:Boolean">[oboolProfileMissing Or (String.IsNullOrEmpty(iodictBlockDetails("strAgentProfileId")) And String.IsNullOrEmpty(iodictBlockDetails("strContactProfileId")) )]</InArgument>
+                        </Assign.Value>
+                      </Assign>
+                    </Sequence>
+                  </If.Else>
+                </If>
+              </Sequence>
+            </ui:CommentOut.Body>
+            <sap:WorkflowViewStateService.ViewState>
+              <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+                <x:Boolean x:Key="IsPinned">False</x:Boolean>
+              </scg:Dictionary>
+            </sap:WorkflowViewStateService.ViewState>
+          </ui:CommentOut>
+          <If Condition="[iodictBlockDetails(&quot;strTravelAgent&quot;).Contains(&quot;-&quot;)]" DisplayName="20.c If extracted travel agent have both agent and company name" sap:VirtualizedContainerService.HintSize="636.8,1800" sap2010:WorkflowViewState.IdRef="If_9">
+            <sap:WorkflowViewStateService.ViewState>
+              <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                <x:Boolean x:Key="IsPinned">False</x:Boolean>
+              </scg:Dictionary>
+            </sap:WorkflowViewStateService.ViewState>
+            <If.Then>
+              <Sequence DisplayName="Then" sap:VirtualizedContainerService.HintSize="603.2,1071.2" sap2010:WorkflowViewState.IdRef="Sequence_33">
+                <sap:WorkflowViewStateService.ViewState>
+                  <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                    <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                    <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                  </scg:Dictionary>
+                </sap:WorkflowViewStateService.ViewState>
+                <ui:ForEach x:TypeArguments="x:String" CurrentIndex="{x:Null}" DisplayName="20.c For Each currentText" sap:VirtualizedContainerService.HintSize="569.6,1011.2" sap2010:WorkflowViewState.IdRef="ForEach`1_3" Values="[iodictBlockDetails(&quot;strTravelAgent&quot;).Split(&quot;-&quot;c)]">
+                  <ui:ForEach.Body>
+                    <ActivityAction x:TypeArguments="x:String">
+                      <ActivityAction.Argument>
+                        <DelegateInArgument x:TypeArguments="x:String" Name="currentText" />
+                      </ActivityAction.Argument>
+                      <Sequence DisplayName="Body" sap:VirtualizedContainerService.HintSize="536,873.6" sap2010:WorkflowViewState.IdRef="Sequence_32">
+                        <sap:WorkflowViewStateService.ViewState>
+                          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                            <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                          </scg:Dictionary>
+                        </sap:WorkflowViewStateService.ViewState>
+                        <ui:InvokeCode ContinueOnError="{x:Null}" Code="Dim client As New system.net.http.HttpClient()&#xA;Dim request As New HttpRequestMessage(HttpMethod.Get, istrHostName +&quot;/crm/v1/profiles?profileType=company&amp;profileName=&quot;+ istrProfileName)&#xA;&#xA;request.Headers.Add(&quot;x-hotelId&quot;, istrHotelID)&#xA;request.Headers.Add(&quot;x-app-key&quot;, istrAppKey)&#xA;request.Headers.Add(&quot;Authorization&quot;, istrToken)&#xA;&#xA;Dim content As New StringContent(&quot;&quot;, Nothing, &quot;application/json&quot;)&#xA;request.Content = content&#xA;' Send the HTTP request synchronously&#xA;Dim response As HttpResponseMessage = client.Send(request)&#xA;&#xA;&#xA;' Ensure that the request was successful&#xA;response.EnsureSuccessStatusCode()&#xA;' Write the response content to the console&#xA;Dim strResponseBody As String = response.Content.ReadAsStringAsync().Result&#xA;&#xA;Dim jobjReservationInfo As JToken= JObject.Parse(strResponseBody)(&quot;profileSummaries&quot;)&#xA;If CInt(jobjReservationInfo(&quot;totalResults&quot;)) &gt; 0 Then&#xA;&#x9;For Each item As JToken In jobjReservationInfo(&quot;profileInfo&quot;)&#xA;&#x9;&#x9;If (convert.ToString(item(&quot;profile&quot;)(&quot;formerName&quot;)(&quot;name&quot;)).ToLower.Equals(istrProfileName.ToLower) )&#xA;&#x9;&#x9;&#x9;iodictBlockDetails(&quot;strAgentProfileId&quot;) =Convert.ToString(item(&quot;profileIdList&quot;)(0)(&quot;id&quot;))&#xA;&#x9;&#x9;&#x9;iodictBlockDetails(&quot;strAgentName&quot;) = istrProfileName.Trim&#xA;&#x9;&#x9;&#x9;iodictBlockDetails(&quot;strProfileType&quot;) = &quot;Company&quot;&#xA;&#x9;&#x9;End If&#xA;&#x9;Next&#xA;End If" DisplayName="20.c Invoke Code to get company profile id" sap:VirtualizedContainerService.HintSize="502.4,196.8" sap2010:WorkflowViewState.IdRef="InvokeCode_41">
+                          <ui:InvokeCode.Arguments>
+                            <InArgument x:TypeArguments="x:String" x:Key="istrHostName">[idictAssetsData("Opera OHIP URL").ToString]</InArgument>
+                            <InArgument x:TypeArguments="x:String" x:Key="istrAppKey">[idictAssetsData("Opera OHIP AppKey").ToString]</InArgument>
+                            <InArgument x:TypeArguments="x:String" x:Key="istrToken">[istrToken]</InArgument>
+                            <InArgument x:TypeArguments="x:String" x:Key="istrBlockCode">[iodictBlockDetails("strBlockCode")]</InArgument>
+                            <InArgument x:TypeArguments="x:String" x:Key="istrHotelID">[iodictBlockDetails("strPropertyCode")]</InArgument>
+                            <InArgument x:TypeArguments="x:String" x:Key="istrProfileName">[iodictBlockDetails("strTravelAgent")]</InArgument>
+                            <InOutArgument x:TypeArguments="scg:Dictionary(x:String, x:String)" x:Key="iodictBlockDetails">[iodictBlockDetails]</InOutArgument>
+                          </ui:InvokeCode.Arguments>
+                          <sap:WorkflowViewStateService.ViewState>
+                            <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                              <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                              <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                            </scg:Dictionary>
+                          </sap:WorkflowViewStateService.ViewState>
+                        </ui:InvokeCode>
+                        <ui:InvokeCode ContinueOnError="{x:Null}" Code="Dim client As New system.net.http.HttpClient()&#xA;Dim request As New HttpRequestMessage(HttpMethod.Get, istrHostName +&quot;/crm/v1/profiles?profileType=agent&amp;profileName=&quot;+ istrProfileName)&#xA;&#xA;request.Headers.Add(&quot;x-hotelId&quot;, istrHotelID)&#xA;request.Headers.Add(&quot;x-app-key&quot;, istrAppKey)&#xA;request.Headers.Add(&quot;Authorization&quot;, istrToken)&#xA;&#xA;Dim content As New StringContent(&quot;&quot;, Nothing, &quot;application/json&quot;)&#xA;request.Content = content&#xA;' Send the HTTP request synchronously&#xA;Dim response As HttpResponseMessage = client.Send(request)&#xA;&#xA;&#xA;' Ensure that the request was successful&#xA;response.EnsureSuccessStatusCode()&#xA;' Write the response content to the console&#xA;Dim strResponseBody As String = response.Content.ReadAsStringAsync().Result&#xA;&#xA;Dim jobjReservationInfo As JToken= JObject.Parse(strResponseBody)(&quot;profileSummaries&quot;)&#xA;If CInt(jobjReservationInfo(&quot;totalResults&quot;)) &gt; 0 Then&#xA;&#x9;For Each item As JToken In jobjReservationInfo(&quot;profileInfo&quot;)&#xA;&#x9;&#x9;If (convert.ToString(item(&quot;profile&quot;)(&quot;formerName&quot;)(&quot;name&quot;)).ToLower.Equals(istrProfileName.ToLower) )&#xA;&#x9;&#x9;&#x9;iodictBlockDetails(&quot;strAgentProfileId&quot;) =Convert.ToString(item(&quot;profileIdList&quot;)(0)(&quot;id&quot;))&#xA;&#x9;&#x9;&#x9;iodictBlockDetails(&quot;strAgentName&quot;) = istrProfileName.Trim&#xA;&#x9;&#x9;&#x9;iodictBlockDetails(&quot;strProfileType&quot;) = &quot;Agent&quot;&#xA;&#x9;&#x9;End If&#xA;&#x9;Next&#xA;End If" DisplayName="20.c Invoke Code to get agent profile id" sap:VirtualizedContainerService.HintSize="502.4,196.8" sap2010:WorkflowViewState.IdRef="InvokeCode_42">
+                          <ui:InvokeCode.Arguments>
+                            <InArgument x:TypeArguments="x:String" x:Key="istrHostName">[idictAssetsData("Opera OHIP URL").ToString]</InArgument>
+                            <InArgument x:TypeArguments="x:String" x:Key="istrAppKey">[idictAssetsData("Opera OHIP AppKey").ToString]</InArgument>
+                            <InArgument x:TypeArguments="x:String" x:Key="istrToken">[istrToken]</InArgument>
+                            <InArgument x:TypeArguments="x:String" x:Key="istrBlockCode">[iodictBlockDetails("strBlockCode")]</InArgument>
+                            <InArgument x:TypeArguments="x:String" x:Key="istrHotelID">[iodictBlockDetails("strPropertyCode")]</InArgument>
+                            <InArgument x:TypeArguments="x:String" x:Key="istrProfileName">[currentText.Trim]</InArgument>
+                            <InOutArgument x:TypeArguments="scg:Dictionary(x:String, x:String)" x:Key="iodictBlockDetails">[iodictBlockDetails]</InOutArgument>
+                          </ui:InvokeCode.Arguments>
+                          <sap:WorkflowViewStateService.ViewState>
+                            <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                              <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                              <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                            </scg:Dictionary>
+                          </sap:WorkflowViewStateService.ViewState>
+                        </ui:InvokeCode>
+                        <ui:CommentOut DisplayName="Not in use" sap:VirtualizedContainerService.HintSize="502.4,56.8" sap2010:WorkflowViewState.IdRef="CommentOut_3">
+                          <ui:CommentOut.Body>
+                            <Sequence DisplayName="Ignored Activities" sap:VirtualizedContainerService.HintSize="416,248" sap2010:WorkflowViewState.IdRef="Sequence_37">
+                              <sap:WorkflowViewStateService.ViewState>
+                                <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                  <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                                </scg:Dictionary>
+                              </sap:WorkflowViewStateService.ViewState>
+                              <ui:InvokeCode ContinueOnError="{x:Null}" Code="Dim client As New system.net.http.HttpClient()&#xA;Dim strFirstName As String = istrProfileName.trim.Split(&quot; &quot;c)(0).Trim&#xA;Dim strLastName As String =  If (istrProfileName.trim.Split(&quot; &quot;c).Length &gt;1 , istrProfileName.trim.Split(&quot; &quot;c)(1) , &quot;&quot;).Trim&#xA;If ( Not istrProfileName.Trim.Contains(&quot; &quot;)) Then &#xA;&#x9;strFirstName = &quot;&quot;&#xA;&#x9;strLastName = istrProfileName&#xA;End If&#xA;Dim request As New HttpRequestMessage(HttpMethod.Get, istrHostName +&quot;/crm/v1/profiles?profileType=contact&amp;givenName=&quot;+ strFirstName +&quot;&amp;profileName=&quot;+ strLastName)&#xA;&#xA;request.Headers.Add(&quot;x-hotelId&quot;, istrHotelID)&#xA;request.Headers.Add(&quot;x-app-key&quot;, istrAppKey)&#xA;request.Headers.Add(&quot;Authorization&quot;, istrToken)&#xA;&#xA;Dim content As New StringContent(&quot;&quot;, Nothing, &quot;application/json&quot;)&#xA;request.Content = content&#xA;' Send the HTTP request synchronously&#xA;Dim response As HttpResponseMessage = client.Send(request)&#xA;&#xA;&#xA;' Ensure that the request was successful&#xA;response.EnsureSuccessStatusCode()&#xA;' Write the response content to the console&#xA;Dim strResponseBody As String = response.Content.ReadAsStringAsync().Result&#xA;&#xA;&#xA;Dim jobjReservationInfo As JToken= JObject.Parse(strResponseBody)(&quot;profileSummaries&quot;)&#xA;If CInt(jobjReservationInfo(&quot;totalResults&quot;)) &gt; 0 Then&#xA;&#x9;For Each item As JToken In jobjReservationInfo(&quot;profileInfo&quot;)&#xA;&#x9;&#x9;If (convert.ToString(item(&quot;profile&quot;)(&quot;formerName&quot;)(&quot;name&quot;)).ToLower.Equals(strLastName.ToLower) AndAlso convert.ToString(item(&quot;profile&quot;)(&quot;formerName&quot;)(&quot;givenName&quot;)).ToLower.Equals(strFirstName.ToLower)  )&#xA;&#x9;&#x9;&#x9;iodictBlockDetails(&quot;strContactProfileId&quot;) =Convert.ToString(item(&quot;profileIdList&quot;)(0)(&quot;id&quot;))&#xA;&#x9;&#x9;&#x9;iodictBlockDetails(&quot;strContactFirstName&quot;) = strFirstName&#xA;&#x9;&#x9;&#x9;iodictBlockDetails(&quot;strContactLastName&quot;) = strLastName&#xA;&#x9;&#x9;End If&#xA;&#x9;Next&#xA;End If" DisplayName="20.c Invoke Code to get contact profile id" sap:VirtualizedContainerService.HintSize="382.4,188" sap2010:WorkflowViewState.IdRef="InvokeCode_43">
+                                <ui:InvokeCode.Arguments>
+                                  <InArgument x:TypeArguments="x:String" x:Key="istrHostName">[idictAssetsData("Opera OHIP URL").ToString]</InArgument>
+                                  <InArgument x:TypeArguments="x:String" x:Key="istrAppKey">[idictAssetsData("Opera OHIP AppKey").ToString]</InArgument>
+                                  <InArgument x:TypeArguments="x:String" x:Key="istrToken">[istrToken]</InArgument>
+                                  <InArgument x:TypeArguments="x:String" x:Key="istrBlockCode">[iodictBlockDetails("strBlockCode")]</InArgument>
+                                  <InArgument x:TypeArguments="x:String" x:Key="istrHotelID">[iodictBlockDetails("strPropertyCode")]</InArgument>
+                                  <InArgument x:TypeArguments="x:String" x:Key="istrProfileName">[currentText.Trim]</InArgument>
+                                  <InOutArgument x:TypeArguments="scg:Dictionary(x:String, x:String)" x:Key="iodictBlockDetails">[iodictBlockDetails]</InOutArgument>
+                                </ui:InvokeCode.Arguments>
+                                <sap:WorkflowViewStateService.ViewState>
+                                  <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                    <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                                    <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                                  </scg:Dictionary>
+                                </sap:WorkflowViewStateService.ViewState>
+                              </ui:InvokeCode>
+                            </Sequence>
+                          </ui:CommentOut.Body>
+                          <sap:WorkflowViewStateService.ViewState>
+                            <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                              <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+                              <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                            </scg:Dictionary>
+                          </sap:WorkflowViewStateService.ViewState>
+                        </ui:CommentOut>
+                        <If Condition="[currentText.Trim.ToUpper.Contains(&quot;TAG&quot;)]" DisplayName="20.c If Profile name is TAG" sap:VirtualizedContainerService.HintSize="502.4,56.8" sap2010:WorkflowViewState.IdRef="If_10">
+                          <sap:WorkflowViewStateService.ViewState>
+                            <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                              <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+                              <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                            </scg:Dictionary>
+                          </sap:WorkflowViewStateService.ViewState>
+                          <If.Then>
+                            <Sequence DisplayName="Then" sap:VirtualizedContainerService.HintSize="416,248" sap2010:WorkflowViewState.IdRef="Sequence_30">
+                              <sap:WorkflowViewStateService.ViewState>
+                                <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                  <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                                </scg:Dictionary>
+                              </sap:WorkflowViewStateService.ViewState>
+                              <ui:InvokeCode ContinueOnError="{x:Null}" Code="iodictBlockDetails(&quot;strAgentProfileId&quot;) = &quot;262401&quot;&#xA;iodictBlockDetails(&quot;strAgentName&quot;) = &quot;TAG Global Travel and Event Management C&quot;&#xA;iodictBlockDetails(&quot;strProfileType&quot;) = &quot;Agent&quot;" DisplayName="20.c Invoke Code for TAG profile id" sap:VirtualizedContainerService.HintSize="382.4,188" sap2010:WorkflowViewState.IdRef="InvokeCode_44">
+                                <ui:InvokeCode.Arguments>
+                                  <InOutArgument x:TypeArguments="scg:Dictionary(x:String, x:String)" x:Key="iodictBlockDetails">[iodictBlockDetails]</InOutArgument>
+                                </ui:InvokeCode.Arguments>
+                              </ui:InvokeCode>
+                            </Sequence>
+                          </If.Then>
+                          <If.Else>
+                            <Sequence DisplayName="Else" sap:VirtualizedContainerService.HintSize="416,89.6" sap2010:WorkflowViewState.IdRef="Sequence_31">
+                              <sap:WorkflowViewStateService.ViewState>
+                                <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                  <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                                </scg:Dictionary>
+                              </sap:WorkflowViewStateService.ViewState>
+                            </Sequence>
+                          </If.Else>
+                        </If>
+                        <ui:CommentOut DisplayName="Comment Out" sap:VirtualizedContainerService.HintSize="502.4,306.4" sap2010:WorkflowViewState.IdRef="CommentOut_5">
+                          <ui:CommentOut.Body>
+                            <Sequence DisplayName="Ignored Activities" sap:VirtualizedContainerService.HintSize="467.2,164.8" sap2010:WorkflowViewState.IdRef="Sequence_39">
+                              <sap:WorkflowViewStateService.ViewState>
+                                <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                  <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                                </scg:Dictionary>
+                              </sap:WorkflowViewStateService.ViewState>
+                              <Assign DisplayName="20.c Assign missing profile" sap:VirtualizedContainerService.HintSize="433.6,104.8" sap2010:WorkflowViewState.IdRef="Assign_9">
+                                <Assign.To>
+                                  <OutArgument x:TypeArguments="x:Boolean">[oboolProfileMissing]</OutArgument>
+                                </Assign.To>
+                                <Assign.Value>
+                                  <InArgument x:TypeArguments="x:Boolean">[oboolProfileMissing Or String.IsNullOrEmpty(iodictBlockDetails("strAgentProfileId"))]</InArgument>
+                                </Assign.Value>
+                                <sap:WorkflowViewStateService.ViewState>
+                                  <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                    <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                                    <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                                  </scg:Dictionary>
+                                </sap:WorkflowViewStateService.ViewState>
+                              </Assign>
+                            </Sequence>
+                          </ui:CommentOut.Body>
+                          <sap:WorkflowViewStateService.ViewState>
+                            <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                              <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                              <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                            </scg:Dictionary>
+                          </sap:WorkflowViewStateService.ViewState>
+                        </ui:CommentOut>
+                      </Sequence>
+                    </ActivityAction>
+                  </ui:ForEach.Body>
+                  <sap:WorkflowViewStateService.ViewState>
+                    <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                      <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                      <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                    </scg:Dictionary>
+                  </sap:WorkflowViewStateService.ViewState>
+                </ui:ForEach>
+              </Sequence>
+            </If.Then>
+            <If.Else>
+              <Sequence DisplayName="Else" sap:VirtualizedContainerService.HintSize="416,558.4" sap2010:WorkflowViewState.IdRef="Sequence_36">
+                <sap:WorkflowViewStateService.ViewState>
+                  <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                    <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                    <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                  </scg:Dictionary>
+                </sap:WorkflowViewStateService.ViewState>
+                <ui:InvokeCode ContinueOnError="{x:Null}" Code="Dim client As New system.net.http.HttpClient()&#xA;Dim request As New HttpRequestMessage(HttpMethod.Get, istrHostName +&quot;/crm/v1/profiles?profileType=company&amp;profileName=&quot;+ istrProfileName)&#xA;&#xA;request.Headers.Add(&quot;x-hotelId&quot;, istrHotelID)&#xA;request.Headers.Add(&quot;x-app-key&quot;, istrAppKey)&#xA;request.Headers.Add(&quot;Authorization&quot;, istrToken)&#xA;&#xA;Dim content As New StringContent(&quot;&quot;, Nothing, &quot;application/json&quot;)&#xA;request.Content = content&#xA;' Send the HTTP request synchronously&#xA;Dim response As HttpResponseMessage = client.Send(request)&#xA;&#xA;&#xA;' Ensure that the request was successful&#xA;response.EnsureSuccessStatusCode()&#xA;' Write the response content to the console&#xA;Dim strResponseBody As String = response.Content.ReadAsStringAsync().Result&#xA;&#xA;&#xA;Dim jobjReservationInfo As JToken= JObject.Parse(strResponseBody)(&quot;profileSummaries&quot;)&#xA;If CInt(jobjReservationInfo(&quot;totalResults&quot;)) &gt; 0 Then&#xA;&#x9;For Each item As JToken In jobjReservationInfo(&quot;profileInfo&quot;)&#xA;&#x9;&#x9;If (convert.ToString(item(&quot;profile&quot;)(&quot;formerName&quot;)(&quot;name&quot;)).ToLower.Equals(istrProfileName.ToLower) )&#xA;&#x9;&#x9;&#x9;iodictBlockDetails(&quot;strAgentProfileId&quot;) =Convert.ToString(item(&quot;profileIdList&quot;)(0)(&quot;id&quot;))&#xA;&#x9;&#x9;&#x9;iodictBlockDetails(&quot;strAgentName&quot;) = istrProfileName.Trim&#xA;&#x9;&#x9;&#x9;iodictBlockDetails(&quot;strProfileType&quot;) = &quot;Company&quot;&#xA;&#x9;&#x9;End If&#xA;&#x9;Next&#xA;End If" DisplayName="20.c Invoke Code to get company profile id" sap:VirtualizedContainerService.HintSize="382.4,196.8" sap2010:WorkflowViewState.IdRef="InvokeCode_45">
+                  <ui:InvokeCode.Arguments>
+                    <InArgument x:TypeArguments="x:String" x:Key="istrHostName">[idictAssetsData("Opera OHIP URL").ToString]</InArgument>
+                    <InArgument x:TypeArguments="x:String" x:Key="istrAppKey">[idictAssetsData("Opera OHIP AppKey").ToString]</InArgument>
+                    <InArgument x:TypeArguments="x:String" x:Key="istrToken">[istrToken]</InArgument>
+                    <InArgument x:TypeArguments="x:String" x:Key="istrBlockCode">[iodictBlockDetails("strBlockCode")]</InArgument>
+                    <InArgument x:TypeArguments="x:String" x:Key="istrHotelID">[iodictBlockDetails("strPropertyCode")]</InArgument>
+                    <InArgument x:TypeArguments="x:String" x:Key="istrProfileName">[iodictBlockDetails("strTravelAgent")]</InArgument>
+                    <InOutArgument x:TypeArguments="scg:Dictionary(x:String, x:String)" x:Key="iodictBlockDetails">[iodictBlockDetails]</InOutArgument>
+                  </ui:InvokeCode.Arguments>
+                  <sap:WorkflowViewStateService.ViewState>
+                    <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                      <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                      <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                    </scg:Dictionary>
+                  </sap:WorkflowViewStateService.ViewState>
+                </ui:InvokeCode>
+                <ui:InvokeCode ContinueOnError="{x:Null}" Code="Dim client As New system.net.http.HttpClient()&#xA;Dim request As New HttpRequestMessage(HttpMethod.Get, istrHostName +&quot;/crm/v1/profiles?profileType=agent&amp;profileName=&quot;+ istrProfileName)&#xA;&#xA;request.Headers.Add(&quot;x-hotelId&quot;, istrHotelID)&#xA;request.Headers.Add(&quot;x-app-key&quot;, istrAppKey)&#xA;request.Headers.Add(&quot;Authorization&quot;, istrToken)&#xA;&#xA;Dim content As New StringContent(&quot;&quot;, Nothing, &quot;application/json&quot;)&#xA;request.Content = content&#xA;' Send the HTTP request synchronously&#xA;Dim response As HttpResponseMessage = client.Send(request)&#xA;&#xA;&#xA;' Ensure that the request was successful&#xA;response.EnsureSuccessStatusCode()&#xA;' Write the response content to the console&#xA;Dim strResponseBody As String = response.Content.ReadAsStringAsync().Result&#xA;&#xA;&#xA;Dim jobjReservationInfo As JToken= JObject.Parse(strResponseBody)(&quot;profileSummaries&quot;)&#xA;If CInt(jobjReservationInfo(&quot;totalResults&quot;)) &gt; 0 Then&#xA;&#x9;For Each item As JToken In jobjReservationInfo(&quot;profileInfo&quot;)&#xA;&#x9;&#x9;If (convert.ToString(item(&quot;profile&quot;)(&quot;formerName&quot;)(&quot;name&quot;)).ToLower.Equals(istrProfileName.ToLower) )&#xA;&#x9;&#x9;&#x9;iodictBlockDetails(&quot;strAgentProfileId&quot;) =Convert.ToString(item(&quot;profileIdList&quot;)(0)(&quot;id&quot;))&#xA;&#x9;&#x9;&#x9;iodictBlockDetails(&quot;strAgentName&quot;) = istrProfileName.Trim&#xA;&#x9;&#x9;&#x9;iodictBlockDetails(&quot;strProfileType&quot;) = &quot;Agent&quot;&#xA;&#x9;&#x9;End If&#xA;&#x9;Next&#xA;End If" DisplayName="20.c Invoke Code to get agent profile id" sap:VirtualizedContainerService.HintSize="382.4,196.8" sap2010:WorkflowViewState.IdRef="InvokeCode_46">
+                  <ui:InvokeCode.Arguments>
+                    <InArgument x:TypeArguments="x:String" x:Key="istrHostName">[idictAssetsData("Opera OHIP URL").ToString]</InArgument>
+                    <InArgument x:TypeArguments="x:String" x:Key="istrAppKey">[idictAssetsData("Opera OHIP AppKey").ToString]</InArgument>
+                    <InArgument x:TypeArguments="x:String" x:Key="istrToken">[istrToken]</InArgument>
+                    <InArgument x:TypeArguments="x:String" x:Key="istrBlockCode">[iodictBlockDetails("strBlockCode")]</InArgument>
+                    <InArgument x:TypeArguments="x:String" x:Key="istrHotelID">[iodictBlockDetails("strPropertyCode")]</InArgument>
+                    <InArgument x:TypeArguments="x:String" x:Key="istrProfileName">[iodictBlockDetails("strTravelAgent")]</InArgument>
+                    <InOutArgument x:TypeArguments="scg:Dictionary(x:String, x:String)" x:Key="iodictBlockDetails">[iodictBlockDetails]</InOutArgument>
+                  </ui:InvokeCode.Arguments>
+                  <sap:WorkflowViewStateService.ViewState>
+                    <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                      <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                      <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                    </scg:Dictionary>
+                  </sap:WorkflowViewStateService.ViewState>
+                </ui:InvokeCode>
+                <ui:CommentOut DisplayName="Not in use" sap:VirtualizedContainerService.HintSize="382.4,56.8" sap2010:WorkflowViewState.IdRef="CommentOut_4">
+                  <ui:CommentOut.Body>
+                    <Sequence DisplayName="Ignored Activities" sap:VirtualizedContainerService.HintSize="416,248" sap2010:WorkflowViewState.IdRef="Sequence_38">
+                      <sap:WorkflowViewStateService.ViewState>
+                        <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                          <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                        </scg:Dictionary>
+                      </sap:WorkflowViewStateService.ViewState>
+                      <ui:InvokeCode ContinueOnError="{x:Null}" Code="Dim client As New system.net.http.HttpClient()&#xA;Dim strFirstName As String = istrProfileName.trim.Split(&quot; &quot;c)(0).Trim&#xA;Dim strLastName As String =  If (istrProfileName.trim.Split(&quot; &quot;c).Length &gt;1 , istrProfileName.trim.Split(&quot; &quot;c)(1) , &quot;&quot;).Trim&#xA;If ( Not istrProfileName.Trim.Contains(&quot; &quot;)) Then &#xA;&#x9;strFirstName = &quot;&quot;&#xA;&#x9;strLastName = istrProfileName&#xA;End If&#xA;Dim request As New HttpRequestMessage(HttpMethod.Get, istrHostName +&quot;/crm/v1/profiles?profileType=contact&amp;givenName=&quot;+ strFirstName +&quot;&amp;profileName=&quot;+ strLastName)&#xA;&#xA;request.Headers.Add(&quot;x-hotelId&quot;, istrHotelID)&#xA;request.Headers.Add(&quot;x-app-key&quot;, istrAppKey)&#xA;request.Headers.Add(&quot;Authorization&quot;, istrToken)&#xA;&#xA;Dim content As New StringContent(&quot;&quot;, Nothing, &quot;application/json&quot;)&#xA;request.Content = content&#xA;' Send the HTTP request synchronously&#xA;Dim response As HttpResponseMessage = client.Send(request)&#xA;&#xA;&#xA;' Ensure that the request was successful&#xA;response.EnsureSuccessStatusCode()&#xA;' Write the response content to the console&#xA;Dim strResponseBody As String = response.Content.ReadAsStringAsync().Result&#xA;&#xA;&#xA;Dim jobjReservationInfo As JToken= JObject.Parse(strResponseBody)(&quot;profileSummaries&quot;)&#xA;If CInt(jobjReservationInfo(&quot;totalResults&quot;)) &gt; 0 Then&#xA;&#x9;For Each item As JToken In jobjReservationInfo(&quot;profileInfo&quot;)&#xA;&#x9;&#x9;If (convert.ToString(item(&quot;profile&quot;)(&quot;formerName&quot;)(&quot;name&quot;)).ToLower.Equals(strLastName.ToLower) AndAlso convert.ToString(item(&quot;profile&quot;)(&quot;formerName&quot;)(&quot;givenName&quot;)).ToLower.Equals(strFirstName.ToLower))&#xA;&#x9;&#x9;&#x9;iodictBlockDetails(&quot;strContactProfileId&quot;) =Convert.ToString(item(&quot;profileIdList&quot;)(0)(&quot;id&quot;))&#xA;&#x9;&#x9;&#x9;iodictBlockDetails(&quot;strContactFirstName&quot;) = strFirstName&#xA;&#x9;&#x9;&#x9;iodictBlockDetails(&quot;strContactLastName&quot;) = strLastName&#xA;&#x9;&#x9;End If&#xA;&#x9;Next&#xA;End If" DisplayName="20.c Invoke Code to get contact profile id" sap:VirtualizedContainerService.HintSize="382.4,188" sap2010:WorkflowViewState.IdRef="InvokeCode_47">
+                        <ui:InvokeCode.Arguments>
+                          <InArgument x:TypeArguments="x:String" x:Key="istrHostName">[idictAssetsData("Opera OHIP URL").ToString]</InArgument>
+                          <InArgument x:TypeArguments="x:String" x:Key="istrAppKey">[idictAssetsData("Opera OHIP AppKey").ToString]</InArgument>
+                          <InArgument x:TypeArguments="x:String" x:Key="istrToken">[istrToken]</InArgument>
+                          <InArgument x:TypeArguments="x:String" x:Key="istrBlockCode">[iodictBlockDetails("strBlockCode")]</InArgument>
+                          <InArgument x:TypeArguments="x:String" x:Key="istrHotelID">[iodictBlockDetails("strPropertyCode")]</InArgument>
+                          <InArgument x:TypeArguments="x:String" x:Key="istrProfileName">[iodictBlockDetails("strTravelAgent")]</InArgument>
+                          <InOutArgument x:TypeArguments="scg:Dictionary(x:String, x:String)" x:Key="iodictBlockDetails">[iodictBlockDetails]</InOutArgument>
+                        </ui:InvokeCode.Arguments>
+                        <sap:WorkflowViewStateService.ViewState>
+                          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                            <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                            <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                          </scg:Dictionary>
+                        </sap:WorkflowViewStateService.ViewState>
+                      </ui:InvokeCode>
+                    </Sequence>
+                  </ui:CommentOut.Body>
+                  <sap:WorkflowViewStateService.ViewState>
+                    <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                      <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+                      <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                    </scg:Dictionary>
+                  </sap:WorkflowViewStateService.ViewState>
+                </ui:CommentOut>
+                <If Condition="[iodictBlockDetails(&quot;strTravelAgent&quot;).Trim.ToUpper.Contains(&quot;TAG&quot;)]" DisplayName="20.c If profile name is TAG" sap:VirtualizedContainerService.HintSize="382.4,48" sap2010:WorkflowViewState.IdRef="If_11">
+                  <sap:WorkflowViewStateService.ViewState>
+                    <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                      <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+                      <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                    </scg:Dictionary>
+                  </sap:WorkflowViewStateService.ViewState>
+                  <If.Then>
+                    <Sequence DisplayName="Then" sap:VirtualizedContainerService.HintSize="416,248" sap2010:WorkflowViewState.IdRef="Sequence_34">
+                      <sap:WorkflowViewStateService.ViewState>
+                        <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                          <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                        </scg:Dictionary>
+                      </sap:WorkflowViewStateService.ViewState>
+                      <ui:InvokeCode ContinueOnError="{x:Null}" Code="iodictBlockDetails(&quot;strAgentProfileId&quot;) = &quot;262401&quot;&#xA;iodictBlockDetails(&quot;strAgentName&quot;) = &quot;TAG Global Travel and Event Management C&quot;&#xA;iodictBlockDetails(&quot;strProfileType&quot;) = &quot;Agent&quot;" DisplayName="20.c Invoke Code for TAG profile id" sap:VirtualizedContainerService.HintSize="382.4,188" sap2010:WorkflowViewState.IdRef="InvokeCode_48">
+                        <ui:InvokeCode.Arguments>
+                          <InOutArgument x:TypeArguments="scg:Dictionary(x:String, x:String)" x:Key="iodictBlockDetails">[iodictBlockDetails]</InOutArgument>
+                        </ui:InvokeCode.Arguments>
+                      </ui:InvokeCode>
+                    </Sequence>
+                  </If.Then>
+                  <If.Else>
+                    <Sequence DisplayName="Else" sap:VirtualizedContainerService.HintSize="416,89.6" sap2010:WorkflowViewState.IdRef="Sequence_35">
+                      <sap:WorkflowViewStateService.ViewState>
+                        <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                          <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                        </scg:Dictionary>
+                      </sap:WorkflowViewStateService.ViewState>
+                    </Sequence>
+                  </If.Else>
+                </If>
+              </Sequence>
+            </If.Else>
+          </If>
+          <ui:InvokeCode ContinueOnError="{x:Null}" Code="Dim client As New system.net.http.HttpClient()&#xA;Dim strFirstName As String = istrProfileName.trim.Split(&quot; &quot;c)(0).Trim&#xA;Dim strLastName As String =  If (istrProfileName.trim.Split(&quot; &quot;c).Length &gt;1 , istrProfileName.trim.Split(&quot; &quot;c)(1) , &quot;&quot;).Trim&#xA;If ( Not istrProfileName.Trim.Contains(&quot; &quot;)) Then &#xA;&#x9;strFirstName = &quot;&quot;&#xA;&#x9;strLastName = istrProfileName&#xA;End If&#xA;Dim request As New HttpRequestMessage(HttpMethod.Get, istrHostName +&quot;/crm/v1/profiles?profileType=contact&amp;givenName=&quot;+ strFirstName +&quot;&amp;profileName=&quot;+ strLastName)&#xA;&#xA;request.Headers.Add(&quot;x-hotelId&quot;, istrHotelID)&#xA;request.Headers.Add(&quot;x-app-key&quot;, istrAppKey)&#xA;request.Headers.Add(&quot;Authorization&quot;, istrToken)&#xA;&#xA;Dim content As New StringContent(&quot;&quot;, Nothing, &quot;application/json&quot;)&#xA;request.Content = content&#xA;' Send the HTTP request synchronously&#xA;Dim response As HttpResponseMessage = client.Send(request)&#xA;&#xA;&#xA;' Ensure that the request was successful&#xA;response.EnsureSuccessStatusCode()&#xA;' Write the response content to the console&#xA;Dim strResponseBody As String = response.Content.ReadAsStringAsync().Result&#xA;&#xA;&#xA;Dim jobjReservationInfo As JToken= JObject.Parse(strResponseBody)(&quot;profileSummaries&quot;)&#xA;If CInt(jobjReservationInfo(&quot;totalResults&quot;)) &gt; 0 Then&#xA;&#x9;For Each item As JToken In jobjReservationInfo(&quot;profileInfo&quot;)&#xA;&#x9;&#x9;If (convert.ToString(item(&quot;profile&quot;)(&quot;formerName&quot;)(&quot;name&quot;)).ToLower.Equals(strLastName.ToLower) AndAlso convert.ToString(item(&quot;profile&quot;)(&quot;formerName&quot;)(&quot;givenName&quot;)).ToLower.Equals(strFirstName.ToLower)  )&#xA;&#x9;&#x9;&#x9;iodictBlockDetails(&quot;strContactProfileId&quot;) =Convert.ToString(item(&quot;profileIdList&quot;)(0)(&quot;id&quot;))&#xA;&#x9;&#x9;&#x9;iodictBlockDetails(&quot;strContactFirstName&quot;) = strFirstName&#xA;&#x9;&#x9;&#x9;iodictBlockDetails(&quot;strContactLastName&quot;) = strLastName&#xA;&#x9;&#x9;End If&#xA;&#x9;Next&#xA;End If" DisplayName="20.c Invoke Code to get contact profile id" sap:VirtualizedContainerService.HintSize="636.8,196.8" sap2010:WorkflowViewState.IdRef="InvokeCode_49">
+            <ui:InvokeCode.Arguments>
+              <InArgument x:TypeArguments="x:String" x:Key="istrHostName">[idictAssetsData("Opera OHIP URL").ToString]</InArgument>
+              <InArgument x:TypeArguments="x:String" x:Key="istrAppKey">[idictAssetsData("Opera OHIP AppKey").ToString]</InArgument>
+              <InArgument x:TypeArguments="x:String" x:Key="istrToken">[istrToken]</InArgument>
+              <InArgument x:TypeArguments="x:String" x:Key="istrBlockCode">[iodictBlockDetails("strBlockCode")]</InArgument>
+              <InArgument x:TypeArguments="x:String" x:Key="istrHotelID">[iodictBlockDetails("strPropertyCode")]</InArgument>
+              <InArgument x:TypeArguments="x:String" x:Key="istrProfileName">[iodictBlockDetails("strContactName")]</InArgument>
+              <InOutArgument x:TypeArguments="scg:Dictionary(x:String, x:String)" x:Key="iodictBlockDetails">[iodictBlockDetails]</InOutArgument>
+            </ui:InvokeCode.Arguments>
+            <sap:WorkflowViewStateService.ViewState>
+              <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                <x:Boolean x:Key="IsPinned">False</x:Boolean>
+              </scg:Dictionary>
+            </sap:WorkflowViewStateService.ViewState>
+          </ui:InvokeCode>
+          <Assign DisplayName="20.c Assign missing profile" sap:VirtualizedContainerService.HintSize="636.8,104.8" sap2010:WorkflowViewState.IdRef="Assign_10">
+            <Assign.To>
+              <OutArgument x:TypeArguments="x:Boolean">[oboolProfileMissing]</OutArgument>
+            </Assign.To>
+            <Assign.Value>
+              <InArgument x:TypeArguments="x:Boolean">[oboolProfileMissing Or (String.IsNullOrEmpty(iodictBlockDetails("strAgentProfileId")) And String.IsNullOrEmpty(iodictBlockDetails("strContactProfileId")) )]</InArgument>
+            </Assign.Value>
+          </Assign>
+        </Sequence>
+      </Switch.Default>
+      <sap:WorkflowViewStateService.ViewState>
+        <scg:Dictionary x:TypeArguments="x:String, x:Object">
+          <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+          <x:Boolean x:Key="IsPinned">False</x:Boolean>
+        </scg:Dictionary>
+      </sap:WorkflowViewStateService.ViewState>
+      <Sequence x:Key="TheTourCompany" sap:VirtualizedContainerService.HintSize="416,248" sap2010:WorkflowViewState.IdRef="Sequence_17">
+        <sap:WorkflowViewStateService.ViewState>
+          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+            <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+          </scg:Dictionary>
+        </sap:WorkflowViewStateService.ViewState>
+        <ui:InvokeCode ContinueOnError="{x:Null}" Code="iodictBlockDetails(&quot;strAgentProfileId&quot;) = &quot;886216&quot;&#xA;iodictBlockDetails(&quot;strAgentName&quot;) = &quot;The Tour Company&quot;&#xA;iodictBlockDetails(&quot;strProfileType&quot;) = &quot;Agent&quot;" DisplayName="20.c Invoke Code for The Tour Company profile id" sap:VirtualizedContainerService.HintSize="382.4,188" sap2010:WorkflowViewState.IdRef="InvokeCode_30">
+          <ui:InvokeCode.Arguments>
+            <InOutArgument x:TypeArguments="scg:Dictionary(x:String, x:String)" x:Key="iodictBlockDetails">[iodictBlockDetails]</InOutArgument>
+          </ui:InvokeCode.Arguments>
+        </ui:InvokeCode>
+      </Sequence>
+      <x:Null x:Key="RoadRebel" />
+    </Switch>
+    <ui:CommentOut DisplayName="Old Code" sap:VirtualizedContainerService.HintSize="580.8,56.8" sap2010:WorkflowViewState.IdRef="CommentOut_1">
+      <ui:CommentOut.Body>
+        <Sequence DisplayName="Ignored Activities" sap:VirtualizedContainerService.HintSize="416,108" sap2010:WorkflowViewState.IdRef="Sequence_26">
+          <sap:WorkflowViewStateService.ViewState>
+            <scg:Dictionary x:TypeArguments="x:String, x:Object">
+              <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+            </scg:Dictionary>
+          </sap:WorkflowViewStateService.ViewState>
+          <If Condition="[iodictBlockDetails(&quot;strTravelAgent&quot;).Contains(&quot;-&quot;)]" DisplayName="20.c If extracted travel agent have both agent and contact" sap:VirtualizedContainerService.HintSize="382.4,48" sap2010:WorkflowViewState.IdRef="If_1">
+            <sap:WorkflowViewStateService.ViewState>
+              <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+                <x:Boolean x:Key="IsPinned">False</x:Boolean>
+              </scg:Dictionary>
+            </sap:WorkflowViewStateService.ViewState>
+            <If.Then>
+              <Sequence DisplayName="Then" sap:VirtualizedContainerService.HintSize="416,24.8" sap2010:WorkflowViewState.IdRef="Sequence_3">
+                <sap:WorkflowViewStateService.ViewState>
+                  <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                    <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+                    <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                  </scg:Dictionary>
+                </sap:WorkflowViewStateService.ViewState>
+                <ui:ForEach x:TypeArguments="x:String" CurrentIndex="{x:Null}" DisplayName="20.c For Each currentText" sap:VirtualizedContainerService.HintSize="516.8,1404.8" sap2010:WorkflowViewState.IdRef="ForEach`1_1" Values="[iodictBlockDetails(&quot;strTravelAgent&quot;).Split(&quot;-&quot;c)]">
+                  <ui:ForEach.Body>
+                    <ActivityAction x:TypeArguments="x:String">
+                      <ActivityAction.Argument>
+                        <DelegateInArgument x:TypeArguments="x:String" Name="currentText" />
+                      </ActivityAction.Argument>
+                      <Sequence DisplayName="Body" sap:VirtualizedContainerService.HintSize="483.2,1267.2" sap2010:WorkflowViewState.IdRef="Sequence_2">
+                        <sap:WorkflowViewStateService.ViewState>
+                          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                            <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                          </scg:Dictionary>
+                        </sap:WorkflowViewStateService.ViewState>
+                        <ui:InvokeCode ContinueOnError="{x:Null}" Code="Dim client As New system.net.http.HttpClient()&#xA;Dim request As New HttpRequestMessage(HttpMethod.Get, istrHostName +&quot;/crm/v1/profiles?profileType=company&amp;profileName=&quot;+ istrProfileName)&#xA;&#xA;request.Headers.Add(&quot;x-hotelId&quot;, istrHotelID)&#xA;request.Headers.Add(&quot;x-app-key&quot;, istrAppKey)&#xA;request.Headers.Add(&quot;Authorization&quot;, istrToken)&#xA;&#xA;Dim content As New StringContent(&quot;&quot;, Nothing, &quot;application/json&quot;)&#xA;request.Content = content&#xA;' Send the HTTP request synchronously&#xA;Dim response As HttpResponseMessage = client.Send(request)&#xA;&#xA;&#xA;' Ensure that the request was successful&#xA;response.EnsureSuccessStatusCode()&#xA;' Write the response content to the console&#xA;Dim strResponseBody As String = response.Content.ReadAsStringAsync().Result&#xA;&#xA;Dim jobjReservationInfo As JToken= JObject.Parse(strResponseBody)(&quot;profileSummaries&quot;)&#xA;If CInt(jobjReservationInfo(&quot;totalResults&quot;)) &gt; 0 Then&#xA;&#x9;For Each item As JToken In jobjReservationInfo(&quot;profileInfo&quot;)&#xA;&#x9;&#x9;If (convert.ToString(item(&quot;profile&quot;)(&quot;formerName&quot;)(&quot;name&quot;)).ToLower.Equals(istrProfileName.ToLower) )&#xA;&#x9;&#x9;&#x9;iodictBlockDetails(&quot;strAgentProfileId&quot;) =Convert.ToString(item(&quot;profileIdList&quot;)(0)(&quot;id&quot;))&#xA;&#x9;&#x9;&#x9;iodictBlockDetails(&quot;strAgentName&quot;) = istrProfileName.Trim&#xA;&#x9;&#x9;&#x9;iodictBlockDetails(&quot;strProfileType&quot;) = &quot;Company&quot;&#xA;&#x9;&#x9;End If&#xA;&#x9;Next&#xA;End If" DisplayName="20.c Invoke Code to get company profile id" sap:VirtualizedContainerService.HintSize="449.6,196.8" sap2010:WorkflowViewState.IdRef="InvokeCode_12">
+                          <ui:InvokeCode.Arguments>
+                            <InArgument x:TypeArguments="x:String" x:Key="istrHostName">[idictAssetsData("Opera OHIP URL").ToString]</InArgument>
+                            <InArgument x:TypeArguments="x:String" x:Key="istrAppKey">[idictAssetsData("Opera OHIP AppKey").ToString]</InArgument>
+                            <InArgument x:TypeArguments="x:String" x:Key="istrToken">[istrToken]</InArgument>
+                            <InArgument x:TypeArguments="x:String" x:Key="istrBlockCode">[iodictBlockDetails("strBlockCode")]</InArgument>
+                            <InArgument x:TypeArguments="x:String" x:Key="istrHotelID">[iodictBlockDetails("strPropertyCode")]</InArgument>
+                            <InArgument x:TypeArguments="x:String" x:Key="istrProfileName">[iodictBlockDetails("strTravelAgent")]</InArgument>
+                            <InOutArgument x:TypeArguments="scg:Dictionary(x:String, x:String)" x:Key="iodictBlockDetails">[iodictBlockDetails]</InOutArgument>
+                          </ui:InvokeCode.Arguments>
+                          <sap:WorkflowViewStateService.ViewState>
+                            <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                              <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                              <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                            </scg:Dictionary>
+                          </sap:WorkflowViewStateService.ViewState>
+                        </ui:InvokeCode>
+                        <ui:InvokeCode ContinueOnError="{x:Null}" Code="Dim client As New system.net.http.HttpClient()&#xA;Dim request As New HttpRequestMessage(HttpMethod.Get, istrHostName +&quot;/crm/v1/profiles?profileType=agent&amp;profileName=&quot;+ istrProfileName)&#xA;&#xA;request.Headers.Add(&quot;x-hotelId&quot;, istrHotelID)&#xA;request.Headers.Add(&quot;x-app-key&quot;, istrAppKey)&#xA;request.Headers.Add(&quot;Authorization&quot;, istrToken)&#xA;&#xA;Dim content As New StringContent(&quot;&quot;, Nothing, &quot;application/json&quot;)&#xA;request.Content = content&#xA;' Send the HTTP request synchronously&#xA;Dim response As HttpResponseMessage = client.Send(request)&#xA;&#xA;&#xA;' Ensure that the request was successful&#xA;response.EnsureSuccessStatusCode()&#xA;' Write the response content to the console&#xA;Dim strResponseBody As String = response.Content.ReadAsStringAsync().Result&#xA;&#xA;Dim jobjReservationInfo As JToken= JObject.Parse(strResponseBody)(&quot;profileSummaries&quot;)&#xA;If CInt(jobjReservationInfo(&quot;totalResults&quot;)) &gt; 0 Then&#xA;&#x9;For Each item As JToken In jobjReservationInfo(&quot;profileInfo&quot;)&#xA;&#x9;&#x9;If (convert.ToString(item(&quot;profile&quot;)(&quot;formerName&quot;)(&quot;name&quot;)).ToLower.Equals(istrProfileName.ToLower) )&#xA;&#x9;&#x9;&#x9;iodictBlockDetails(&quot;strAgentProfileId&quot;) =Convert.ToString(item(&quot;profileIdList&quot;)(0)(&quot;id&quot;))&#xA;&#x9;&#x9;&#x9;iodictBlockDetails(&quot;strAgentName&quot;) = istrProfileName.Trim&#xA;&#x9;&#x9;&#x9;iodictBlockDetails(&quot;strProfileType&quot;) = &quot;Agent&quot;&#xA;&#x9;&#x9;End If&#xA;&#x9;Next&#xA;End If" DisplayName="20.c Invoke Code to get agent profile id" sap:VirtualizedContainerService.HintSize="449.6,196.8" sap2010:WorkflowViewState.IdRef="InvokeCode_3">
+                          <ui:InvokeCode.Arguments>
+                            <InArgument x:TypeArguments="x:String" x:Key="istrHostName">[idictAssetsData("Opera OHIP URL").ToString]</InArgument>
+                            <InArgument x:TypeArguments="x:String" x:Key="istrAppKey">[idictAssetsData("Opera OHIP AppKey").ToString]</InArgument>
+                            <InArgument x:TypeArguments="x:String" x:Key="istrToken">[istrToken]</InArgument>
+                            <InArgument x:TypeArguments="x:String" x:Key="istrBlockCode">[iodictBlockDetails("strBlockCode")]</InArgument>
+                            <InArgument x:TypeArguments="x:String" x:Key="istrHotelID">[iodictBlockDetails("strPropertyCode")]</InArgument>
+                            <InArgument x:TypeArguments="x:String" x:Key="istrProfileName">[currentText.Trim]</InArgument>
+                            <InOutArgument x:TypeArguments="scg:Dictionary(x:String, x:String)" x:Key="iodictBlockDetails">[iodictBlockDetails]</InOutArgument>
+                          </ui:InvokeCode.Arguments>
+                          <sap:WorkflowViewStateService.ViewState>
+                            <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                              <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                              <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                            </scg:Dictionary>
+                          </sap:WorkflowViewStateService.ViewState>
+                        </ui:InvokeCode>
+                        <ui:InvokeCode ContinueOnError="{x:Null}" Code="Dim client As New system.net.http.HttpClient()&#xA;Dim strFirstName As String = istrProfileName.trim.Split(&quot; &quot;c)(0).Trim&#xA;Dim strLastName As String =  If (istrProfileName.trim.Split(&quot; &quot;c).Length &gt;1 , istrProfileName.trim.Split(&quot; &quot;c)(1) , &quot;&quot;).Trim&#xA;If ( Not istrProfileName.Trim.Contains(&quot; &quot;)) Then &#xA;&#x9;strFirstName = &quot;&quot;&#xA;&#x9;strLastName = istrProfileName&#xA;End If&#xA;Dim request As New HttpRequestMessage(HttpMethod.Get, istrHostName +&quot;/crm/v1/profiles?profileType=contact&amp;givenName=&quot;+ strFirstName +&quot;&amp;profileName=&quot;+ strLastName)&#xA;&#xA;request.Headers.Add(&quot;x-hotelId&quot;, istrHotelID)&#xA;request.Headers.Add(&quot;x-app-key&quot;, istrAppKey)&#xA;request.Headers.Add(&quot;Authorization&quot;, istrToken)&#xA;&#xA;Dim content As New StringContent(&quot;&quot;, Nothing, &quot;application/json&quot;)&#xA;request.Content = content&#xA;' Send the HTTP request synchronously&#xA;Dim response As HttpResponseMessage = client.Send(request)&#xA;&#xA;&#xA;' Ensure that the request was successful&#xA;response.EnsureSuccessStatusCode()&#xA;' Write the response content to the console&#xA;Dim strResponseBody As String = response.Content.ReadAsStringAsync().Result&#xA;&#xA;&#xA;Dim jobjReservationInfo As JToken= JObject.Parse(strResponseBody)(&quot;profileSummaries&quot;)&#xA;If CInt(jobjReservationInfo(&quot;totalResults&quot;)) &gt; 0 Then&#xA;&#x9;For Each item As JToken In jobjReservationInfo(&quot;profileInfo&quot;)&#xA;&#x9;&#x9;If (convert.ToString(item(&quot;profile&quot;)(&quot;formerName&quot;)(&quot;name&quot;)).ToLower.Equals(strLastName.ToLower) AndAlso convert.ToString(item(&quot;profile&quot;)(&quot;formerName&quot;)(&quot;givenName&quot;)).ToLower.Equals(strFirstName.ToLower)  )&#xA;&#x9;&#x9;&#x9;iodictBlockDetails(&quot;strContactProfileId&quot;) =Convert.ToString(item(&quot;profileIdList&quot;)(0)(&quot;id&quot;))&#xA;&#x9;&#x9;&#x9;iodictBlockDetails(&quot;strContactFirstName&quot;) = strFirstName&#xA;&#x9;&#x9;&#x9;iodictBlockDetails(&quot;strContactLastName&quot;) = strLastName&#xA;&#x9;&#x9;End If&#xA;&#x9;Next&#xA;End If" DisplayName="20.c Invoke Code to get contact profile id" sap:VirtualizedContainerService.HintSize="449.6,196.8" sap2010:WorkflowViewState.IdRef="InvokeCode_4">
+                          <ui:InvokeCode.Arguments>
+                            <InArgument x:TypeArguments="x:String" x:Key="istrHostName">[idictAssetsData("Opera OHIP URL").ToString]</InArgument>
+                            <InArgument x:TypeArguments="x:String" x:Key="istrAppKey">[idictAssetsData("Opera OHIP AppKey").ToString]</InArgument>
+                            <InArgument x:TypeArguments="x:String" x:Key="istrToken">[istrToken]</InArgument>
+                            <InArgument x:TypeArguments="x:String" x:Key="istrBlockCode">[iodictBlockDetails("strBlockCode")]</InArgument>
+                            <InArgument x:TypeArguments="x:String" x:Key="istrHotelID">[iodictBlockDetails("strPropertyCode")]</InArgument>
+                            <InArgument x:TypeArguments="x:String" x:Key="istrProfileName">[currentText.Trim]</InArgument>
+                            <InOutArgument x:TypeArguments="scg:Dictionary(x:String, x:String)" x:Key="iodictBlockDetails">[iodictBlockDetails]</InOutArgument>
+                          </ui:InvokeCode.Arguments>
+                          <sap:WorkflowViewStateService.ViewState>
+                            <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                              <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                              <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                            </scg:Dictionary>
+                          </sap:WorkflowViewStateService.ViewState>
+                        </ui:InvokeCode>
+                        <If Condition="[currentText.Trim.ToUpper.Contains(&quot;TAG&quot;)]" DisplayName="20.c If Profile name is TAG" sap:VirtualizedContainerService.HintSize="449.6,508.8" sap2010:WorkflowViewState.IdRef="If_3">
+                          <sap:WorkflowViewStateService.ViewState>
+                            <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                              <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                              <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                            </scg:Dictionary>
+                          </sap:WorkflowViewStateService.ViewState>
+                          <If.Then>
+                            <Sequence DisplayName="Then" sap:VirtualizedContainerService.HintSize="416,248" sap2010:WorkflowViewState.IdRef="Sequence_10">
+                              <sap:WorkflowViewStateService.ViewState>
+                                <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                  <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                                </scg:Dictionary>
+                              </sap:WorkflowViewStateService.ViewState>
+                              <ui:InvokeCode ContinueOnError="{x:Null}" Code="iodictBlockDetails(&quot;strAgentProfileId&quot;) = &quot;262401&quot;&#xA;iodictBlockDetails(&quot;strAgentName&quot;) = &quot;TAG Global Travel and Event Management C&quot;&#xA;iodictBlockDetails(&quot;strProfileType&quot;) = &quot;Agent&quot;" DisplayName="20.c Invoke Code for TAG profile id" sap:VirtualizedContainerService.HintSize="382.4,188" sap2010:WorkflowViewState.IdRef="InvokeCode_16">
+                                <ui:InvokeCode.Arguments>
+                                  <InOutArgument x:TypeArguments="scg:Dictionary(x:String, x:String)" x:Key="iodictBlockDetails">[iodictBlockDetails]</InOutArgument>
+                                </ui:InvokeCode.Arguments>
+                              </ui:InvokeCode>
+                            </Sequence>
+                          </If.Then>
+                          <If.Else>
+                            <Sequence DisplayName="Else" sap:VirtualizedContainerService.HintSize="416,90.66666666666667" sap2010:WorkflowViewState.IdRef="Sequence_11">
+                              <sap:WorkflowViewStateService.ViewState>
+                                <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                  <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                                </scg:Dictionary>
+                              </sap:WorkflowViewStateService.ViewState>
+                            </Sequence>
+                          </If.Else>
+                        </If>
+                        <Assign DisplayName="20.c Assign missing profile" sap:VirtualizedContainerService.HintSize="450,108" sap2010:WorkflowViewState.IdRef="Assign_4">
+                          <Assign.To>
+                            <OutArgument x:TypeArguments="x:Boolean">[oboolProfileMissing]</OutArgument>
+                          </Assign.To>
+                          <Assign.Value>
+                            <InArgument x:TypeArguments="x:Boolean">[oboolProfileMissing Or (String.IsNullOrEmpty(iodictBlockDetails("strAgentProfileId")) Or String.IsNullOrEmpty(iodictBlockDetails("strContactProfileId")) )]</InArgument>
+                          </Assign.Value>
+                        </Assign>
+                      </Sequence>
+                    </ActivityAction>
+                  </ui:ForEach.Body>
+                </ui:ForEach>
+              </Sequence>
+            </If.Then>
+            <If.Else>
+              <Sequence DisplayName="Else" sap:VirtualizedContainerService.HintSize="467.2,812" sap2010:WorkflowViewState.IdRef="Sequence_4">
+                <sap:WorkflowViewStateService.ViewState>
+                  <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                    <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                    <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                  </scg:Dictionary>
+                </sap:WorkflowViewStateService.ViewState>
+                <ui:InvokeCode ContinueOnError="{x:Null}" Code="Dim client As New system.net.http.HttpClient()&#xA;Dim request As New HttpRequestMessage(HttpMethod.Get, istrHostName +&quot;/crm/v1/profiles?profileType=company&amp;profileName=&quot;+ istrProfileName)&#xA;&#xA;request.Headers.Add(&quot;x-hotelId&quot;, istrHotelID)&#xA;request.Headers.Add(&quot;x-app-key&quot;, istrAppKey)&#xA;request.Headers.Add(&quot;Authorization&quot;, istrToken)&#xA;&#xA;Dim content As New StringContent(&quot;&quot;, Nothing, &quot;application/json&quot;)&#xA;request.Content = content&#xA;' Send the HTTP request synchronously&#xA;Dim response As HttpResponseMessage = client.Send(request)&#xA;&#xA;&#xA;' Ensure that the request was successful&#xA;response.EnsureSuccessStatusCode()&#xA;' Write the response content to the console&#xA;Dim strResponseBody As String = response.Content.ReadAsStringAsync().Result&#xA;&#xA;&#xA;Dim jobjReservationInfo As JToken= JObject.Parse(strResponseBody)(&quot;profileSummaries&quot;)&#xA;If CInt(jobjReservationInfo(&quot;totalResults&quot;)) &gt; 0 Then&#xA;&#x9;For Each item As JToken In jobjReservationInfo(&quot;profileInfo&quot;)&#xA;&#x9;&#x9;If (convert.ToString(item(&quot;profile&quot;)(&quot;formerName&quot;)(&quot;name&quot;)).ToLower.Equals(istrProfileName.ToLower) )&#xA;&#x9;&#x9;&#x9;iodictBlockDetails(&quot;strAgentProfileId&quot;) =Convert.ToString(item(&quot;profileIdList&quot;)(0)(&quot;id&quot;))&#xA;&#x9;&#x9;&#x9;iodictBlockDetails(&quot;strAgentName&quot;) = istrProfileName.Trim&#xA;&#x9;&#x9;&#x9;iodictBlockDetails(&quot;strProfileType&quot;) = &quot;Company&quot;&#xA;&#x9;&#x9;End If&#xA;&#x9;Next&#xA;End If" DisplayName="20.c Invoke Code to get company profile id" sap:VirtualizedContainerService.HintSize="433.6,196.8" sap2010:WorkflowViewState.IdRef="InvokeCode_13">
+                  <ui:InvokeCode.Arguments>
+                    <InArgument x:TypeArguments="x:String" x:Key="istrHostName">[idictAssetsData("Opera OHIP URL").ToString]</InArgument>
+                    <InArgument x:TypeArguments="x:String" x:Key="istrAppKey">[idictAssetsData("Opera OHIP AppKey").ToString]</InArgument>
+                    <InArgument x:TypeArguments="x:String" x:Key="istrToken">[istrToken]</InArgument>
+                    <InArgument x:TypeArguments="x:String" x:Key="istrBlockCode">[iodictBlockDetails("strBlockCode")]</InArgument>
+                    <InArgument x:TypeArguments="x:String" x:Key="istrHotelID">[iodictBlockDetails("strPropertyCode")]</InArgument>
+                    <InArgument x:TypeArguments="x:String" x:Key="istrProfileName">[iodictBlockDetails("strTravelAgent")]</InArgument>
+                    <InOutArgument x:TypeArguments="scg:Dictionary(x:String, x:String)" x:Key="iodictBlockDetails">[iodictBlockDetails]</InOutArgument>
+                  </ui:InvokeCode.Arguments>
+                  <sap:WorkflowViewStateService.ViewState>
+                    <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                      <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                      <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                    </scg:Dictionary>
+                  </sap:WorkflowViewStateService.ViewState>
+                </ui:InvokeCode>
+                <ui:InvokeCode ContinueOnError="{x:Null}" Code="Dim client As New system.net.http.HttpClient()&#xA;Dim request As New HttpRequestMessage(HttpMethod.Get, istrHostName +&quot;/crm/v1/profiles?profileType=agent&amp;profileName=&quot;+ istrProfileName)&#xA;&#xA;request.Headers.Add(&quot;x-hotelId&quot;, istrHotelID)&#xA;request.Headers.Add(&quot;x-app-key&quot;, istrAppKey)&#xA;request.Headers.Add(&quot;Authorization&quot;, istrToken)&#xA;&#xA;Dim content As New StringContent(&quot;&quot;, Nothing, &quot;application/json&quot;)&#xA;request.Content = content&#xA;' Send the HTTP request synchronously&#xA;Dim response As HttpResponseMessage = client.Send(request)&#xA;&#xA;&#xA;' Ensure that the request was successful&#xA;response.EnsureSuccessStatusCode()&#xA;' Write the response content to the console&#xA;Dim strResponseBody As String = response.Content.ReadAsStringAsync().Result&#xA;&#xA;&#xA;Dim jobjReservationInfo As JToken= JObject.Parse(strResponseBody)(&quot;profileSummaries&quot;)&#xA;If CInt(jobjReservationInfo(&quot;totalResults&quot;)) &gt; 0 Then&#xA;&#x9;For Each item As JToken In jobjReservationInfo(&quot;profileInfo&quot;)&#xA;&#x9;&#x9;If (convert.ToString(item(&quot;profile&quot;)(&quot;formerName&quot;)(&quot;name&quot;)).ToLower.Equals(istrProfileName.ToLower) )&#xA;&#x9;&#x9;&#x9;iodictBlockDetails(&quot;strAgentProfileId&quot;) =Convert.ToString(item(&quot;profileIdList&quot;)(0)(&quot;id&quot;))&#xA;&#x9;&#x9;&#x9;iodictBlockDetails(&quot;strAgentName&quot;) = istrProfileName.Trim&#xA;&#x9;&#x9;&#x9;iodictBlockDetails(&quot;strProfileType&quot;) = &quot;Agent&quot;&#xA;&#x9;&#x9;End If&#xA;&#x9;Next&#xA;End If" DisplayName="20.c Invoke Code to get agent profile id" sap:VirtualizedContainerService.HintSize="433.6,196.8" sap2010:WorkflowViewState.IdRef="InvokeCode_5">
+                  <ui:InvokeCode.Arguments>
+                    <InArgument x:TypeArguments="x:String" x:Key="istrHostName">[idictAssetsData("Opera OHIP URL").ToString]</InArgument>
+                    <InArgument x:TypeArguments="x:String" x:Key="istrAppKey">[idictAssetsData("Opera OHIP AppKey").ToString]</InArgument>
+                    <InArgument x:TypeArguments="x:String" x:Key="istrToken">[istrToken]</InArgument>
+                    <InArgument x:TypeArguments="x:String" x:Key="istrBlockCode">[iodictBlockDetails("strBlockCode")]</InArgument>
+                    <InArgument x:TypeArguments="x:String" x:Key="istrHotelID">[iodictBlockDetails("strPropertyCode")]</InArgument>
+                    <InArgument x:TypeArguments="x:String" x:Key="istrProfileName">[iodictBlockDetails("strTravelAgent")]</InArgument>
+                    <InOutArgument x:TypeArguments="scg:Dictionary(x:String, x:String)" x:Key="iodictBlockDetails">[iodictBlockDetails]</InOutArgument>
+                  </ui:InvokeCode.Arguments>
+                  <sap:WorkflowViewStateService.ViewState>
+                    <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                      <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                      <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                    </scg:Dictionary>
+                  </sap:WorkflowViewStateService.ViewState>
+                </ui:InvokeCode>
+                <ui:InvokeCode ContinueOnError="{x:Null}" Code="Dim client As New system.net.http.HttpClient()&#xA;Dim strFirstName As String = istrProfileName.trim.Split(&quot; &quot;c)(0).Trim&#xA;Dim strLastName As String =  If (istrProfileName.trim.Split(&quot; &quot;c).Length &gt;1 , istrProfileName.trim.Split(&quot; &quot;c)(1) , &quot;&quot;).Trim&#xA;If ( Not istrProfileName.Trim.Contains(&quot; &quot;)) Then &#xA;&#x9;strFirstName = &quot;&quot;&#xA;&#x9;strLastName = istrProfileName&#xA;End If&#xA;Dim request As New HttpRequestMessage(HttpMethod.Get, istrHostName +&quot;/crm/v1/profiles?profileType=contact&amp;givenName=&quot;+ strFirstName +&quot;&amp;profileName=&quot;+ strLastName)&#xA;&#xA;request.Headers.Add(&quot;x-hotelId&quot;, istrHotelID)&#xA;request.Headers.Add(&quot;x-app-key&quot;, istrAppKey)&#xA;request.Headers.Add(&quot;Authorization&quot;, istrToken)&#xA;&#xA;Dim content As New StringContent(&quot;&quot;, Nothing, &quot;application/json&quot;)&#xA;request.Content = content&#xA;' Send the HTTP request synchronously&#xA;Dim response As HttpResponseMessage = client.Send(request)&#xA;&#xA;&#xA;' Ensure that the request was successful&#xA;response.EnsureSuccessStatusCode()&#xA;' Write the response content to the console&#xA;Dim strResponseBody As String = response.Content.ReadAsStringAsync().Result&#xA;&#xA;&#xA;Dim jobjReservationInfo As JToken= JObject.Parse(strResponseBody)(&quot;profileSummaries&quot;)&#xA;If CInt(jobjReservationInfo(&quot;totalResults&quot;)) &gt; 0 Then&#xA;&#x9;For Each item As JToken In jobjReservationInfo(&quot;profileInfo&quot;)&#xA;&#x9;&#x9;If (convert.ToString(item(&quot;profile&quot;)(&quot;formerName&quot;)(&quot;name&quot;)).ToLower.Equals(strLastName.ToLower) AndAlso convert.ToString(item(&quot;profile&quot;)(&quot;formerName&quot;)(&quot;givenName&quot;)).ToLower.Equals(strFirstName.ToLower))&#xA;&#x9;&#x9;&#x9;iodictBlockDetails(&quot;strContactProfileId&quot;) =Convert.ToString(item(&quot;profileIdList&quot;)(0)(&quot;id&quot;))&#xA;&#x9;&#x9;&#x9;iodictBlockDetails(&quot;strContactFirstName&quot;) = strFirstName&#xA;&#x9;&#x9;&#x9;iodictBlockDetails(&quot;strContactLastName&quot;) = strLastName&#xA;&#x9;&#x9;End If&#xA;&#x9;Next&#xA;End If" DisplayName="20.c Invoke Code to get contact profile id" sap:VirtualizedContainerService.HintSize="433.6,196.8" sap2010:WorkflowViewState.IdRef="InvokeCode_6">
+                  <ui:InvokeCode.Arguments>
+                    <InArgument x:TypeArguments="x:String" x:Key="istrHostName">[idictAssetsData("Opera OHIP URL").ToString]</InArgument>
+                    <InArgument x:TypeArguments="x:String" x:Key="istrAppKey">[idictAssetsData("Opera OHIP AppKey").ToString]</InArgument>
+                    <InArgument x:TypeArguments="x:String" x:Key="istrToken">[istrToken]</InArgument>
+                    <InArgument x:TypeArguments="x:String" x:Key="istrBlockCode">[iodictBlockDetails("strBlockCode")]</InArgument>
+                    <InArgument x:TypeArguments="x:String" x:Key="istrHotelID">[iodictBlockDetails("strPropertyCode")]</InArgument>
+                    <InArgument x:TypeArguments="x:String" x:Key="istrProfileName">[iodictBlockDetails("strTravelAgent")]</InArgument>
+                    <InOutArgument x:TypeArguments="scg:Dictionary(x:String, x:String)" x:Key="iodictBlockDetails">[iodictBlockDetails]</InOutArgument>
+                  </ui:InvokeCode.Arguments>
+                  <sap:WorkflowViewStateService.ViewState>
+                    <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                      <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                      <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                    </scg:Dictionary>
+                  </sap:WorkflowViewStateService.ViewState>
+                </ui:InvokeCode>
+                <If Condition="[iodictBlockDetails(&quot;strTravelAgent&quot;).Trim.ToUpper.Contains(&quot;TAG&quot;)]" DisplayName="20.c If profile name is TAG" sap:VirtualizedContainerService.HintSize="433.6,56.8" sap2010:WorkflowViewState.IdRef="If_4">
+                  <sap:WorkflowViewStateService.ViewState>
+                    <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                      <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+                      <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                    </scg:Dictionary>
+                  </sap:WorkflowViewStateService.ViewState>
+                  <If.Then>
+                    <Sequence DisplayName="Then" sap:VirtualizedContainerService.HintSize="416,248" sap2010:WorkflowViewState.IdRef="Sequence_14">
+                      <sap:WorkflowViewStateService.ViewState>
+                        <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                          <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                        </scg:Dictionary>
+                      </sap:WorkflowViewStateService.ViewState>
+                      <ui:InvokeCode ContinueOnError="{x:Null}" Code="iodictBlockDetails(&quot;strAgentProfileId&quot;) = &quot;262401&quot;&#xA;iodictBlockDetails(&quot;strAgentName&quot;) = &quot;TAG Global Travel and Event Management C&quot;&#xA;iodictBlockDetails(&quot;strProfileType&quot;) = &quot;Agent&quot;" DisplayName="20.c Invoke Code for TAG profile id" sap:VirtualizedContainerService.HintSize="382.4,188" sap2010:WorkflowViewState.IdRef="InvokeCode_17">
+                        <ui:InvokeCode.Arguments>
+                          <InOutArgument x:TypeArguments="scg:Dictionary(x:String, x:String)" x:Key="iodictBlockDetails">[iodictBlockDetails]</InOutArgument>
+                        </ui:InvokeCode.Arguments>
+                      </ui:InvokeCode>
+                    </Sequence>
+                  </If.Then>
+                  <If.Else>
+                    <Sequence DisplayName="Else" sap:VirtualizedContainerService.HintSize="416,89.6" sap2010:WorkflowViewState.IdRef="Sequence_15">
+                      <sap:WorkflowViewStateService.ViewState>
+                        <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                          <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                        </scg:Dictionary>
+                      </sap:WorkflowViewStateService.ViewState>
+                    </Sequence>
+                  </If.Else>
+                </If>
+                <Assign DisplayName="20.c Assign missing profile" sap:VirtualizedContainerService.HintSize="433.6,104.8" sap2010:WorkflowViewState.IdRef="Assign_5">
+                  <Assign.To>
+                    <OutArgument x:TypeArguments="x:Boolean">[oboolProfileMissing]</OutArgument>
+                  </Assign.To>
+                  <Assign.Value>
+                    <InArgument x:TypeArguments="x:Boolean">[oboolProfileMissing Or (String.IsNullOrEmpty(iodictBlockDetails("strAgentProfileId")) And String.IsNullOrEmpty(iodictBlockDetails("strContactProfileId")) )]</InArgument>
+                  </Assign.Value>
+                </Assign>
+              </Sequence>
+            </If.Else>
+          </If>
+        </Sequence>
+      </ui:CommentOut.Body>
+      <sap:WorkflowViewStateService.ViewState>
+        <scg:Dictionary x:TypeArguments="x:String, x:Object">
+          <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+          <x:Boolean x:Key="IsPinned">False</x:Boolean>
+        </scg:Dictionary>
+      </sap:WorkflowViewStateService.ViewState>
+    </ui:CommentOut>
+    <ui:InvokeCode ContinueOnError="{x:Null}" Code="Dim client As New system.Net.Http.HttpClient()&#xA;&#xA;Dim request As New HttpRequestMessage(HttpMethod.Post, istrHostURL + &quot;/blk/v1/hotels/&quot;+ idictBlockDetails(&quot;strPropertyCode&quot;).ToString +&quot;/block&quot;)&#xA;&#xA;request.Headers.Add(&quot;x-hotelid&quot;, idictBlockDetails(&quot;strPropertyCode&quot;).ToString)&#xA;request.Headers.Add(&quot;x-app-key&quot;, istrAppKey)&#xA;request.Headers.Add(&quot;Authorization&quot;, istrAuthKey)&#xA;&#xA;'console.WriteLine(strBlockCreationBody)&#xA;Dim strBlockCreationBody As String = idictAssetsData(&quot;Block Creation Body&quot;).ToString&#xA;strBlockCreationBody=strBlockCreationBody.Replace(&quot;{{HotelId}}&quot;, idictBlockDetails(&quot;strPropertyCode&quot;))&#xA;strBlockCreationBody=strBlockCreationBody.Replace(&quot;{{BlockCode}}&quot;, idictBlockDetails(&quot;strBlockCode&quot;))&#xA;strBlockCreationBody=strBlockCreationBody.Replace(&quot;{{BlockName}}&quot;, idictBlockDetails(&quot;strBlockName&quot;))&#xA;strBlockCreationBody=strBlockCreationBody.Replace(&quot;{{ArrivalDate}}&quot;, idictBlockDetails(&quot;strArrivalDate&quot;))&#xA;strBlockCreationBody=strBlockCreationBody.Replace(&quot;{{DepartureDate}}&quot;, idictBlockDetails(&quot;strDepartureDate&quot;))&#xA;strBlockCreationBody=strBlockCreationBody.Replace(&quot;{{FollowupDate}}&quot;, idictBlockDetails(&quot;strFollowupDate&quot;))&#xA;strBlockCreationBody=strBlockCreationBody.Replace(&quot;{{DecisionDate}}&quot;, idictBlockDetails(&quot;strDecisionDate&quot;))&#xA;strBlockCreationBody=strBlockCreationBody.Replace(&quot;{{BlockStatus}}&quot;, idictBlockDetails(&quot;strBlockStatus&quot;))&#xA;strBlockCreationBody=strBlockCreationBody.Replace(&quot;{{BlockNoteValue}}&quot;, idictBlockDetails(&quot;strBlockNotes&quot;))&#xA;strBlockCreationBody=strBlockCreationBody.Replace(&quot;{{CancellationNoteValue}}&quot;, idictBlockDetails(&quot;strCancellationNote&quot;))&#xA;strBlockCreationBody=strBlockCreationBody.Replace(&quot;{{DepositNoteValue}}&quot;, idictBlockDetails(&quot;strDepositNote&quot;))&#xA;&#xA;&#xA;If (Not String.IsNullOrEmpty(idictBlockDetails(&quot;strAgentProfileId&quot;))) Then &#xA;&#x9;Dim strTravelAgentSubBody As String = &quot; , &quot; +  idictAssetsData(&quot;Link Agent Profile Sub Body&quot;).ToString&#xA;&#x9;strTravelAgentSubBody = strTravelAgentSubBody.Replace(&quot;{{Profile Id}}&quot; , idictBlockDetails(&quot;strAgentProfileId&quot;))&#xA;&#x9;strTravelAgentSubBody = strTravelAgentSubBody.Replace(&quot;{{Company Name}}&quot; , idictBlockDetails(&quot;strAgentName&quot;))&#xA;&#x9;strBlockCreationBody =  strBlockCreationBody.Replace(&quot;{{Travel Agent Profile Sub Body}}&quot;, strTravelAgentSubBody)&#xA;Else &#xA;&#x9;strBlockCreationBody=strBlockCreationBody.Replace(&quot;{{Travel Agent Profile Sub Body}}&quot;,&quot;&quot;)&#xA;End If&#xA;&#xA;If (Not String.IsNullOrEmpty(idictBlockDetails(&quot;strContactProfileId&quot;))) Then &#xA;&#x9;Dim strContactSubBody As String = &quot; , &quot; + idictAssetsData(&quot;Link Contact Profile Sub Body&quot;).ToString&#xA;&#x9;strContactSubBody = strContactSubBody.Replace(&quot;{{Profile Id}}&quot; , idictBlockDetails(&quot;strContactProfileId&quot;))&#xA;&#x9;strContactSubBody = strContactSubBody.Replace(&quot;{{First Name}}&quot; , idictBlockDetails(&quot;strContactFirstName&quot;))&#xA;&#x9;strContactSubBody = strContactSubBody.Replace(&quot;{{Last Name}}&quot; , idictBlockDetails(&quot;strContactLastName&quot;))&#xA;&#x9;strContactSubBody= strContactSubBody.Replace(&quot;{{Block Profile Type}}&quot;, If (idictBlockDetails(&quot;strProfileType&quot;).ToString.ToLower.Contains(&quot;agent&quot;) or idictBlockDetails(&quot;strProfileType&quot;).ToString.ToLower.Contains(&quot;company&quot;) , idictBlockDetails(&quot;strProfileType&quot;), &quot;Agent&quot;))&#xA;&#x9;strBlockCreationBody=strBlockCreationBody.Replace(&quot;{{Contact Profile Sub Body}}&quot;, strContactSubBody )&#xA;Else &#xA;&#x9;strBlockCreationBody=strBlockCreationBody.Replace(&quot;{{Contact Profile Sub Body}}&quot;,&quot;&quot;)&#xA;End If&#xA;ostrBody = strBlockCreationBody&#xA;'console.WriteLine(strBlockCreationBody)&#xA;Dim content As New StringContent(strBlockCreationBody, Encoding.UTF8, &quot;application/json&quot;)&#xA;request.Content = content&#xA;&#xA;' -------- Synchronous call --------&#xA;Dim response As HttpResponseMessage = client.Send(request)&#xA;&#xA;response.EnsureSuccessStatusCode()&#xA;&#xA;Dim responseBody As String = response.Content.ReadAsStringAsync().Result&#xA;" DisplayName="20.c Invoke Code for block creation" sap:VirtualizedContainerService.HintSize="580.8,196.8" sap2010:WorkflowViewState.IdRef="InvokeCode_39">
+      <ui:InvokeCode.Arguments>
+        <InArgument x:TypeArguments="scg:Dictionary(x:String, x:Object)" x:Key="idictAssetsData">[idictAssetsData]</InArgument>
+        <InArgument x:TypeArguments="x:String" x:Key="istrAuthKey">[istrToken]</InArgument>
+        <InArgument x:TypeArguments="x:String" x:Key="istrHostURL">[idictAssetsData("Opera OHIP URL").ToString]</InArgument>
+        <InArgument x:TypeArguments="x:String" x:Key="istrAppKey">[idictAssetsData("Opera OHIP AppKey").ToString]</InArgument>
+        <InArgument x:TypeArguments="scg:Dictionary(x:String, x:String)" x:Key="idictBlockDetails">[iodictBlockDetails]</InArgument>
+        <OutArgument x:TypeArguments="x:String" x:Key="ostrBody">[strBlockCreationBody]</OutArgument>
+      </ui:InvokeCode.Arguments>
+      <sap:WorkflowViewStateService.ViewState>
+        <scg:Dictionary x:TypeArguments="x:String, x:Object">
+          <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+          <x:Boolean x:Key="IsPinned">False</x:Boolean>
+        </scg:Dictionary>
+      </sap:WorkflowViewStateService.ViewState>
+    </ui:InvokeCode>
+    <ui:InvokeCode ContinueOnError="{x:Null}" Code="Dim client As New system.net.http.HttpClient()&#xA;Dim request As New HttpRequestMessage(HttpMethod.Get, istrHostName + &quot;/blk/v1/blocks/?fetchInstructions=Block&amp;blockCode=&quot;+istrBlockCode)&#xA;&#xA;request.Headers.Add(&quot;x-hotelId&quot;, istrHotelID)&#xA;request.Headers.Add(&quot;x-app-key&quot;, istrAppKey)&#xA;request.Headers.Add(&quot;Authorization&quot;, istrToken)&#xA;Dim content As New StringContent(&quot;&quot;, Nothing, &quot;application/json&quot;)&#xA;request.Content = content&#xA;' Send the HTTP request synchronously&#xA;Dim response As HttpResponseMessage = client.Send(request)&#xA;&#xA;&#xA;' Ensure that the request was successful&#xA;response.EnsureSuccessStatusCode()&#xA;' Write the response content to the console&#xA;Dim strResponseBody As String = response.Content.ReadAsStringAsync().Result&#xA;&#xA;Dim jobjBlockSummaries As JToken= JObject.Parse(strResponseBody)(&quot;blockSummaries&quot;)&#xA;If (CInt(jobjBlockSummaries(&quot;totalResults&quot;)) = 0 ) Then&#xA;&#x9;Throw New SystemException(&quot;Block not created&quot;)&#xA;Else&#xA;&#x9;idictBlockDetails(&quot;strBlockId&quot;) =Convert.ToString(jobjBlockSummaries(&quot;blockInfo&quot;)(0)(&quot;blockIdList&quot;)(0)(&quot;id&quot;))&#xA;End If&#xA;" DisplayName="20.c Invoke Code to get block id using block name" sap:VirtualizedContainerService.HintSize="580.8,196.8" sap2010:WorkflowViewState.IdRef="InvokeCode_40">
+      <ui:InvokeCode.Arguments>
+        <InArgument x:TypeArguments="x:String" x:Key="istrHostName">[idictAssetsData("Opera OHIP URL").ToString]</InArgument>
+        <InArgument x:TypeArguments="x:String" x:Key="istrAppKey">[idictAssetsData("Opera OHIP AppKey").ToString]</InArgument>
+        <InArgument x:TypeArguments="x:String" x:Key="istrToken">[istrToken]</InArgument>
+        <InArgument x:TypeArguments="x:String" x:Key="istrBlockCode">[iodictBlockDetails("strBlockCode")]</InArgument>
+        <InOutArgument x:TypeArguments="scg:Dictionary(x:String, x:String)" x:Key="idictBlockDetails">[iodictBlockDetails]</InOutArgument>
+        <InArgument x:TypeArguments="x:String" x:Key="istrHotelID">[iodictBlockDetails("strPropertyCode")]</InArgument>
+      </ui:InvokeCode.Arguments>
+      <sap:WorkflowViewStateService.ViewState>
+        <scg:Dictionary x:TypeArguments="x:String, x:Object">
+          <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+          <x:Boolean x:Key="IsPinned">False</x:Boolean>
+        </scg:Dictionary>
+      </sap:WorkflowViewStateService.ViewState>
+    </ui:InvokeCode>
+    <ui:LogMessage DisplayName="20.c Info log - Block creation ended" sap:VirtualizedContainerService.HintSize="580.8,165.6" sap2010:WorkflowViewState.IdRef="LogMessage_2" Level="Info" Message="[&quot;Block created successfully with block id : &quot; + iodictBlockDetails(&quot;strBlockId&quot;)]" />
+  </Sequence>
+</Activity>
